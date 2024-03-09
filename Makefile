@@ -1,0 +1,36 @@
+CXX = g++
+CXXFLAGS = -std=c++11 -Wall -Wextra -O2
+LDFLAGS =
+CWD = $(pwd)
+
+# Directories
+SRC_DIR = $(CWD)/src
+BIN_DIR = $(CWD)/bin
+OBJ_DIR = $(CWD)/obj
+
+EXE = $(BIN_DIR)/projectA
+
+# Source files
+# SRCS = $(wildcard $(SRC_DIR)/*.cpp)
+SRCS = $(SRC_DIR)/main.cpp
+
+# Object files
+# OBJS = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRCS))
+OBJS = $(OBJ_DIR)/main.o
+
+# Default target
+all: $(EXE)
+
+# Linking step for the executable
+$(EXE): $(OBJS)
+	$(CXX) $(LDFLAGS) -o $@ $^
+
+# Compilation step
+# $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+# 	$(CXX) $(CXXFLAGS) -c -o $@ $<
+$(OBJS): $(SRCS)
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+# Clean up
+clean:
+	rm -rf $(OBJ_DIR) $(EXE)
