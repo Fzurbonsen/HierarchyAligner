@@ -1,6 +1,8 @@
 #include <iostream>
 
+#include "test.hpp"
+
 int main() {
-    std::cerr << "hello world" << std::endl;
+    run_tests("test_file");
     return 0;
 }
