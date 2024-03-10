@@ -40,6 +40,6 @@ copy_headers:
 
 # Clean up
 clean:
-	@rm -rf $(OBJ_DIR) $(EXE)
+	@rm -rf $(OBJ_DIR) $(INC_DIR) $(EXE)
 
 .PHONY: all clean copy_headers
