@@ -7,8 +7,25 @@
 
 using namespace std;
 
+
+// PRE:     fileName, testCases{TODO: struct/class that can hold the test cases}
+//      fileName:       String containing the path to test case graph file.
+//      testCases:      Instance of {testCase struct/class}.
+// POST:    testCases{TODO: struct/class that can hold the test cases}
+//      testCases:      Instance of {testCase struct/class} that holds the loaded test cases. 
+void read_graph_file(string fileName);
+
+
+// PRE:     fileName, testCases{TODO: struct/class that can hold the test cases}
+//      fileName:       String containing the path to test case cluster file.
+//      testCases:      Instance of {testCase struct/class}.
+// POST:    testCases{TODO: struct/class that can hold the test cases}
+//      testCases:      Instance of {testCase struct/class} that holds the loaded test cases.
+void read_cluster_file(string fileName);
+
+
 // PRE:     fileName, read_vector, graph_vector
-//      fileName:       String containing the name of a file that holds the neccesary information
+//      fileName:       String containing the path to a file that holds the neccesary information
 //                      to build the test graphs and reads.
 //      read_vector:    Empty vector that has the string type.
 //      graph_vector:   Empty vector that has the graph type.
@@ -49,7 +66,7 @@ void compare_results(int& n_tests, int& correct_tests,
                         vector<string>& gold_vector, vector<string>& result_vector);
 
 // PRE:     fileName
-//      fileName:       String containing the name of a file that holds the neccesary information
+//      fileName:       String containing the path to a file that holds the neccesary information
 //                      to build the test graphs and reads. 
 // POST:
 int run_tests(string fileName);

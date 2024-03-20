@@ -100,7 +100,7 @@ void read_graph_file(string fileName) {
     }
 }
 
-
+// Function to read a cluster file
 void read_cluster_file(string fileName) {
     
     // Initialise variables
@@ -170,7 +170,7 @@ void read_cluster_file(string fileName) {
 // Function to import tests form an external file
 int import_tests(string fileName, vector<string>& read_vector) {
     // read_graph_file(fileName);
-    read_cluster_file(fileName);
+    read_graph_file(fileName);
     // TODO
     return 0;
 }
