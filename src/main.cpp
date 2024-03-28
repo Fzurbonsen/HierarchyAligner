@@ -1,8 +1,11 @@
 #include <iostream>
+#include <string>
 
-#include "test.hpp"
+#include "file_io.hpp"
+#include "graph.hpp"
 
 int main() {
-    run_tests("./test_cases/100_graphs.txt");
+    std::cerr << "main funct!\n";
+    // projectA_read_graph_file("./test_cases/100_graphs.txt");
     return 0;
 }
