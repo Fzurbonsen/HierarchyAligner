@@ -1,3 +1,11 @@
+/*
+
+    This file holds the definitions for the extract graph algorithm used to construct a graph from a position
+    and is part of projectA.
+    Author: Frederic zur Bonsen <fzurbonsen@student.ethz.ch>
+    
+*/
+
 #include <string>
 #include <vector>
 #include <utility>

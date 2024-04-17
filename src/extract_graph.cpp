@@ -1,3 +1,12 @@
+/*
+
+    This file holds the implementation of an algorithm to construct a graph from a position
+    this algorithm is a heavily simplified version of a similar algorithm in vg this implementation can
+    be used to create a graph for projectA.
+    Author: Frederic zur Bonsen <fzurbonsen@student.ethz.ch>
+    
+*/
+
 #include <string>
 #include <vector>
 #include <iostream>
@@ -48,7 +57,7 @@ set<projectA_node_t*> projectA_extract_nodes(projectA_hash_graph_t* ref_graph, p
     for (size_t i = 0; i < pos.id.size(); ++i) {
 
         // Initialize local variables for readability
-        const uint32_t& id = pos.id[i];
+        const string& id = pos.id[i];
         const bool& is_reverse = pos.is_reverse[i];
         const uint32_t& offset = pos.offset[i];
         const uint32_t& forward_search_length = pos.forward_search_lengths[i];

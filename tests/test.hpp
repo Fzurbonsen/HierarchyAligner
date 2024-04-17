@@ -1,4 +1,9 @@
-// This is the header file for test.cpp containing all functions and classes needed to run the tests.
+/*
+
+    This file holds the definitions of the functions used in the projectA test suit.
+    Author: Frederic zur Bonsen <fzurbonsen@student.ethz.ch>
+    
+*/
 
 #include <iostream>
 #include <vector>

@@ -1,3 +1,10 @@
+/*
+
+    This file holds the test suit for projectA.
+    Author: Frederic zur Bonsen <fzurbonsen@student.ethz.ch>
+    
+*/
+
 #include <iostream>
 #include <cstdio>
 #include <iostream>
@@ -11,11 +18,16 @@
 
 #include "test.hpp"
 #include "extract_graph.hpp"
+#include "algorithm.hpp"
+#include "algorithms/gt_gwfa.hpp"
+#include "algorithms/gssw.hpp"
 
 using namespace std;
 
+
+
 // Function to find a match in the id vectors
-int find_id_match (uint32_t id, vector<vector<uint32_t>> vec) {
+int find_id_match (string id, vector<vector<string>> vec) {
 
     // Itterate over outer vector
     for (auto it1 = vec.begin(); it1 != vec.end(); ++it1) {
@@ -34,11 +46,13 @@ int find_id_match (uint32_t id, vector<vector<uint32_t>> vec) {
     return 0;
 }
 
+
+
 // Function to compare input files to check whether they hold the same nodes.
 int file_node_id_check (string graph_file, string cluster_file) {
 
-    unordered_map<string, vector<vector<uint32_t>>> graph_map;
-    unordered_map<string, vector<uint32_t>> cluster_map;
+    unordered_map<string, vector<vector<string>>> graph_map;
+    unordered_map<string, vector<string>> cluster_map;
 
     int i = 0;
 
@@ -71,6 +85,8 @@ int file_node_id_check (string graph_file, string cluster_file) {
 
     return i;
 }
+
+
 
 // Function to import tests form an external file
 int import_tests(string fileName, vector<string>& read_vector) {
@@ -172,23 +188,49 @@ int main() {
 
     vector<projectA_node_list_t> clusters;
     projectA_hash_graph_t* ref_graph = projectA_hash_read_gfa("./test_cases/reference_graph.gfa");
+    projectA_index_hash_graph(ref_graph);
 
-    projectA_read_node_list(clusters, "./test_cases/node_list.txt");
+    projectA_read_node_list(clusters, "./test_cases/tests.txt");
 
 
     vector<pair<string, projectA_hash_graph_t*>> graphs;
     projectA_build_graph_from_cluster(graphs, ref_graph, clusters);
 
-    FILE* file = fopen("test.txt", "w");
-    for (auto& graph : graphs) {
-        projectA_print_graph(file, graph.second);
-    }
-    fclose(file);
+    // FILE* file = fopen("test.txt", "w");
+    // for (auto& graph : graphs) {
+    //     projectA_print_graph(file, graph.second);
+    // }
+    // fclose(file);
+
+
+
+    // Tests for gt_gwfa:
+    // projectA_algorithm gt_gwfa;
+    // projectA_get_gt_gwfa(gt_gwfa);
+    // void* pointer = nullptr;
+    // pointer = gt_gwfa.init(graphs);
+
+    // Cast the void pointer back to its original type
+    // auto ptr = static_cast<projectA_gt_gwfa_io_t*>(pointer);
+
+    // pointer = gt_gwfa.calculate_batch(pointer);
+    // gt_gwfa.post(pointer);
+
+
+
+    // Tests for gssw:
+    projectA_algorithm_t* gssw = projectA_get_gssw();
+    void* ptr = gssw->init(graphs);
+    gssw->calculate_batch(ptr);
+    gssw->post(ptr);
+    projectA_gssw_destroy(gssw);
+
 
 
     for (auto& graph : graphs) {
         projectA_delete_hash_graph(graph.second);
     }
     projectA_delete_hash_graph(ref_graph);
+    cerr << "run succesfull!\n";
     return 0;
 }

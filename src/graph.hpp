@@ -1,3 +1,11 @@
+/*
+
+    This file holds the definitions for the projectA graph structures and it's sub structs
+    as well as helper functions to work with the structs.
+    Author: Frederic zur Bonsen <fzurbonsen@student.ethz.ch>
+
+*/
+
 #include <vector>
 #include <utility>
 #include <unordered_map>
@@ -24,19 +32,22 @@ struct projectA_cigar_t {
 
 
 struct projectA_edge_t {
-    uint64_t start; // Start index of the edge
-    uint64_t end; // End index of the edge
+    string start; // Start index of the edge
+    string end; // End index of the edge
 };
 
 
 // Struct to hold a node
 struct projectA_node_t {
-    uint32_t id; // Node id
+    string id; // Node id
+    uint32_t index; // Node index
     uint32_t len; // Node sequence length
     string seq; // Sequence stored in node
     projectA_cigar_t cigar; // CIGAR corresponding to node
     vector<projectA_node_t*> next; // Next nodes
     vector<projectA_node_t*> prev; // Previous nodes
+
+    bool visited = false; // Auxiliary bool used to speed up certain functions 
 };
 
 
@@ -46,7 +57,7 @@ struct projectA_graph_t {
     uint32_t n_edges; // number of edges
 
     // Nodes
-    vector<uint32_t> id; // Vector of node ids
+    vector<string> id; // Vector of node ids
     vector<uint32_t> len; // Vector of sequence lengths
     vector<string> seq; // Vector of sequences 
     vector<projectA_cigar_t> cigars; // Vector of CIGARs
@@ -60,7 +71,10 @@ struct projectA_graph_t {
 struct projectA_hash_graph_t {
     uint32_t n_nodes; // Number of nodes
     uint32_t n_edges; // Number of edges
-    unordered_map<uint32_t, projectA_node_t*> nodes; // Map storing nodes for easy access
+    unordered_map<string, projectA_node_t*> nodes; // Map storing nodes for easy access
+    vector<projectA_node_t*> nodes_in_order;
+
+    projectA_node_t* top_node = nullptr; // Node that has only outgoing edges and from which we can reach any node
 
     vector<projectA_edge_t> edges;
 };
@@ -68,7 +82,7 @@ struct projectA_hash_graph_t {
 
 // Struct to hold positions form vg
 struct projectA_position_t {
-    vector<uint32_t> id; // Vecotr holding the different position ids
+    vector<string> id; // Vecotr holding the different position ids
     vector<bool> is_reverse; // Vector holding the orientation of the positions
     vector<uint32_t> offset; // Vector holding the offset of the different positions
     vector<size_t> forward_search_lengths;
@@ -84,7 +98,7 @@ struct projectA_position_t {
 // in the reference graph.
 struct projectA_node_list_t {
     uint32_t n_nodes; // Number of nodes
-    vector<uint32_t> nodes; // Vector of node ids
+    vector<string> nodes; // Vector of node ids
 
     size_t read_len; // Length of the read
     string read; // Read corresponding to the nodes
@@ -97,12 +111,12 @@ void projectA_delete_hash_graph(projectA_hash_graph_t* graph);
 
 // PRE:     graph, id, len, seq
 //      graph:      Pointer to a projectA_graph_t.
-//      id:         Unsigned int of size 32 bit that holds a unique id for the node.
+//      id:         String that holds a unique id for the node.
 //      len:        Unsigned int of size 32 bit that holds the length of the sequence to be appended.
 //      seq:        String that holds the sequence to be stored in the node.
 // POST:    graph
 //      graph:      Pointer to a projectA_graph_t where the node with the specified id, len, seq has been added.
-void projectA_graph_append_node(projectA_graph_t* graph, uint32_t id, uint32_t len, string seq);
+void projectA_graph_append_node(projectA_graph_t* graph, string id, uint32_t len, string seq);
 
 
 // PRE:     graph, start, end
@@ -111,17 +125,18 @@ void projectA_graph_append_node(projectA_graph_t* graph, uint32_t id, uint32_t l
 //      end:        Unsigned int of size 32 bit that holds the indes of the end of the edge.
 // POST:    graph
 //      graph:      Pointer to a projectA_graph_t where the edge with the specified start and end has been added.
-void projectA_graph_append_edge(projectA_graph_t* graph, uint32_t start, uint32_t end);
+void projectA_graph_append_edge(projectA_graph_t* graph, string start, string end);
 
 
-// PRE:     graph, id, len, seq
+// PRE:     graph, id, len, seq, index
 //      graph:      Pointer to a projectA_hash_graph_t.
-//      id:         Unsigned int of size 32 bit that holds a unique id for the node.
+//      id:         String that holds a unique id for the node.
 //      len:        Unsigned int of size 32 bit that holds the length of the sequence to be appended.
 //      seq:        String that holds the sequence to be stored in the node.
+//      index:      Uinsigned int of size 32 bit that holds a unique index for the node.
 // POST:    graph
 //      graph:      Pointer to a projectA_hash_graph_t where the node with the specified id, len, seq has been added.
-void projectA_hash_graph_append_node(projectA_hash_graph_t* graph, uint32_t id, uint32_t len, string& seq);
+void projectA_hash_graph_append_node(projectA_hash_graph_t* graph, string id, uint32_t len, string& seq, uint32_t index);
 
 
 // PRE:     graph, start, end
@@ -130,7 +145,7 @@ void projectA_hash_graph_append_node(projectA_hash_graph_t* graph, uint32_t id, 
 //      end:        Unsigned int of size 32 bit that holds the indes of the end of the edge.
 // POST:    graph
 //      graph:      Pointer to a projectA_hash_graph_t where the edge with the specified start and end has been added.
-void projectA_hash_graph_append_edge(projectA_hash_graph_t* graph, uint32_t start, uint32_t end);
+void projectA_hash_graph_append_edge(projectA_hash_graph_t* graph, string start, string end);
 
 
 // PRE:     node, nodes, len
@@ -172,5 +187,26 @@ void projectA_build_graph_from_cluster(projectA_hash_graph_t* graph, projectA_ha
 void projectA_build_graph_from_cluster(vector<pair<string, projectA_hash_graph_t*>>& graphs, projectA_hash_graph_t* ref_graph, 
                                         vector<projectA_node_list_t>& node_lists);
 
+
+// PRE:     graph
+//      graph:      Pointer to a projectA_hash_graph_t.
+// POST:    grpah
+//      grpah:      Pointer to a projectA_hash_graph_t that has been indexed.
+void projectA_index_hash_graph(projectA_hash_graph_t* graph);
+
+
+// PRE:     graph
+//      graph:      Pointer to a valid projectA_hash_graph_t.
+// POST:    graph
+//      graph:      Pointer to a valid projectA_hash_graph_t where the top node has been updated.
+void projectA_hash_graph_find_top_node(projectA_hash_graph_t* graph);
+
+
+// PRE:     graph
+//      graph:      Pointer to a valid projectA_hash_graph_t.
+// POST:    graph
+//      graph:      Pointer to a valid projectA_hash_graph_t where the nodes_in_order field has been updated
+//                  with an in order vector of the nodes in the graph.
+void projectA_hash_graph_in_order_nodes(projectA_hash_graph_t* graph);
 
 #endif // PROJECTA_GRAPH_HPP

@@ -1,0 +1,3 @@
+[submodule "algorithms/gssw"]
+	path = algorithms/gssw
+	url = https://github.com/vgteam/gssw.git

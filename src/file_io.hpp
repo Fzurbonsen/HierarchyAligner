@@ -1,3 +1,11 @@
+/*
+
+    This file holds the definitions for the projectA I/O functions used to read from and write to files.
+    Author: Frederic zur Bonsen <fzurbonsen@student.ethz.ch>
+
+*/
+
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -31,7 +39,7 @@ void projectA_read_cluster_file(string& fileName, vector<projectA_position_t>& p
 // POST:    graphs_map
 //      graphs_map:     Unordered map holding the different reads as keys and the corresponing 
 //                      node ids stored in a vector.
-void projectA_read_graph_file(string& fileName, unordered_map<string, vector<vector<uint32_t>>>& graphs_map);
+void projectA_read_graph_file(string& fileName, unordered_map<string, vector<vector<string>>>& graphs_map);
 
 
 // PRE:     fileName, cluster_map
@@ -40,7 +48,7 @@ void projectA_read_graph_file(string& fileName, unordered_map<string, vector<vec
 // POST:    cluster_map
 //      cluster_map:    Unordered map holding the different reads as keys and the correspongind
 //                      node ids stored in a vector.
-void projectA_read_cluster_file(string& fileName, unordered_map<string, vector<uint32_t>>& cluster_map);
+void projectA_read_cluster_file(string& fileName, unordered_map<string, vector<string>>& cluster_map);
 
 
 // PRE:     fileName

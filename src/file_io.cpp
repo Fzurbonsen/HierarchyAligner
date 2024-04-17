@@ -1,3 +1,11 @@
+/*
+
+    This file holds the implementation of the projectA I/O functions to read from and write to files.
+    Author: Frederic zur Bonsen <fzurbonsen@student.ethz.ch>
+    
+*/
+
+
 #include <iostream>
 #include <cstdio>
 #include <fstream>
@@ -20,8 +28,8 @@ void projectA_read_graph_file(string& fileName) {
     ifstream file(fileName);
     string line, ignore, read;
     char type, dir;
-    uint32_t id, id1, id2, seq_len;
-    string sequence;
+    uint32_t seq_len;
+    string sequence, id, id1, id2;
 
     // Check if file could be opened
     if (!file.is_open()) {
@@ -111,8 +119,8 @@ void projectA_read_cluster_file(string& fileName, vector<projectA_position_t>& p
     ifstream file(fileName);
     string line, read;
     char type;
-    uint32_t id, is_reverse, offset, forward_max_dist, backward_max_dist;
-    string sequence;
+    uint32_t is_reverse, offset, forward_max_dist, backward_max_dist;
+    string id, sequence;
     projectA_position_t pos;
 
     // Check if file could be opened
@@ -186,7 +194,7 @@ void projectA_read_cluster_file(string& fileName, vector<projectA_position_t>& p
 
 
 // Function that reads a grpah file and stores the reads and the corresponding node ids in a umap
-void projectA_read_graph_file(string& fileName, unordered_map<string, vector<vector<uint32_t>>>& graphs_map) {
+void projectA_read_graph_file(string& fileName, unordered_map<string, vector<vector<string>>>& graphs_map) {
 
     // Initialise variables
     bool skip;
@@ -194,10 +202,10 @@ void projectA_read_graph_file(string& fileName, unordered_map<string, vector<vec
     ifstream file(fileName);
     string line, ignore, read;
     char type, dir;
-    uint32_t id, id1, id2, seq_len, gssw_id;
-    string sequence;
-    vector<uint32_t> id_vec;
-    vector<vector<uint32_t>> graph_vec;
+    uint32_t seq_len;
+    string id, id1, id2, gssw_id, sequence;
+    vector<string> id_vec;
+    vector<vector<string>> graph_vec;
 
     // Check if file could be opened
     if (!file.is_open()) {
@@ -297,7 +305,7 @@ void projectA_read_graph_file(string& fileName, unordered_map<string, vector<vec
 
 
 // Function that reads a cluster file and stores the reads and corresponding node ids in a umap
-void projectA_read_cluster_file(string& fileName, unordered_map<string, vector<uint32_t>>& cluster_map) {
+void projectA_read_cluster_file(string& fileName, unordered_map<string, vector<string>>& cluster_map) {
     
     // Initialise variables
     bool skip;
@@ -305,9 +313,9 @@ void projectA_read_cluster_file(string& fileName, unordered_map<string, vector<u
     ifstream file(fileName);
     string line, read;
     char type;
-    uint32_t id, is_reverse, offset, forward_max_dist, backward_max_dist;
-    string sequence;
-    vector<uint32_t> cluster_vec;
+    uint32_t is_reverse, offset, forward_max_dist, backward_max_dist;
+    string sequence, id;
+    vector<string> cluster_vec;
 
     // Check if file could be opened
     if (!file.is_open()) {
@@ -402,8 +410,8 @@ projectA_graph_t* projectA_read_gfa(const string& fileName) {
 
         // Check if the line is a sequence/node
         if (keyword == "S") {
-            uint32_t id, len;
-            string seq, skip;
+            uint32_t len;
+            string seq, skip, id;
             iss >> id >> seq >> skip;
             len = seq.size();
             projectA_graph_append_node(graph, id, len, seq);
@@ -411,7 +419,7 @@ projectA_graph_t* projectA_read_gfa(const string& fileName) {
 
         // Check if the line is an edge
         if (keyword == "L") {
-            uint32_t start, end;
+            string start, end;
             string skip;
             iss >> start >> skip >> end >> skip;
             projectA_graph_append_edge(graph, start, end);
@@ -452,16 +460,16 @@ projectA_hash_graph_t* projectA_hash_read_gfa(const string& fileName) {
 
         // Check if the line is a sequence/node
         if (keyword == "S") {
-            uint32_t id, len;
-            string seq, skip;
+            uint32_t len;
+            string id, seq, skip;
             iss >> id >> seq >> skip;
             len = seq.size();
-            projectA_hash_graph_append_node(graph, id, len, seq);
+            projectA_hash_graph_append_node(graph, id, len, seq, 0);
         }
 
         // Check if the line is an edge
         if (keyword == "L") {
-            uint32_t start, end;
+            string start, end;
             string skip;
             iss >> start >> skip >> end >> skip;
             projectA_hash_graph_append_edge(graph, start, end);
@@ -501,7 +509,7 @@ void projectA_read_node_list(vector<projectA_node_list_t>& node_lists, const str
 
         // Check if the line is a sequence/node
         if (keyword == "N") {
-            uint32_t id;
+            string id;
 
             // Read ids until we reach the end of the line
             while(iss >> id) {
@@ -543,7 +551,7 @@ void projectA_print_graph(FILE* file, projectA_graph_t* graph) {
 
     // Write segments
     for (size_t i = 0; i < graph->n_nodes; ++i) {
-        fprintf(file, "S\t%d\t%s\tLN:i:%d\n", graph->id[i], graph->seq[i].c_str(), graph->len[i]);
+        fprintf(file, "S\t%s\t%s\tLN:i:%d\n", graph->id[i], graph->seq[i].c_str(), graph->len[i]);
     }
 
     // Write links (edges)
@@ -566,7 +574,7 @@ void projectA_print_graph(FILE* file, projectA_hash_graph_t* graph) {
 
     // Write segments
     for (auto& it : graph->nodes) {
-        fprintf(file, "S\t%d\t%s\tLN:i:%d\n", it.second->id, it.second->seq.c_str(), it.second->len);
+        fprintf(file, "S\t%s\t%s\tLN:i:%d\n", it.second->id, it.second->seq.c_str(), it.second->len);
     }
 
     // Write links (edges)

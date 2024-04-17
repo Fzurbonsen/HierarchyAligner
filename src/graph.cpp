@@ -1,7 +1,16 @@
+/*
+
+    This file holds the implemntations of the projectA graph helper functions.
+    Author: Frederic zur Bonsen <fzurbonsen@student.ethz.ch>
+    
+*/
+
+
 #include <cstring>
 #include <iostream>
 #include <utility>
 #include <set>
+#include <queue>
 
 #include "graph.hpp"
 
@@ -36,7 +45,7 @@ void projectA_delete_hash_graph(projectA_hash_graph_t* graph) {
 
 
 // Function to append a node to a projectA_graph_t
-void projectA_graph_append_node(projectA_graph_t* graph, uint32_t id, uint32_t len, string seq) {
+void projectA_graph_append_node(projectA_graph_t* graph, string id, uint32_t len, string seq) {
 
     // Check if input seq matches the supposed length
     if (len != seq.size()) {
@@ -55,7 +64,7 @@ void projectA_graph_append_node(projectA_graph_t* graph, uint32_t id, uint32_t l
 
 
 // Function to append an edge to a projectA_graph_t
-void projectA_graph_append_edge(projectA_graph_t* graph, uint32_t start, uint32_t end) {
+void projectA_graph_append_edge(projectA_graph_t* graph, string start, string end) {
 
     // Initialize edge struct
     projectA_edge_t edge;
@@ -70,7 +79,7 @@ void projectA_graph_append_edge(projectA_graph_t* graph, uint32_t start, uint32_
 }
 
 // Function to append a node to a projectA_hash_graph_t
-void projectA_hash_graph_append_node(projectA_hash_graph_t* graph, uint32_t id, uint32_t len, string& seq) {
+void projectA_hash_graph_append_node(projectA_hash_graph_t* graph, string id, uint32_t len, string& seq, uint32_t index) {
 
     // Check if input seq matches the supposed length
     if (len != seq.size()) {
@@ -84,6 +93,7 @@ void projectA_hash_graph_append_node(projectA_hash_graph_t* graph, uint32_t id, 
     node->id = id;
     node->len = len;
     node->seq = seq;
+    node->index = index;
 
     // Add node information to node map
     graph->nodes[id] = node;
@@ -94,7 +104,7 @@ void projectA_hash_graph_append_node(projectA_hash_graph_t* graph, uint32_t id, 
 
 
 // Function to append an edge to a projectA_hash_graph_t
-void projectA_hash_graph_append_edge(projectA_hash_graph_t* graph, uint32_t start, uint32_t end) {
+void projectA_hash_graph_append_edge(projectA_hash_graph_t* graph, string start, string end) {
 
     // Create a new edge
     projectA_edge_t edge;
@@ -153,10 +163,11 @@ void projectA_build_graph_from_cluster(projectA_hash_graph_t* graph, projectA_ha
 
     // Append nodes to graph
     for (int i = 0; i < node_list.n_nodes; ++i) {
-        uint32_t& id = ref_graph->nodes[node_list.nodes[i]]->id;
+        string& id = ref_graph->nodes[node_list.nodes[i]]->id;
         uint32_t& len = ref_graph->nodes[node_list.nodes[i]]->len;
         string& seq = ref_graph->nodes[node_list.nodes[i]]->seq;
-        projectA_hash_graph_append_node(graph, id, len, seq);
+        uint32_t& index = ref_graph->nodes[node_list.nodes[i]]->index;
+        projectA_hash_graph_append_node(graph, id, len, seq, index);
     }
 
     // Iterate over all nodes to extract the contained edges.
@@ -173,6 +184,7 @@ void projectA_build_graph_from_cluster(projectA_hash_graph_t* graph, projectA_ha
         }
     }
 
+    projectA_hash_graph_in_order_nodes(graph);
     // cerr << graph->n_edges << "\t" << graph->n_nodes << endl;
 }
 
@@ -192,5 +204,94 @@ void projectA_build_graph_from_cluster(vector<pair<string, projectA_hash_graph_t
         
         // Append the graph to the graph vector
         graphs.push_back(make_pair(node_list.read, graph));
+    }
+}
+
+
+// Function to index a hash graph
+void projectA_index_hash_graph(projectA_hash_graph_t* graph) {
+
+    uint32_t i = 0;
+    for (auto& curr_node : graph->nodes) {
+        curr_node.second->index = i;
+        i++;
+    }
+}
+
+
+// Function to find top node in a graph
+void projectA_hash_graph_find_top_node(projectA_hash_graph_t* graph) {
+
+    // Initialize top node as nullptr to check validity of the graph
+    projectA_node_t* top_node = nullptr;
+
+    // Iterate over all nodes in the graph
+    for (auto& itr : graph->nodes) {
+        auto& node = itr.second;
+
+        // If the node has no predecessors it is the top node.
+        if (node->prev.size() == 0) {
+
+            // If there already is a top node then the graph can't be valid.
+            if (top_node != nullptr) {
+                cerr << "Error: Graph has not a single top!" << endl;
+                exit(1);
+            }
+            // Assign new node as top.
+            top_node = node;
+        }
+    }
+
+    // Update the top node of the graph
+    graph->top_node = top_node;
+}
+
+
+// Function to create the in order vector of all the nodes in a hash graph
+void projectA_hash_graph_in_order_nodes(projectA_hash_graph_t* graph) {
+
+    //  Check if the graph has a top node
+    if (graph->top_node == nullptr) {
+        projectA_hash_graph_find_top_node(graph);
+    }
+    
+    // Reste the traversed bool in all nodes.
+    for (auto& itr : graph->nodes) {
+        auto& node = itr.second;
+        node->visited = false;
+    }
+
+    // Create queue for BFS
+    queue<projectA_node_t*> node_queue;
+    node_queue.push(graph->top_node);
+
+    // While there are still unvisited nodes left
+    while (!node_queue.empty()) {
+        projectA_node_t* curr_node = node_queue.front();
+        node_queue.pop();
+
+        // Check if we have already visited the current node
+        if (!curr_node->visited) {
+
+            // Add node to in order list and mark it as visited
+            graph->nodes_in_order.push_back(curr_node);
+            curr_node->visited = true;
+
+            // Add all the next nodes to the back of the queue
+            for (auto& next : curr_node->next) {
+                node_queue.push(next);
+            }
+        }
+    }
+
+    // Check if all nodes have been visited
+    for (auto& itr : graph->nodes) {
+        auto& node = itr.second;
+        if (!node->visited) {
+            cerr << "Error: not all nodes could be reached from the top node!\n";
+            exit(1);
+        }
+        // Reset node->visited
+        node->visited = false;
     }
 }
