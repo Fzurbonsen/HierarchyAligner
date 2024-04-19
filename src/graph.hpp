@@ -71,10 +71,8 @@ struct projectA_graph_t {
 struct projectA_hash_graph_t {
     uint32_t n_nodes; // Number of nodes
     uint32_t n_edges; // Number of edges
-    unordered_map<string, projectA_node_t*> nodes; // Map storing nodes for easy access
+    unordered_map<string, projectA_node_t*> nodes; // Map storing nodes for easy access by id
     vector<projectA_node_t*> nodes_in_order;
-
-    projectA_node_t* top_node = nullptr; // Node that has only outgoing edges and from which we can reach any node
 
     vector<projectA_edge_t> edges;
 };
@@ -184,7 +182,7 @@ void projectA_build_graph_from_cluster(projectA_hash_graph_t* graph, projectA_ha
 // POST:    graphs
 //      graphs:     Vector holding a pair of a string and a pointer to a projectA_hash_graph_t. The string 
 //                  holds the read while the projectA_hash_graph_t pointer points to the corresponding graph.
-void projectA_build_graph_from_cluster(vector<pair<string, projectA_hash_graph_t*>>& graphs, projectA_hash_graph_t* ref_graph, 
+void projectA_build_graph_from_cluster(vector<pair<const string, projectA_hash_graph_t*>>& graphs, projectA_hash_graph_t* ref_graph, 
                                         vector<projectA_node_list_t>& node_lists);
 
 
@@ -193,13 +191,6 @@ void projectA_build_graph_from_cluster(vector<pair<string, projectA_hash_graph_t
 // POST:    grpah
 //      grpah:      Pointer to a projectA_hash_graph_t that has been indexed.
 void projectA_index_hash_graph(projectA_hash_graph_t* graph);
-
-
-// PRE:     graph
-//      graph:      Pointer to a valid projectA_hash_graph_t.
-// POST:    graph
-//      graph:      Pointer to a valid projectA_hash_graph_t where the top node has been updated.
-void projectA_hash_graph_find_top_node(projectA_hash_graph_t* graph);
 
 
 // PRE:     graph

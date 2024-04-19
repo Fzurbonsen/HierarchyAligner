@@ -73,7 +73,7 @@ gssw_graph* projectA_hash_graph_to_gt_gssw_graph(projectA_hash_graph_t* in_graph
 
 
 // Function to initialize gt_gwfa
-void* projectA_gt_gwfa_init(vector<pair<string, projectA_hash_graph_t*>>& graphs) {
+void* projectA_gt_gwfa_init(vector<pair<const string, projectA_hash_graph_t*>>& graphs) {
     // Create our input vector
     projectA_gt_gwfa_io_t* out = new projectA_gt_gwfa_io_t;
 

@@ -42,7 +42,7 @@ gssw_graph* projectA_hash_graph_to_gssw_graph(projectA_hash_graph_t* in_graph, i
                                                 int8_t* mat, uint8_t gap_open, uint8_t gap_extension);
 
 
-void* projectA_gssw_init(vector<pair<string, projectA_hash_graph_t*>>& graphs);
+void* projectA_gssw_init(vector<pair<const string, projectA_hash_graph_t*>>& graphs);
 
 
 void* projectA_gssw_calculate_batch(void* ptr);

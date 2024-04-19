@@ -11,6 +11,7 @@
 #include <utility>
 #include <set>
 #include <queue>
+#include <stack>
 
 #include "graph.hpp"
 
@@ -190,7 +191,7 @@ void projectA_build_graph_from_cluster(projectA_hash_graph_t* graph, projectA_ha
 
 
 // Function to build a vector of cluster information
-void projectA_build_graph_from_cluster(vector<pair<string, projectA_hash_graph_t*>>& graphs, projectA_hash_graph_t* ref_graph, 
+void projectA_build_graph_from_cluster(vector<pair<const string, projectA_hash_graph_t*>>& graphs, projectA_hash_graph_t* ref_graph, 
                                         vector<projectA_node_list_t>& node_lists) {
     
     // Iterate over all node lists
@@ -219,41 +220,28 @@ void projectA_index_hash_graph(projectA_hash_graph_t* graph) {
 }
 
 
-// Function to find top node in a graph
-void projectA_hash_graph_find_top_node(projectA_hash_graph_t* graph) {
+// Function implementing DFS for topo sort
+void projectA_hash_graph_topo_sort_DFS(projectA_node_t* node, stack<projectA_node_t*>& stack) {
 
-    // Initialize top node as nullptr to check validity of the graph
-    projectA_node_t* top_node = nullptr;
+    // Mark the node as visited
+    node->visited = true;
 
-    // Iterate over all nodes in the graph
-    for (auto& itr : graph->nodes) {
-        auto& node = itr.second;
+    // Call the DFS on all following nodes
+    for (auto& next : node->next) {
 
-        // If the node has no predecessors it is the top node.
-        if (node->prev.size() == 0) {
-
-            // If there already is a top node then the graph can't be valid.
-            if (top_node != nullptr) {
-                cerr << "Error: Graph has not a single top!" << endl;
-                exit(1);
-            }
-            // Assign new node as top.
-            top_node = node;
-        }
+        // Check if the next nodes have already been visited
+        if (!next->visited) {
+            projectA_hash_graph_topo_sort_DFS(next, stack);
+        } 
     }
 
-    // Update the top node of the graph
-    graph->top_node = top_node;
+    // Push the node to the stack
+    stack.push(node);
 }
 
 
 // Function to create the in order vector of all the nodes in a hash graph
 void projectA_hash_graph_in_order_nodes(projectA_hash_graph_t* graph) {
-
-    //  Check if the graph has a top node
-    if (graph->top_node == nullptr) {
-        projectA_hash_graph_find_top_node(graph);
-    }
     
     // Reste the traversed bool in all nodes.
     for (auto& itr : graph->nodes) {
@@ -261,28 +249,19 @@ void projectA_hash_graph_in_order_nodes(projectA_hash_graph_t* graph) {
         node->visited = false;
     }
 
-    // Create queue for BFS
-    queue<projectA_node_t*> node_queue;
-    node_queue.push(graph->top_node);
+    // Stack to hold sorted nodes
+    stack<projectA_node_t*> stack;
 
-    // While there are still unvisited nodes left
-    while (!node_queue.empty()) {
-        projectA_node_t* curr_node = node_queue.front();
-        node_queue.pop();
-
-        // Check if we have already visited the current node
-        if (!curr_node->visited) {
-
-            // Add node to in order list and mark it as visited
-            graph->nodes_in_order.push_back(curr_node);
-            curr_node->visited = true;
-
-            // Add all the next nodes to the back of the queue
-            for (auto& next : curr_node->next) {
-                node_queue.push(next);
-            }
+    // Perform topological sort:
+    // Itterate over all nodes
+    for (auto& itr : graph->nodes) {
+        auto& node = itr.second;
+        // Check if the node has already been visited
+        if (!node->visited) {
+            projectA_hash_graph_topo_sort_DFS(node, stack);
         }
     }
+
 
     // Check if all nodes have been visited
     for (auto& itr : graph->nodes) {
@@ -293,5 +272,11 @@ void projectA_hash_graph_in_order_nodes(projectA_hash_graph_t* graph) {
         }
         // Reset node->visited
         node->visited = false;
+    }
+
+    // Flip order for in order vector
+    while(!stack.empty()) {
+        graph->nodes_in_order.push_back(stack.top());
+        stack.pop();
     }
 }

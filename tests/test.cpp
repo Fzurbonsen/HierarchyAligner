@@ -190,10 +190,10 @@ int main() {
     projectA_hash_graph_t* ref_graph = projectA_hash_read_gfa("./test_cases/reference_graph.gfa");
     projectA_index_hash_graph(ref_graph);
 
-    projectA_read_node_list(clusters, "./test_cases/tests.txt");
+    projectA_read_node_list(clusters, "./test_cases/node_list.txt");
 
 
-    vector<pair<string, projectA_hash_graph_t*>> graphs;
+    vector<pair<const string, projectA_hash_graph_t*>> graphs;
     projectA_build_graph_from_cluster(graphs, ref_graph, clusters);
 
     // FILE* file = fopen("test.txt", "w");

@@ -35,7 +35,7 @@ struct projectA_gt_gwfa_io_t {
 };
 
 
-void* projectA_gt_gwfa_init(vector<pair<string, projectA_hash_graph_t*>>& graphs);
+void* projectA_gt_gwfa_init(vector<pair<const string, projectA_hash_graph_t*>>& graphs);
 
 void* projectA_gt_gwfa_calcualte_batch(void* input_ptr);
 

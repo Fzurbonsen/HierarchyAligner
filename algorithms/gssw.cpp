@@ -20,6 +20,7 @@
 
 using namespace std;
 
+
 // Constructor for parameter struct
 projectA_gssw_parameters_t::projectA_gssw_parameters_t(gssw_graph* graph, const char* read, int8_t* nt_table,
                                                         int8_t* mat, uint8_t gap_open, uint8_t gap_extension) :
@@ -31,17 +32,10 @@ projectA_gssw_parameters_t::projectA_gssw_parameters_t(gssw_graph* graph, const 
 gssw_graph* projectA_hash_graph_to_gssw_graph(projectA_hash_graph_t* in_graph, int8_t* nt_table, 
                                                 int8_t* mat, uint8_t gap_open, uint8_t gap_extension) {
 
-    // Create gssw graph
-    gssw_graph* out_graph = gssw_graph_create(in_graph->n_nodes);
-
     unordered_map<projectA_node_t*, gssw_node*> node_map;
 
-    // // Define parameters for gssw
-    // int8_t match = 1, mismatch = 4;
-    // uint8_t gap_open = 6, gap_extension = 1;
     gssw_sse2_disable();
-    // int8_t* nt_table = gssw_create_nt_table();
-    // int8_t* mat = gssw_create_score_matrix(match, mismatch);
+
     gssw_node* nodes[in_graph->n_nodes];
 
     // Iterate over all nodes in the graph to create the corresponding gssw nodes
@@ -57,10 +51,21 @@ gssw_graph* projectA_hash_graph_to_gssw_graph(projectA_hash_graph_t* in_graph, i
     }
 
     // Iterate over all edges
-    for (auto& edge : in_graph->edges) {
-        // Add edge
-        gssw_nodes_add_edge(node_map[in_graph->nodes[edge.start]], node_map[in_graph->nodes[edge.end]]);
+    // for (auto& edge : in_graph->edges) {
+    //     // Add edge
+    //     gssw_nodes_add_edge(node_map[in_graph->nodes[edge.start]], node_map[in_graph->nodes[edge.end]]);
+    // }
+    // Iterate over all nodes
+    for (auto& curr : in_graph->nodes_in_order) {
+        
+        // Iterate over all outgoing edges
+        for (auto& next : curr->next) {
+            gssw_nodes_add_edge(node_map[curr], node_map[next]);
+        }
     }
+
+    // Create gssw graph
+    gssw_graph* out_graph = gssw_graph_create(in_graph->n_nodes);
 
     // Iterate over all nodes
     for (i = 0; i < in_graph->n_nodes; ++i) {
@@ -79,7 +84,7 @@ gssw_graph* projectA_hash_graph_to_gssw_graph(projectA_hash_graph_t* in_graph, i
 
 
 // Function to initialize gssw
-void* projectA_gssw_init(vector<pair<string, projectA_hash_graph_t*>>& graphs) {
+void* projectA_gssw_init(vector<pair<const string, projectA_hash_graph_t*>>& graphs) {
 
     // Create our io vectors for the gssw algorithm
     projectA_gssw_io_t* out = new projectA_gssw_io_t;
@@ -161,11 +166,13 @@ void projectA_gssw_post(void* ptr) {
     auto& gms = input->gms;
 
 
+    // gssw_test();
+
 
     // TODO: Postprocessing data
-    // for (auto& gm :gms) {
-    //     gssw_print_graph_mapping(gm, stderr);
-    // }
+    for (auto& gm :gms) {
+        gssw_print_graph_mapping(gm, stderr);
+    }
 
 
 

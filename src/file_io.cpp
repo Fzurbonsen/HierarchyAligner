@@ -431,7 +431,7 @@ projectA_graph_t* projectA_read_gfa(const string& fileName) {
 }
 
 
-// Function to read graph and store as hash graph
+// Function to read graph from gfa and store as hash graph
 projectA_hash_graph_t* projectA_hash_read_gfa(const string& fileName) {
 
     // Create a new projectA_graph_t object
@@ -496,9 +496,13 @@ void projectA_read_node_list(vector<projectA_node_list_t>& node_lists, const str
     }
 
     string line;
+    uint32_t line_counter = 0;
+    bool n_line = false;
 
     // Read each line of the file
     while (getline(file, line)) {
+        line_counter++;
+
         // Skip empty lines and comments
         if (line.empty() || line[0] == '#') continue;
 
@@ -509,28 +513,98 @@ void projectA_read_node_list(vector<projectA_node_list_t>& node_lists, const str
 
         // Check if the line is a sequence/node
         if (keyword == "N") {
+
+
+            // Check for valid preceding line
+            if (n_line) {
+                cerr << "Error: file not formatted correctly!\n";
+                cerr << "Error in file: " << fileName << " in line: " << line_counter << endl;
+                cerr << "Previous N-line was not followed by an R-line!\n";
+                exit(1);
+            }
+            n_line = true;
+
+            if (iss.peek() == EOF) {
+                cerr << "Error: file not formatted correctly!\n";
+                cerr << "Error in file: " << fileName << " in line: " << line_counter << endl;
+                cerr << "N-line is empty!\n";
+                exit(1);
+            }
+
             string id;
 
             // Read ids until we reach the end of the line
             while(iss >> id) {
-                node_list.nodes.push_back(id); // Add the node id to the node_list struct
-                node_list.n_nodes++; // Increase the node counter
+                if (!id.empty()) {
+                    node_list.nodes.push_back(id); // Add the node id to the node_list struct
+                    node_list.n_nodes++; // Increase the node counter
+                }
+            }
+
+            // Check if there was at least one node in the N-line
+            if (node_list.n_nodes == 0) {
+                cerr << "Error: file not formatted correctly!\n";
+                cerr << "Error in file: " << fileName << " in line: " << line_counter << endl;
+                cerr << "N-line is empty!\n";
+                exit(1);
             }
         }
 
         // Check if the line is an edge
         if (keyword == "R") {
 
+            // Check for valid preceding line
+            if (!n_line) {
+                cerr << "Error: file not formatted correctly!\n";
+                cerr << "Error in file: " << fileName << " in line: " << line_counter << endl;
+                cerr << "R-line was not preceeded by an N-line!\n";
+                exit(1);
+            }
+            n_line = false;
+
+            // Check if there is an instance in the line
+            if (iss.peek() == EOF) {
+                cerr << "Error: file not formatted correctly!\n";
+                cerr << "Error in file: " << fileName << " in line: " << line_counter << endl;
+                cerr << "R-line is empty!\n";
+                exit(1);
+            }
+
             // Add read to the node_list struct
             iss >> node_list.read;
             node_list.read_len = node_list.read.size();
+
+            // Check if the line actually holds a value
+            if (node_list.read.empty()) {
+                cerr << "Error: file not formatted correctly!\n";
+                cerr << "Error in file: " << fileName << " in line: " << line_counter << endl;
+                cerr << "R-line is empty!\n";
+                exit(1);
+            }
 
             // If we read a node we can add the struct to our node_lists vector
             node_lists.push_back(node_list);
             // Clear the node_list node vector for next input
             node_list.nodes.clear();
+            node_list.read.clear();
             node_list.n_nodes = 0;
         }
+
+        // Check for invalid line indicators
+        if (keyword != "N" && keyword != "R") {
+            cerr << "Error: file not formatted correctly!\n";
+            cerr << "Error in file: " << fileName << " in line: " << line_counter << endl;
+            cerr << keyword << " is not a valid line inidcator!\n";
+            exit(1);
+        }
+    }
+
+    // Check if we ended on an N-line
+    if (n_line) {
+        cerr << "Error: file not formatted correctly!\n";
+        cerr << "Error in file: " << fileName << " in line: " << line_counter << endl;
+        cerr << "Ended on an N-line!\n";
+        exit(1);
     }
 
     file.close();
@@ -574,11 +648,11 @@ void projectA_print_graph(FILE* file, projectA_hash_graph_t* graph) {
 
     // Write segments
     for (auto& it : graph->nodes) {
-        fprintf(file, "S\t%s\t%s\tLN:i:%d\n", it.second->id, it.second->seq.c_str(), it.second->len);
+        fprintf(file, "S\t%s\t%s\tLN:i:%d\n", it.second->id.c_str(), it.second->seq.c_str(), it.second->len);
     }
 
     // Write links (edges)
     for (size_t i = 0; i < graph->n_edges; ++i) {
-        fprintf(file, "L\t%lu\t+\t%lu\t+\t0M\n", graph->edges[i].start, graph->edges[i].end);
+        fprintf(file, "L\t%s\t+\t%s\t+\t0M\n", graph->edges[i].start.c_str(), graph->edges[i].end.c_str());
     }
 }
