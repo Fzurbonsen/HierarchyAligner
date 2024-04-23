@@ -1,5 +1,7 @@
 /*
 
+    projectA:
+    extract_graph.cpp
     This file holds the implementation of an algorithm to construct a graph from a position
     this algorithm is a heavily simplified version of a similar algorithm in vg this implementation can
     be used to create a graph for projectA.

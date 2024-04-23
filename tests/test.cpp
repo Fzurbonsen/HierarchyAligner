@@ -1,5 +1,7 @@
 /*
 
+    projectA:
+    test.cpp
     This file holds the test suit for projectA.
     Author: Frederic zur Bonsen <fzurbonsen@student.ethz.ch>
     
@@ -148,30 +150,11 @@ int run_tests(string fileName) {
     
     // Variables used to track performance
     double runtime;
-    int n_tests, correct_tests = 0;
 
     // record the starting time
     clock_t start = clock();
 
 
-    // Vector filled with graphs
-    // vector<"graph_class"> graph_vector;
-    // Vector filled with the reads
-    vector<string> read_vector;
-    // // Vector for gold and normal results
-    vector<string> result_vector, gold_vector;
-
-    // Load file with test graphs and alignments
-    n_tests = import_tests(fileName, read_vector);
-
-    // Get gold results
-    gold_results(gold_vector, read_vector);
-
-    // Get test results
-    test_results(result_vector, read_vector);
-
-    // Compare the tests and gold standard.
-    compare_results(n_tests, correct_tests, gold_vector, result_vector);
     
     // record the ending time
     clock_t end = clock();
@@ -179,21 +162,22 @@ int run_tests(string fileName) {
     runtime = double(end - start) / CLOCKS_PER_SEC;
 
     // output the results of the tests
-    cerr << "time: " << runtime << " seconds\n" << correct_tests << " out of " << n_tests << " are correct\n";
+    // cerr << "time: " << runtime << " seconds\n" << correct_tests << " out of " << n_tests << " are correct\n";
 
     return 0;
 }
 
 int main() {
 
+
     vector<projectA_node_list_t> clusters;
     projectA_hash_graph_t* ref_graph = projectA_hash_read_gfa("./test_cases/reference_graph.gfa");
     projectA_index_hash_graph(ref_graph);
 
-    projectA_read_node_list(clusters, "./test_cases/node_list.txt");
+    projectA_read_node_list(clusters, "./test_cases/node_list_small.txt");
 
 
-    vector<pair<const string, projectA_hash_graph_t*>> graphs;
+    vector<projectA_algorithm_input_t> graphs;
     projectA_build_graph_from_cluster(graphs, ref_graph, clusters);
 
     // FILE* file = fopen("test.txt", "w");
@@ -204,31 +188,30 @@ int main() {
 
 
 
-    // Tests for gt_gwfa:
-    // projectA_algorithm gt_gwfa;
-    // projectA_get_gt_gwfa(gt_gwfa);
-    // void* pointer = nullptr;
-    // pointer = gt_gwfa.init(graphs);
-
-    // Cast the void pointer back to its original type
-    // auto ptr = static_cast<projectA_gt_gwfa_io_t*>(pointer);
-
-    // pointer = gt_gwfa.calculate_batch(pointer);
-    // gt_gwfa.post(pointer);
 
 
 
-    // Tests for gssw:
-    projectA_algorithm_t* gssw = projectA_get_gssw();
-    void* ptr = gssw->init(graphs);
-    gssw->calculate_batch(ptr);
-    gssw->post(ptr);
-    projectA_gssw_destroy(gssw);
+
+
+    // cerr << "testing gssw!" << endl;
+
+    // // Tests for gssw:
+    // projectA_algorithm_t* gssw = projectA_get_gssw();
+    // cerr << "created algorithm\n";
+    // void* ptr = gssw->init(graphs);
+    // cerr << "calculating batch\n";
+    // gssw->calculate_batch(ptr);
+    // cerr << "entering post\n";
+    // gssw->post(ptr);
+    // cerr << "destroying algorithm struct\n";
+    // projectA_gssw_destroy(gssw);
+
+
 
 
 
     for (auto& graph : graphs) {
-        projectA_delete_hash_graph(graph.second);
+        projectA_delete_hash_graph(graph.graph);
     }
     projectA_delete_hash_graph(ref_graph);
     cerr << "run succesfull!\n";

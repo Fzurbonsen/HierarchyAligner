@@ -1,5 +1,7 @@
 /*
 
+    projectA:
+    main.cpp
     This file holds the main function for projectA.
     Author: Frederic zur Bonsen <fzurbonsen@student.ethz.ch>
     

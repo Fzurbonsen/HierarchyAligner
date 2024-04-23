@@ -1,5 +1,7 @@
 /*
 
+    projectA:
+    graph.hpp
     This file holds the definitions for the projectA graph structures and it's sub structs
     as well as helper functions to work with the structs.
     Author: Frederic zur Bonsen <fzurbonsen@student.ethz.ch>
@@ -14,8 +16,8 @@
 using namespace std;
 
 
-#ifndef PROJECTA_GRAPH_HPP
-#define PROJECTA_GRAPH_HPP
+#ifndef PROJECTA_GRAPH_HPP_STRUCTS
+#define PROJECTA_GRAPH_HPP_STRUCTS
 
 // Struct that holds a CIGAR element (A,C,G,T) and how often it is repeated
 struct projectA_cigar_element_t {
@@ -102,6 +104,12 @@ struct projectA_node_list_t {
     string read; // Read corresponding to the nodes
 };
 
+#endif // PROJECTA_GRAPH_HPP_STRUCTS
+
+#ifndef PROJECTA_GRAPH_HPP_FUNCTS
+#define PROJECTA_GRAPH_HPP_FUNCTS
+
+#include "algorithm.hpp"
 
 void projectA_delete_node(projectA_node_t* node);
 void projectA_delete_graph(projectA_graph_t* graph);
@@ -176,13 +184,13 @@ void projectA_build_graph_from_cluster(projectA_hash_graph_t* graph, projectA_ha
 
 
 // PRE:     graphs, ref_graph, node_lists
-//      graphs:     Vector holding a pair of a string and a pointer to a projectA_hash_graph_t.
+//      graphs:     Vector holding projectA_algorithm_input_t that each hold an input set for an algorithm.
 //      ref_grapph: Pointer to a projectA_hash_graph_t that holds the valid reference graph.
 //      node_list:  Vector that holds the projectA_node_list_t holding the cluster information
 // POST:    graphs
 //      graphs:     Vector holding a pair of a string and a pointer to a projectA_hash_graph_t. The string 
 //                  holds the read while the projectA_hash_graph_t pointer points to the corresponding graph.
-void projectA_build_graph_from_cluster(vector<pair<const string, projectA_hash_graph_t*>>& graphs, projectA_hash_graph_t* ref_graph, 
+void projectA_build_graph_from_cluster(vector<projectA_algorithm_input_t>& graphs, projectA_hash_graph_t* ref_graph, 
                                         vector<projectA_node_list_t>& node_lists);
 
 
@@ -200,4 +208,4 @@ void projectA_index_hash_graph(projectA_hash_graph_t* graph);
 //                  with an in order vector of the nodes in the graph.
 void projectA_hash_graph_in_order_nodes(projectA_hash_graph_t* graph);
 
-#endif // PROJECTA_GRAPH_HPP
+#endif // PROJECTA_GRAPH_HPP_FUNCTS

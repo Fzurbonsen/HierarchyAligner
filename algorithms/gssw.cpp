@@ -1,5 +1,7 @@
 /*
 
+    projectA:
+    gssw.cpp
     This file holds the implementation of the connector between projectA and gssw.
     Author: Frederic zur Bonsen <fzurbonsen@student.ethz.ch>
 
@@ -50,11 +52,6 @@ gssw_graph* projectA_hash_graph_to_gssw_graph(projectA_hash_graph_t* in_graph, i
         i++;
     }
 
-    // Iterate over all edges
-    // for (auto& edge : in_graph->edges) {
-    //     // Add edge
-    //     gssw_nodes_add_edge(node_map[in_graph->nodes[edge.start]], node_map[in_graph->nodes[edge.end]]);
-    // }
     // Iterate over all nodes
     for (auto& curr : in_graph->nodes_in_order) {
         
@@ -84,7 +81,7 @@ gssw_graph* projectA_hash_graph_to_gssw_graph(projectA_hash_graph_t* in_graph, i
 
 
 // Function to initialize gssw
-void* projectA_gssw_init(vector<pair<const string, projectA_hash_graph_t*>>& graphs) {
+void* projectA_gssw_init(vector<projectA_algorithm_input_t>& graphs) {
 
     // Create our io vectors for the gssw algorithm
     projectA_gssw_io_t* out = new projectA_gssw_io_t;
@@ -102,10 +99,10 @@ void* projectA_gssw_init(vector<pair<const string, projectA_hash_graph_t*>>& gra
     // Iterate over the input graphs
     for(auto& itr : graphs) {
         // Construct gssw graph
-        gssw_graph* new_gssw = projectA_hash_graph_to_gssw_graph(itr.second, nt_table, mat, gap_open, gap_extension);
+        gssw_graph* new_gssw = projectA_hash_graph_to_gssw_graph(itr.graph, nt_table, mat, gap_open, gap_extension);
 
         // Construct parameter entry
-        projectA_gssw_parameters_t entry(new_gssw, itr.first.c_str(), nt_table, mat, gap_open, gap_extension);
+        projectA_gssw_parameters_t entry(new_gssw, itr.read.c_str(), nt_table, mat, gap_open, gap_extension);
 
         // Append to parameter vector
         out->parameters.push_back(entry);

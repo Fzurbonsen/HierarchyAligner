@@ -1,5 +1,7 @@
 /*
 
+    projectA:
+    test.hpp
     This file holds the definitions of the functions used in the projectA test suit.
     Author: Frederic zur Bonsen <fzurbonsen@student.ethz.ch>
     

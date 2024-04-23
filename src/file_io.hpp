@@ -1,5 +1,7 @@
 /*
 
+    projectA:
+    file_io.hpp
     This file holds the definitions for the projectA I/O functions used to read from and write to files.
     Author: Frederic zur Bonsen <fzurbonsen@student.ethz.ch>
 

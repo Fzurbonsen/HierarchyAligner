@@ -1,5 +1,7 @@
 /*
 
+    projectA:
+    gt_gwfa.hpp
     This file holds the definitions for the connector between projectA and gt_gwfa.
     Author: Frederic zur Bonsen <fzurbonsen@student.ethz.ch>
     
@@ -35,7 +37,7 @@ struct projectA_gt_gwfa_io_t {
 };
 
 
-void* projectA_gt_gwfa_init(vector<pair<const string, projectA_hash_graph_t*>>& graphs);
+void* projectA_gt_gwfa_init(vector<projectA_algorithm_input_t>& graphs);
 
 void* projectA_gt_gwfa_calcualte_batch(void* input_ptr);
 

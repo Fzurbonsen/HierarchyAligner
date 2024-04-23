@@ -1,5 +1,7 @@
 /*
 
+    projectA:
+    graph.cpp
     This file holds the implemntations of the projectA graph helper functions.
     Author: Frederic zur Bonsen <fzurbonsen@student.ethz.ch>
     
@@ -14,6 +16,7 @@
 #include <stack>
 
 #include "graph.hpp"
+#include "algorithm.hpp"
 
 using namespace std;
 
@@ -191,20 +194,25 @@ void projectA_build_graph_from_cluster(projectA_hash_graph_t* graph, projectA_ha
 
 
 // Function to build a vector of cluster information
-void projectA_build_graph_from_cluster(vector<pair<const string, projectA_hash_graph_t*>>& graphs, projectA_hash_graph_t* ref_graph, 
+void projectA_build_graph_from_cluster(vector<projectA_algorithm_input_t>& graphs, projectA_hash_graph_t* ref_graph, 
                                         vector<projectA_node_list_t>& node_lists) {
     
     // Iterate over all node lists
     for (auto& node_list : node_lists) {
+        projectA_algorithm_input_t algorithm_inputs;
         projectA_hash_graph_t* graph = new projectA_hash_graph_t;
         graph->n_edges = 0;
         graph->n_nodes = 0;
 
         // Build new graph for each node list
         projectA_build_graph_from_cluster(graph, ref_graph, node_list);
+
+        // Fill algorithm input struct
+        algorithm_inputs.read = node_list.read;
+        algorithm_inputs.graph = graph;
         
         // Append the graph to the graph vector
-        graphs.push_back(make_pair(node_list.read, graph));
+        graphs.push_back(algorithm_inputs);
     }
 }
 

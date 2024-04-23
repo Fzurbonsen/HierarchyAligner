@@ -1,5 +1,7 @@
 /*
 
+    projectA:
+    gt_gwfa.cpp
     This file holds the implementation of the connector between projectA and gt_gwfa.
     Author: Frederic zur Bonsen <fzurbonsen@student.ethz.ch>
 
@@ -25,45 +27,52 @@ projectA_gt_gwfa_parameters_t::projectA_gt_gwfa_parameters_t(const char* r) : re
 // Function to convert projectA_hash_graph_t into gssw_graph
 gssw_graph* projectA_hash_graph_to_gt_gssw_graph(projectA_hash_graph_t* in_graph) {
 
-    // Create gssw graph
-    gssw_graph* out_graph = gssw_graph_create(in_graph->n_nodes);
-
-    unordered_map<projectA_node_t*, gssw_node*> node_map;
-
     // Define parameters for gssw
     int8_t match = 1, mismatch = 4;
     uint8_t gap_open = 6, gap_extension = 1;
     gssw_sse2_disable();
     int8_t* nt_table = gssw_create_nt_table();
     int8_t* mat = gssw_create_score_matrix(match, mismatch);
+    unordered_map<projectA_node_t*, gssw_node*> node_map;
+
+    gssw_sse2_disable();
+
     gssw_node* nodes[in_graph->n_nodes];
 
     // Iterate over all nodes in the graph to create the corresponding gssw nodes
     int i = 0;
-    for (auto& curr_node : in_graph->nodes) {
-        auto& curr = curr_node.second;
+    for (auto& curr : in_graph->nodes_in_order) {
 
         // Fill node
         nodes[i] = (gssw_node*)gssw_node_create(NULL, curr->index, curr->seq.c_str(), nt_table, mat);
-
-        // Add node to graph
-        gssw_graph_add_node(out_graph, nodes[i]);
 
         // Add to node map
         node_map[curr] = nodes[i];
         i++;
     }
 
+    // Iterate over all nodes
+    for (auto& curr : in_graph->nodes_in_order) {
+        
+        // Iterate over all outgoing edges
+        for (auto& next : curr->next) {
+            gssw_nodes_add_edge(node_map[curr], node_map[next]);
+        }
+    }
+
+    // Create gssw graph
+    gssw_graph* out_graph = gssw_graph_create(in_graph->n_nodes);
+
+    // Iterate over all nodes
+    for (i = 0; i < in_graph->n_nodes; ++i) {
+        // Add node to graph
+        gssw_graph_add_node(out_graph, nodes[i]);
+    }
+
     // Check if graph sizes match
     if (out_graph->size != in_graph->n_nodes) {
         cerr << "Error: graph size does not match!\n";
         exit(1);
-    }
-
-    // Iterate over all edges
-    for (auto& edge : in_graph->edges) {
-        // Add edge
-        gssw_nodes_add_edge(node_map[in_graph->nodes[edge.start]], node_map[in_graph->nodes[edge.end]]);
     }
 
     free(nt_table);
@@ -73,29 +82,29 @@ gssw_graph* projectA_hash_graph_to_gt_gssw_graph(projectA_hash_graph_t* in_graph
 
 
 // Function to initialize gt_gwfa
-void* projectA_gt_gwfa_init(vector<pair<const string, projectA_hash_graph_t*>>& graphs) {
-    // Create our input vector
-    projectA_gt_gwfa_io_t* out = new projectA_gt_gwfa_io_t;
+void* projectA_gt_gwfa_init(vector<projectA_algorithm_input_t>& graphs) {
 
-    // Iterate over input vector
-    for (auto& itr : graphs) {
-        projectA_gt_gwfa_parameters_t entry(itr.first.c_str());
+    // // Create our io vectors for the gssw algorithm
+    // projectA_gt_gwfa_io_t* out = new projectA_gt_gwfa_io_t;
 
-        // Create gssw graph
-        gssw_graph* new_gssw = projectA_hash_graph_to_gt_gssw_graph(itr.second);
+    // // Iterate over the input graphs
+    // for(auto& itr : graphs) {
+    //     // Construct gssw graph
+    //     gssw_graph* new_gssw = projectA_hash_graph_to_gt_gssw_graph(itr.graph);
 
-        // Fill entry
-        entry.gssw = new_gssw;
-        entry.gwf = gt_gssw_to_gwf(new_gssw);
+    //     // Construct parameter entry
+    //     projectA_gt_gwfa_parameters_t entry(new_gssw, itr.read.c_str());
 
-        // Append to vector
-        out->parameters.push_back(entry);
-    }
+    //     // Append to parameter vector
+    //     out->parameters.push_back(entry);
+    // }
 
-    // Reserve space for results
-    out->gms.reserve(out->parameters.size());
+    // // Reserve space for results
+    // out->gms.reserve(out->parameters.size());
 
-    return static_cast<void*>(out);
+    // // Cast return value into void pointer
+    // return static_cast<void*>(out);
+    return nullptr;
 }
 
 
