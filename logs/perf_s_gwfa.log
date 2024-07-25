@@ -1,0 +1,1389 @@
+--------------------------------------------------------------------------------
+Profile data file 'callgrind.out.1032993' (creator: callgrind-3.18.1)
+--------------------------------------------------------------------------------
+I1 cache: 
+D1 cache: 
+LL cache: 
+Timerange: Basic block 0 - 57798584865
+Trigger: Program termination
+Profiled target:  bin/test (PID 1032993, part 1)
+Events recorded:  Ir
+Events shown:     Ir
+Event sort order: Ir
+Thresholds:       99
+Include dirs:     
+User annotated:   
+Auto-annotation:  on
+
+--------------------------------------------------------------------------------
+Ir                       
+--------------------------------------------------------------------------------
+357,891,827,078 (100.0%)  PROGRAM TOTALS
+
+--------------------------------------------------------------------------------
+Ir                        file:function
+--------------------------------------------------------------------------------
+125,679,160,607 (35.12%)  algorithms/s_gwfa/src/s_gwfa.c:rs_sort_k_gwfa_diag'2 [/home/fzurbonsen/projectA/bin/test]
+ 94,457,712,399 (26.39%)  algorithms/s_gwfa/src/s_gwfa.c:k_gwfa_extend_expand [/home/fzurbonsen/projectA/bin/test]
+ 93,611,175,022 (26.16%)  algorithms/s_gwfa/src/s_gwfa.c:k_gwfa_expand_expand_batch [/home/fzurbonsen/projectA/bin/test]
+ 15,583,545,386 ( 4.35%)  algorithms/s_gwfa/src/s_gwfa.h:k_gwfa_extend_expand
+ 11,381,674,658 ( 3.18%)  algorithms/s_gwfa/src/s_gwfa.c:rs_sort_k_gwfa_diag [/home/fzurbonsen/projectA/bin/test]
+  4,858,014,240 ( 1.36%)  algorithms/s_gwfa/src/s_gwfa.h:kdq_pushp_k_gwfa_diag_t [/home/fzurbonsen/projectA/bin/test]
+  3,173,023,841 ( 0.89%)  ./string/../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S:__memcpy_avx_unaligned_erms [/usr/lib/x86_64-linux-gnu/libc.so.6]
+  2,009,699,379 ( 0.56%)  algorithms/s_gwfa/src/s_gwfa.c:rs_insertsort_k_gwfa_diag [/home/fzurbonsen/projectA/bin/test]
+  1,018,309,244 ( 0.28%)  ???:std::basic_istream<char, std::char_traits<char> >& std::operator>><char, std::char_traits<char>, std::allocator<char> >(std::basic_istream<char, std::char_traits<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&) [/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30]
+    754,449,472 ( 0.21%)  algorithms/s_gwfa/src/khashl.h:k_gwfa_extend_expand
+    363,766,468 ( 0.10%)  ./malloc/./malloc/malloc.c:_int_malloc [/usr/lib/x86_64-linux-gnu/libc.so.6]
+    352,929,357 ( 0.10%)  ./malloc/./malloc/malloc.c:_int_free [/usr/lib/x86_64-linux-gnu/libc.so.6]
+    317,342,260 ( 0.09%)  ???:std::istream::sentry::sentry(std::istream&, bool) [/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30]
+    308,310,258 ( 0.09%)  ???:std::_Hash_bytes(void const*, unsigned long, unsigned long) [/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30]
+    269,000,207 ( 0.08%)  algorithms/gwfa/kalloc.c:kfree [/home/fzurbonsen/projectA/bin/test]
+    204,830,949 ( 0.06%)  algorithms/gwfa/kalloc.c:kmalloc [/home/fzurbonsen/projectA/bin/test]
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: algorithms/gwfa/kalloc.c
+--------------------------------------------------------------------------------
+Ir                  
+
+-- line 35 ----------------------------------------
+         .           	abort();
+         .           }
+         .           
+         .           void *km_init2(void *km_par, size_t min_core_size)
+         .           {
+         .           	kmem_t *km;
+         .           	km = (kmem_t*)kcalloc(km_par, 1, sizeof(kmem_t));
+         .           	km->par = km_par;
+     5,135 ( 0.00%)  	km->min_core_size = min_core_size > 0? min_core_size : 0x80000;
+         .           	return (void*)km;
+         .           }
+         .           
+    20,540 ( 0.00%)  void *km_init(void) { return km_init2(0, 0); }
+         .           
+         .           void km_destroy(void *_km)
+    25,675 ( 0.00%)  {
+         .           	kmem_t *km = (kmem_t*)_km;
+         .           	void *km_par;
+         .           	header_t *p, *q;
+    10,270 ( 0.00%)  	if (km == NULL) return;
+     5,135 ( 0.00%)  	km_par = km->par;
+    30,810 ( 0.00%)  	for (p = km->core_head; p != NULL;) {
+    10,270 ( 0.00%)  		q = p->ptr;
+    10,270 ( 0.00%)  		kfree(km_par, p);
+ 2,018,367 ( 0.00%)  => algorithms/gwfa/kalloc.c:kfree (5,135x)
+         .           		p = q;
+         .           	}
+    15,405 ( 0.00%)  	kfree(km_par, km);
+   687,866 ( 0.00%)  => algorithms/gwfa/kalloc.c:kfree (5,135x)
+    15,405 ( 0.00%)  }
+         .           
+         .           static header_t *morecore(kmem_t *km, size_t nu)
+         .           {
+         .           	header_t *q;
+         .           	size_t bytes, *p;
+    30,810 ( 0.00%)  	nu = (nu + 1 + (km->min_core_size - 1)) / km->min_core_size * km->min_core_size; /* the first +1 for core header */
+    10,270 ( 0.00%)  	bytes = nu * sizeof(header_t);
+    15,405 ( 0.00%)  	q = (header_t*)kmalloc(km->par, bytes);
+ 2,664,950 ( 0.00%)  => algorithms/gwfa/kalloc.c:kmalloc'2 (5,135x)
+    10,270 ( 0.00%)  	if (!q) panic("[morecore] insufficient memory");
+    20,540 ( 0.00%)  	q->ptr = km->core_head, q->size = nu, km->core_head = q;
+         .           	p = (size_t*)(q + 1);
+    10,270 ( 0.00%)  	*p = nu - 1; /* the size of the free block; -1 because the first unit is used for the core header */
+    15,405 ( 0.00%)  	kfree(km, p + 1); /* initialize the new "core"; NB: the core header is not looped. */
+   195,130 ( 0.00%)  => algorithms/gwfa/kalloc.c:kfree (5,135x)
+     5,135 ( 0.00%)  	return km->loop_head;
+         .           }
+         .           
+         .           void kfree(void *_km, void *ap) /* kfree() also adds a new core to the circular list */
+12,013,159 ( 0.00%)  {
+         .           	header_t *p, *q;
+         .           	kmem_t *km = (kmem_t*)_km;
+         .           	
+12,030,942 ( 0.00%)  	if (!ap) return;
+12,015,916 ( 0.00%)  	if (km == NULL) {
+    20,540 ( 0.00%)  		free(ap);
+ 2,634,343 ( 0.00%)  => ???:0x000000000010cc30 (10,270x)
+         .           		return;
+         .           	}
+ 5,997,688 ( 0.00%)  	p = (header_t*)((size_t*)ap - 1);
+ 5,997,688 ( 0.00%)  	p->size = *((size_t*)ap - 1);
+         .           	/* Find the pointer that points to the block to be freed. The following loop can stop on two conditions:
+         .           	 *
+         .           	 * a) "p>q && p<q->ptr": @------#++++++++#+++++++@-------    @---------------#+++++++@-------
+         .           	 *    (can also be in    |      |                |        -> |                       |
+         .           	 *     two cores)        q      p           q->ptr           q                  q->ptr
+         .           	 *
+         .           	 *                       @--------    #+++++++++@--------    @--------    @------------------
+         .           	 *                       |            |         |         -> |            |
+-- line 98 ----------------------------------------
+-- line 101 ----------------------------------------
+         .           	 * b) "q>=q->ptr && (p>q || p<q->ptr)":  @-------#+++++   @--------#+++++++     @-------#+++++   @----------------
+         .           	 *                                       |                |        |         -> |                |
+         .           	 *                                  q->ptr                q        p       q->ptr                q
+         .           	 *
+         .           	 *                                       #+++++++@-----   #++++++++@-------     @-------------   #++++++++@-------
+         .           	 *                                       |       |                 |         -> |                         |
+         .           	 *                                       p  q->ptr                 q       q->ptr                         q
+         .           	 */
+82,115,234 ( 0.02%)  	for (q = km->loop_head; !(p > q && p < q->ptr); q = q->ptr)
+17,014,952 ( 0.00%)  		if (q >= q->ptr && (p > q || p < q->ptr)) break;
+29,988,440 ( 0.01%)  	if (p + p->size == q->ptr) { /* two adjacent blocks, merge p and q->ptr (the 2nd and 4th cases) */
+ 7,627,090 ( 0.00%)  		p->size += q->ptr->size;
+13,624,778 ( 0.00%)  		p->ptr = q->ptr->ptr;
+ 2,409,057 ( 0.00%)  	} else if (p + p->size > q->ptr && q->ptr >= p) {
+         .           		panic("[kfree] The end of the allocated block enters a free block.");
+         .           	} else p->ptr = q->ptr; /* backup q->ptr */
+         .           
+35,986,128 ( 0.01%)  	if (q + q->size == p) { /* two adjacent blocks, merge q and p (the other two cases) */
+ 4,325,260 ( 0.00%)  		q->size += p->size;
+ 2,162,630 ( 0.00%)  		q->ptr = p->ptr;
+ 2,162,630 ( 0.00%)  		km->loop_head = q;
+ 3,835,070 ( 0.00%)  	} else if (q + q->size > p && p >= q) {
+         .           		panic("[kfree] The end of a free block enters the allocated block.");
+ 7,670,116 ( 0.00%)  	} else km->loop_head = p, q->ptr = p; /* in two cores, cannot be merged; create a new block in the list */
+12,002,889 ( 0.00%)  }
+         .           
+         .           void *kmalloc(void *_km, size_t n_bytes)
+30,102,975 ( 0.01%)  {
+         .           	kmem_t *km = (kmem_t*)_km;
+         .           	size_t n_units;
+         .           	header_t *p, *q;
+         .           
+12,041,190 ( 0.00%)  	if (n_bytes == 0) return 0;
+12,051,460 ( 0.00%)  	if (km == NULL) return malloc(n_bytes);
+ 2,593,060 ( 0.00%)  => ???:0x000000000010cce0 (5,135x)
+12,030,920 ( 0.00%)  	n_units = (n_bytes + sizeof(size_t) + sizeof(header_t) - 1) / sizeof(header_t); /* header+n_bytes requires at least this number of units */
+         .           
+18,046,380 ( 0.01%)  	if (!(q = km->loop_head)) /* the first time when kmalloc() is called, intialize it */
+    25,675 ( 0.00%)  		q = km->loop_head = km->base.ptr = &km->base;
+ 8,033,635 ( 0.00%)  	for (p = q->ptr;; q = p, p = p->ptr) { /* search for a suitable block */
+28,171,730 ( 0.01%)  		if (p->size >= n_units) { /* p->size if the size of current block. This line means the current block is large enough. */
+12,054,644 ( 0.00%)  			if (p->size == n_units) q->ptr = p->ptr; /* no need to split the block */
+         .           			else { /* split the block. NB: memory is allocated at the end of the block! */
+12,015,104 ( 0.00%)  				p->size -= n_units; /* reduce the size of the free block */
+12,015,104 ( 0.00%)  				p += p->size; /* p points to the allocated block */
+ 6,007,552 ( 0.00%)  				*(size_t*)p = n_units; /* set the size */
+         .           			}
+ 6,015,460 ( 0.00%)  			km->loop_head = q; /* set the end of chain */
+ 6,015,460 ( 0.00%)  			return (size_t*)p + 1;
+         .           		}
+ 6,069,930 ( 0.00%)  		if (p == km->loop_head) { /* then ask for more "cores" */
+    10,270 ( 0.00%)  			if ((p = morecore(km, n_units)) == 0) return 0;
+         .           		}
+         .           	}
+24,077,245 ( 0.01%)  }
+         .           
+         .           void *kcalloc(void *_km, size_t count, size_t size)
+ 5,972,898 ( 0.00%)  {
+         .           	kmem_t *km = (kmem_t*)_km;
+         .           	void *p;
+ 7,963,864 ( 0.00%)  	if (size == 0 || count == 0) return 0;
+ 3,997,337 ( 0.00%)  	if (km == NULL) return calloc(count, size);
+ 1,027,686 ( 0.00%)  => ???:0x000000000010ca30 (5,135x)
+ 5,972,898 ( 0.00%)  	p = kmalloc(km, count * size);
+74,880,904 ( 0.02%)  => algorithms/gwfa/kalloc.c:kmalloc (1,990,966x)
+         .           	memset(p, 0, count * size);
+         .           	return p;
+ 5,972,898 ( 0.00%)  }
+         .           
+         .           void *krealloc(void *_km, void *ap, size_t n_bytes) // TODO: this can be made more efficient in principle
+16,309,304 ( 0.00%)  {
+         .           	kmem_t *km = (kmem_t*)_km;
+         .           	size_t cap, *p, *q;
+         .           
+ 6,115,989 ( 0.00%)  	if (n_bytes == 0) {
+         .           		kfree(km, ap); return 0;
+         .           	}
+ 4,077,326 ( 0.00%)  	if (km == NULL) return realloc(ap, n_bytes);
+ 6,074,200 ( 0.00%)  	if (ap == NULL) return kmalloc(km, n_bytes);
+67,474,941 ( 0.02%)  => algorithms/gwfa/kalloc.c:kmalloc (1,996,874x)
+         .           	p = (size_t*)ap - 1;
+   167,156 ( 0.00%)  	cap = (*p) * sizeof(header_t) - sizeof(size_t);
+    83,578 ( 0.00%)  	if (cap >= n_bytes) return ap; /* TODO: this prevents shrinking */
+    83,578 ( 0.00%)  	q = (size_t*)kmalloc(km, n_bytes);
+ 1,504,146 ( 0.00%)  => algorithms/gwfa/kalloc.c:kmalloc (41,789x)
+         .           	memcpy(q, ap, cap);
+   125,367 ( 0.00%)  	kfree(km, ap);
+ 2,100,232 ( 0.00%)  => algorithms/gwfa/kalloc.c:kfree (41,789x)
+         .           	return q;
+10,276,893 ( 0.00%)  }
+         .           
+         .           void km_stat(const void *_km, km_stat_t *s)
+         .           {
+         .           	kmem_t *km = (kmem_t*)_km;
+         .           	header_t *p;
+         .           	memset(s, 0, sizeof(km_stat_t));
+         .           	if (km == NULL || km->loop_head == NULL) return;
+         .           	for (p = km->loop_head;; p = p->ptr) {
+-- line 192 ----------------------------------------
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: algorithms/s_gwfa/src/s_gwfa.c
+--------------------------------------------------------------------------------
+Ir                       
+
+-- line 22 ----------------------------------------
+              .           
+              .           #define MAX(a, b) ((a) > (b) ? (a) : (b))
+              .           #define ABS(a) ((a) < 0 ? -(a) : (a))
+              .           
+              .           
+              .           // Function to create a node
+              .           s_gwfa_node_t* s_gwfa_node_create(int32_t id,
+              .                                               int32_t size,
+        234,819 ( 0.00%)                                      const char* seq) {
+              .               
+              .               // Allocate memory for node
+        104,364 ( 0.00%)      s_gwfa_node_t* node = (s_gwfa_node_t*)calloc(1, sizeof(s_gwfa_node_t));
+      5,896,992 ( 0.00%)  => ???:0x000000000010ca30 (26,091x)
+        130,455 ( 0.00%)      node->seq = (char*)malloc(size + 1);
+      5,329,380 ( 0.00%)  => ???:0x000000000010cce0 (26,091x)
+         78,273 ( 0.00%)      node->edges = (s_gwfa_edge_t**)malloc(0);
+      2,791,284 ( 0.00%)  => ???:0x000000000010cce0 (26,091x)
+              .           
+              .               // Fill fields
+         26,091 ( 0.00%)      node->id = id;
+         26,091 ( 0.00%)      node->size = size;
+              .               strncpy(node->seq, seq, size);
+         26,091 ( 0.00%)      node->seq[size] = '\0';
+         52,182 ( 0.00%)      node->n_edges = 0;
+              .           
+              .               return node;
+        182,637 ( 0.00%)  }
+              .           
+              .           
+              .           // Function to create an edge
+              .           s_gwfa_edge_t* s_gwfa_edge_create(s_gwfa_node_t* start,
+              .                                               s_gwfa_node_t* end,
+        233,316 ( 0.00%)                                      int32_t weight) {
+              .               
+              .               // Allocate memory for edge
+        103,696 ( 0.00%)      s_gwfa_edge_t* edge = (s_gwfa_edge_t*)calloc(1, sizeof(s_gwfa_edge_t));
+      5,729,996 ( 0.00%)  => ???:0x000000000010ca30 (25,924x)
+              .           
+              .               // Fill fields
+         25,924 ( 0.00%)      edge->start = start;
+         25,924 ( 0.00%)      edge->end = end;
+         25,924 ( 0.00%)      edge->weight = weight;
+              .           
+              .               // Add edge to start node
+         77,772 ( 0.00%)      start->n_edges++;
+        129,620 ( 0.00%)      start->edges = realloc(start->edges, start->n_edges * sizeof(s_gwfa_edge_t*));
+      3,328,462 ( 0.00%)  => ???:0x000000000010ce00 (25,924x)
+         51,848 ( 0.00%)      start->edges[start->n_edges - 1] = edge;
+              .           
+              .               return edge;
+        181,468 ( 0.00%)  }
+              .           
+              .           
+              .           // Function to create a graph
+         10,270 ( 0.00%)  s_gwfa_graph_t* s_gwfa_graph_create() {
+              .           
+              .               // Allocate memory for graph
+         20,540 ( 0.00%)      s_gwfa_graph_t* graph = calloc(1, sizeof(s_gwfa_graph_t));
+      1,125,185 ( 0.00%)  => ???:0x000000000010ca30 (5,135x)
+         20,540 ( 0.00%)      graph->nodes = calloc(1, sizeof(s_gwfa_node_t*));
+      1,036,026 ( 0.00%)  => ???:0x000000000010ca30 (5,135x)
+          5,135 ( 0.00%)      graph->top_nodes = NULL;
+              .           
+              .               return graph;
+         15,405 ( 0.00%)  }
+              .           
+              .           
+              .           // Function to add node to graph
+              .           void s_gwfa_graph_add_node(s_gwfa_graph_t* graph, 
+        156,546 ( 0.00%)                              s_gwfa_node_t* node) {
+              .               
+              .               // Allocate memory
+        130,455 ( 0.00%)      graph->nodes = realloc(graph->nodes, (graph->size + 1) * sizeof(s_gwfa_node_t*));
+      4,891,003 ( 0.00%)  => ???:0x000000000010ce00 (26,091x)
+              .           
+              .               // Add node to graph node lists
+         78,273 ( 0.00%)      graph->nodes[graph->size] = node;
+         52,182 ( 0.00%)      node->idx = graph->size;
+         52,182 ( 0.00%)      graph->size++;
+        104,364 ( 0.00%)  }
+              .           
+              .           
+              .           // Function to find the top node in the graph
+         46,215 ( 0.00%)  s_gwfa_path_t* s_gwfa_graph_find_top_nodes(s_gwfa_graph_t* graph) {
+              .           
+         15,405 ( 0.00%)      s_gwfa_edge_t** edges = (s_gwfa_edge_t*)malloc(0);
+        727,220 ( 0.00%)  => ???:0x000000000010cce0 (5,135x)
+         62,036 ( 0.00%)      int32_t n_edges = 0;
+              .               s_gwfa_node_t* top_node;
+              .               
+              .               // Iterate over all nodes to get all edges
+        109,083 ( 0.00%)      for (int i = 0; i < graph->size; ++i) {
+        260,910 ( 0.00%)          edges = realloc(edges, (n_edges + graph->nodes[i]->n_edges) * sizeof(s_gwfa_edge_t*));
+      3,531,649 ( 0.00%)  => ???:0x000000000010ce00 (26,091x)
+         78,273 ( 0.00%)          for (int j = 0; j < graph->nodes[i]->n_edges; ++j) {
+        125,724 ( 0.00%)              edges[n_edges + j] = graph->nodes[i]->edges[j];
+        304,800 ( 0.00%)  => ???:0x000000000010cac0 (20,954x)
+              .                   }
+              .                   n_edges += graph->nodes[i]->n_edges;
+              .               }
+              .           
+         20,540 ( 0.00%)      int32_t* nodes = (int32_t*)calloc(graph->size, sizeof(int32_t));
+      1,118,892 ( 0.00%)  => ???:0x000000000010ca30 (5,135x)
+              .               int32_t n_top_nodes = 0;
+              .               s_gwfa_path_t* top_nodes = s_gwfa_path_create();
+              .           
+              .               // Iterate over all edges and count the incident edges for each node
+        108,582 ( 0.00%)      for (int i = 0; i < n_edges; ++i) {
+        103,696 ( 0.00%)          nodes[edges[i]->end->id]++;
+              .               }
+              .           
+              .               // Iterate over all nodes and count the number of incident edges
+        104,364 ( 0.00%)      for (int i = 0; i < graph->size; ++i) {
+         78,273 ( 0.00%)          if (nodes[i] == 0) {
+              .                       n_top_nodes++;
+         20,560 ( 0.00%)              s_gwfa_path_push(top_nodes, graph->nodes[i]);
+        113,080 ( 0.00%)  => algorithms/s_gwfa/src/s_gwfa.c:s_gwfa_path_push (5,140x)
+              .                   }
+              .               }
+              .           
+         10,270 ( 0.00%)      free(nodes);
+        481,810 ( 0.00%)  => ???:0x000000000010cc30 (5,135x)
+         10,270 ( 0.00%)      free(edges);
+        484,926 ( 0.00%)  => ???:0x000000000010cc30 (5,135x)
+              .               return top_nodes;
+         46,215 ( 0.00%)  }
+              .           
+              .           
+              .           // Function to find the top node in the graph
+              .           s_gwfa_node_t* s_gwfa_graph_find_top_node(s_gwfa_graph_t* graph) {
+              .           
+              .               s_gwfa_edge_t** edges = (s_gwfa_edge_t*)malloc(0);
+              .               int32_t n_edges = 0;
+              .               s_gwfa_node_t* top_node;
+-- line 140 ----------------------------------------
+-- line 175 ----------------------------------------
+              .               free(nodes);
+              .               free(edges);
+              .               return top_node;
+              .           }
+              .           
+              .           
+              .           // Function to destroy an edge
+              .           void s_gwfa_edge_destroy(s_gwfa_edge_t* edge) {
+         51,848 ( 0.00%)      if (edge) {
+         25,924 ( 0.00%)          free(edge);
+      3,136,742 ( 0.00%)  => ???:0x000000000010cc30 (25,924x)
+              .               }
+              .           }
+              .           
+              .           
+              .           // Function to destroy a node
+        104,364 ( 0.00%)  void s_gwfa_node_destroy(s_gwfa_node_t* node) {
+         78,273 ( 0.00%)      if (node) {
+     13,750,024 ( 0.00%)  => algorithms/s_gwfa/src/s_gwfa.c:s_gwfa_node_destroy.part.0 (26,091x)
+        197,786 ( 0.00%)          for (int i = 0; i < node->n_edges; ++i) {
+         25,924 ( 0.00%)              s_gwfa_edge_destroy(node->edges[i]);
+              .                   }
+        104,197 ( 0.00%)          free(node->edges);
+      3,156,981 ( 0.00%)  => ???:0x000000000010cc30 (26,091x)
+         52,182 ( 0.00%)          free(node->seq);
+      3,606,642 ( 0.00%)  => ???:0x000000000010cc30 (26,091x)
+         52,182 ( 0.00%)          free(node);
+      3,156,979 ( 0.00%)  => ???:0x000000000010cc30 (26,091x)
+              .               }
+         78,273 ( 0.00%)  }
+              .           
+              .           
+              .           // Function to destroy a graph
+         25,675 ( 0.00%)  void s_gwfa_graph_destroy(s_gwfa_graph_t* graph) {
+         10,270 ( 0.00%)      if (graph) {
+        124,904 ( 0.00%)          for (int i = 0; i < graph->size; ++i) {
+         52,182 ( 0.00%)              s_gwfa_node_destroy(graph->nodes[i]);
+              .                   }
+         15,405 ( 0.00%)          if (graph->top_nodes) {
+              .                       s_gwfa_path_destroy(graph->top_nodes);
+              .                   }
+         10,270 ( 0.00%)          free(graph->nodes);
+        631,596 ( 0.00%)  => ???:0x000000000010cc30 (5,135x)
+         10,270 ( 0.00%)          free(graph);
+        621,335 ( 0.00%)  => ???:0x000000000010cc30 (5,135x)
+              .               }
+         15,405 ( 0.00%)  }
+              .           
+              .           // Function to create a path struct
+              .           s_gwfa_path_t* s_gwfa_path_create() {
+         15,405 ( 0.00%)      s_gwfa_path_t* path = (s_gwfa_path_t*)malloc(sizeof(s_gwfa_path_t));
+        867,309 ( 0.00%)  => ???:0x000000000010cce0 (5,135x)
+         10,270 ( 0.00%)      path->size = 0;
+         15,405 ( 0.00%)      path->nodes = (s_gwfa_node_t**)malloc(64 * sizeof(s_gwfa_node_t*));
+        962,388 ( 0.00%)  => ???:0x000000000010cce0 (5,135x)
+              .               path->alloc_size = 64;
+              .           
+          5,135 ( 0.00%)      path->next = NULL;
+              .               return path;
+              .           }
+              .           
+         20,560 ( 0.00%)  void s_gwfa_path_push(s_gwfa_path_t* path, s_gwfa_node_t* node) {
+              .               // check if the passed variables exist
+         15,420 ( 0.00%)      if (path == NULL) {
+              .                   fprintf(stderr, "[s_gwfa]error: path struct does not exist!\n");
+              .                   exit(1);
+              .               }
+         10,280 ( 0.00%)      if (node == NULL) {
+              .                   fprintf(stderr, "[s_gwfa]error: node does not exist!\n");
+              .                   exit(1);
+              .               }
+              .           
+              .               // Check if the allocated memory is sufficient
+         30,840 ( 0.00%)      if (path->alloc_size <= path->size+1) {
+          5,140 ( 0.00%)          path->nodes = (s_gwfa_node_t**)realloc(path->nodes, path->alloc_size*2 * sizeof(s_gwfa_node_t*));
+              .                   path->alloc_size = path->alloc_size * 2;
+              .               }
+              .           
+              .               // push node to path
+          5,140 ( 0.00%)      path->nodes[path->size] = node;
+          5,140 ( 0.00%)      path->size++;
+         20,560 ( 0.00%)  }
+              .           
+              .           // Function to copy a path
+              .           s_gwfa_path_t* s_gwfa_path_copy(s_gwfa_path_t* path) {
+              .               s_gwfa_path_t* copy = (s_gwfa_path_t*)malloc(sizeof(s_gwfa_path_t));
+              .               copy->size = path->size;
+              .               copy->nodes = (s_gwfa_node_t**)malloc(path->alloc_size * sizeof(s_gwfa_node_t*));
+              .               copy->alloc_size = path->alloc_size;
+              .               for (int i = 0; i < path->size; ++i) {
+-- line 255 ----------------------------------------
+-- line 264 ----------------------------------------
+              .           void s_gwfa_path_destroy(s_gwfa_path_t* path) {
+              .           
+              .               if (path == NULL) {
+              .                   fprintf(stderr, "[s_gwfa]error: path does not exist!\n");
+              .                   exit(1);
+              .               }
+              .               path->alloc_size = 0;
+              .               path->size = 0;
+         10,270 ( 0.00%)      free(path->nodes);
+        762,398 ( 0.00%)  => ???:0x000000000010cc30 (5,135x)
+         10,270 ( 0.00%)      free(path);
+        621,335 ( 0.00%)  => ???:0x000000000010cc30 (5,135x)
+              .           }
+              .           
+              .           
+              .           
+              .           // wfa_ed:
+              .           
+              .           wfa_diag_list_t* wfa_diag_list_create() {
+              .               // Allocate memory for diag list
+-- line 281 ----------------------------------------
+-- line 1237 ----------------------------------------
+              .           */
+              .           
+              .           #define K_GWFA_DIAG_SHIFT 0x40000000
+              .           
+              .           #define intv_key(x) ((x).nd0)
+              .           KRADIX_SORT_INIT(k_gwfa_intv, k_gwfa_intv_t, intv_key, 8)
+              .           
+              .           #define diag_key(x) ((x).nd)
+139,071,703,056 (38.86%)  KRADIX_SORT_INIT(k_gwfa_diag, k_gwfa_diag_t, diag_key, 8)
+139,054,671,343 (38.85%)  => algorithms/s_gwfa/src/s_gwfa.c:rs_sort_k_gwfa_diag (156,686x)
+     15,863,301 ( 0.00%)  => algorithms/s_gwfa/src/s_gwfa.c:rs_insertsort_k_gwfa_diag (11,935x)
+              .           
+              .           
+              .           static inline int k_gwfa_intv_is_sorted(int32_t n, const k_gwfa_intv_t *intv) {
+              .               int32_t i;
+        338,326 ( 0.00%)      for (i = 1; i < n; ++i) {
+              .                   if (intv[i-1].nd0 > intv[i].nd0);
+              .               }
+              .               return (i == n);
+              .           }
+              .           
+              .           
+              .           void k_gwfa_intv_print(FILE* file, uint32_t n, k_gwfa_intv_t* intv) {
+              .               for (int i = 0; i < n; ++i) {
+-- line 1258 ----------------------------------------
+-- line 1262 ----------------------------------------
+              .                   int32_t diag1 = (int32_t)(intv[i].nd1 - K_GWFA_DIAG_SHIFT); 
+              .               }
+              .           }
+              .           
+              .           
+              .           // function to merge overlapping intervals. This expects that the input is sorted
+              .           static inline uint32_t k_gwfa_intv_merge_adj(uint32_t n, k_gwfa_intv_t* intv) {
+              .           
+        338,326 ( 0.00%)      if (n == 0) return 0;
+              .               
+        338,326 ( 0.00%)      uint32_t k = 0;
+        169,163 ( 0.00%)      uint64_t start = intv[0].nd0;
+        169,163 ( 0.00%)      uint64_t end = intv[0].nd1;
+              .           
+  1,020,969,951 ( 0.29%)      for (int i = 1; i < n; ++i) {
+    679,969,982 ( 0.19%)          if (intv[i].nd0 > end) {
+     90,408,712 ( 0.03%)              intv[k].nd0 = start;
+     22,602,178 ( 0.01%)              intv[k].nd1 = end;
+     22,602,178 ( 0.01%)              k++;
+     22,602,178 ( 0.01%)              start = intv[i].nd0;
+     22,602,178 ( 0.01%)              end = intv[i].nd1;
+              .                   } else {
+  1,269,531,252 ( 0.35%)              end = end > intv[i].nd1 ? end : intv[i].nd1;
+              .                   }
+              .               }
+              .               return k;
+              .           }
+              .           
+              .           
+              .           // merge two sorted interval lists
+              .           static uint32_t k_gwfa_intv_merg_lists(k_gwfa_intv_t* intv_o, uint32_t n1, const k_gwfa_intv_t* intv1, uint32_t n2, k_gwfa_intv_t* intv2) {
+              .           
+        499,205 ( 0.00%)      uint32_t i = 0;
+        169,163 ( 0.00%)      uint32_t j = 0;
+        169,163 ( 0.00%)      uint32_t k = 0;
+              .           
+    262,015,618 ( 0.07%)      while (i < n1 && j < n2) {
+    653,926,760 ( 0.18%)          if (intv1[i].nd0 >= intv2[j].nd0) {
+    207,089,811 ( 0.06%)              intv_o[k++] = intv1[i++];
+              .                   } else {
+    247,021,660 ( 0.07%)              intv_o[k++] = intv2[j++];
+              .                   }
+              .               }
+    188,252,048 ( 0.05%)      while (i < n1) intv_o[k++] = intv1[i++];
+  2,560,088,536 ( 0.72%)      while (j < n2) intv_o[k++] = intv2[j++];
+              .           
+              .               return k_gwfa_intv_merge_adj(k, intv_o);
+              .           }
+              .           
+              .           
+              .           void k_gwfa_diag_print(FILE* file, k_gwfa_diag_t* diag) {
+              .               int32_t n = diag->nd>>32;
+              .               int32_t d = (int32_t)(diag->nd & 0xFFFFFFFF) - K_GWFA_DIAG_SHIFT;
+-- line 1314 ----------------------------------------
+-- line 1319 ----------------------------------------
+              .               uint32_t vec_pos = 0;
+              .               fprintf(file, "[node: %i \tdiag: %i \tanti: %i \toff: %i ]\t\t", n, d, ant, off);
+              .               fprintf(file, "[row: %i \tcol: %i ]\t", (ant - d) / 2, (ant + d) / 2);
+              .               fprintf(file, "[vec_pos: %u \tooo: %i ]\n", vec_pos, ooo);
+              .           }
+              .           
+              .           // function to create the nd field in the diag struct
+              .           static inline uint64_t k_gwfa_gen_nd(uint32_t n, int32_t d) {
+  3,800,801,343 ( 1.06%)      return (uint64_t)n<<32 | (K_GWFA_DIAG_SHIFT + d);
+              .           }
+              .           
+              .           // function to, given a diagonal (node, diag_id, off) determine the wave front on the diagonal
+              .           static inline int32_t k_gwfa_diag_update(k_gwfa_diag_t* diag, // pointer to a diagonal
+              .                                                   uint32_t node, // node id
+              .                                                   int32_t diag_id, // id of the diagonal
+              .                                                   int32_t ant, // antidiagonal
+              .                                                   int32_t off, // offset
+              .                                                   int8_t ooo, // out of order
+              .                                                   int32_t trace) { // trace
+              .               uint64_t nd = k_gwfa_gen_nd(node, diag_id);
+              .           
+              .               // check if the diagonals are the same diagonal
+     69,435,518 ( 0.02%)      if (diag->nd == nd) {
+              .           
+              .                   // update the diagonal to the instance that matches the wave front
+     15,833,021 ( 0.00%)          diag->ant = diag->off > off ? diag->ant : ant;
+      7,014,394 ( 0.00%)          diag->ooo = diag->off > off ? diag->ooo : ooo;
+      5,311,430 ( 0.00%)          diag->trace = diag->off > off ? diag->trace : trace;
+     14,378,954 ( 0.00%)          diag->off = diag->off > off ? diag->off : off;
+              .                   return 0; // return 0 to indicate succesfull update
+              .               }
+         11,616 ( 0.00%)      return 1; // return 1 to indicate no update
+              .           }
+              .           
+              .           // push (n,d, off) to the end of the vector
+              .           static inline void k_gwfa_diag_push(void* km, // pointer to k-memory
+              .                                               k_gwfa_diag_v* vec, // vector to push to
+              .                                               uint32_t n, // node id
+              .                                               int32_t d, // diagonal id
+              .                                               int32_t off, // offset of the wave front
+              .                                               uint32_t ant, // anti diagonal
+              .                                               int8_t ooo, // out of order indicator
+              .                                               int32_t trace) { // trace
+              .               k_gwfa_diag_t* diag;
+  2,793,039,983 ( 0.78%)      kv_pushp(k_gwfa_diag_t, km, *vec, &diag);
+  2,506,490,359 ( 0.70%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:krealloc (14,153x)
+    221,452,386 ( 0.06%)      diag->nd = k_gwfa_gen_nd(n, d);
+    503,237,716 ( 0.14%)      diag->off = off;
+    576,902,901 ( 0.16%)      diag->ant = ant;
+    385,053,985 ( 0.11%)      diag->ooo = ooo;
+    738,460,638 ( 0.21%)      diag->trace = trace;
+    118,183,731 ( 0.03%)  }
+              .           
+              .           // push (n,d,off) to the node position
+              .           static inline void k_gwfa_diag_push_node(k_gwfa_buf_t* buf, // pointer to buffer
+              .                                                       k_gwfa_diag_v* vec, // vector to push to
+              .                                                       uint32_t n, // node id
+              .                                                       int32_t d, // diagonal id
+              .                                                       int32_t off, // offset of the wave front
+              .                                                       uint32_t ant, // anti diagonal
+-- line 1377 ----------------------------------------
+-- line 1383 ----------------------------------------
+              .               diag->ant = ant;
+              .               diag->ooo = ooo;
+              .               buf->nodes[n].a[graph->nodes[n]->size + d] = *diag;
+              .           }
+              .           
+              .           // function to determine if the diagonals are sorted
+              .           static inline int32_t k_gwfa_diag_is_sorted(int32_t n, const k_gwfa_diag_t* diag) {
+              .               int32_t i;
+    683,867,695 ( 0.19%)      for (i = 1; i < n; ++i) {
+    512,772,273 ( 0.14%)          if (diag[i-1].nd > diag[i].nd) break;
+              .               }
+              .               return (i == n);
+              .           }
+              .           
+              .           // functino to sort the diagonals
+              .           static void k_gwfa_diag_sort(int32_t n, k_gwfa_diag_t* diag, void* km, k_gwfa_diag_v* ooo) {
+              .               int32_t i, j, k;
+              .               int32_t n1, n2;
+              .               k_gwfa_diag_t* diag1;
+              .               k_gwfa_diag_t* diag2;
+              .           
+        944,055 ( 0.00%)      kv_resize(k_gwfa_diag_t, km, *ooo, n);
+    168,679,229 ( 0.05%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:krealloc (4,038x)
+              .           
+              .               // count the number of out of order diagonals
+  1,620,451,743 ( 0.45%)      for (i = 0, n2 = 0; i < n; ++i) {
+  1,079,401,850 ( 0.30%)          if (diag[i].ooo) ++n2;
+              .               }
+        505,863 ( 0.00%)      n1 = n - n2;
+              .               diag1 = ooo->a;
+        843,105 ( 0.00%)      diag2 = diag1 + n1;
+              .           
+  1,619,271,396 ( 0.45%)      for (i = j = k = 0; i < n; ++i) {
+  4,390,241,026 ( 1.23%)          if (diag[i].ooo) diag2[k++] = diag[i]; // store out of order diags in diag2
+  1,132,614,252 ( 0.32%)          else diag1[j++] = diag[i]; // store in order diags in diag1
+              .               }
+              .           
+        674,484 ( 0.00%)      radix_sort_k_gwfa_diag(diag2, diag2 + n2);
+  1,242,745,038 ( 0.35%)      for (k = 0; k < n2; ++k) {
+    413,854,897 ( 0.12%)          diag2[k].ooo = 0;
+              .               }
+              .           
+              .               // fill the diagonals into the original pointer
+      2,741,300 ( 0.00%)      i = j = k = 0;
+  2,696,422,845 ( 0.75%)      while (i < n1 && j < n2) {
+  6,020,958,695 ( 1.68%)          if (diag1[i].nd <= diag2[j].nd) diag[k++] = diag1[i++];
+  2,480,886,264 ( 0.69%)          else diag[k++] = diag2[j++];
+              .               }
+      1,716,547 ( 0.00%)      while (i < n1) diag[k++] = diag1[i++];
+      3,362,856 ( 0.00%)      while (j < n2) diag[k++] = diag2[j++];
+              .           }
+              .           
+              .           
+              .           // remove diagonals not on the wave front
+              .           static int32_t k_gwfa_diag_cleanup(int32_t n_a, k_gwfa_diag_t* diag, void* km, k_gwfa_diag_v* ooo) {
+              .               int32_t n = 0;
+              .               int32_t k = 0;
+              .           
+              .               if (!k_gwfa_diag_is_sorted(n_a, diag)) {
+              .                   k_gwfa_diag_sort(n_a, diag, km, ooo);
+              .               }
+              .           
+              .               // iterate over all diagonals
+  1,620,353,187 ( 0.45%)      for (int32_t i = 1; i <= n_a; ++i) {
+  7,018,492,589 ( 1.96%)          if (i == n_a || diag[i].nd != diag[k].nd) {
+              .                       int32_t j, max_j = k;
+  1,248,705,566 ( 0.35%)              if (k + 1 < i) {
+  1,208,104,106 ( 0.34%)                  for (j = k + 1; j < i; ++j) {
+  1,579,245,864 ( 0.44%)                      if (diag[max_j].off < diag[j].off) max_j = j;
+              .                           }
+              .                       }
+  2,490,673,176 ( 0.70%)              diag[n++] = diag[max_j];
+              .                       k = i;
+              .                   }
+              .               }
+              .           
+              .               return n;
+              .           }
+              .           
+              .           
+              .           // function to remove diagnoals on the wavefront by using forbidden bands
+              .           static int32_t k_gwfa_mixed_cleanup(int32_t n1, k_gwfa_diag_t* diag, int32_t n2, k_gwfa_intv_t* intv) {
+        332,714 ( 0.00%)      int32_t i = 0;
+        166,357 ( 0.00%)      int32_t j = 0;
+        166,357 ( 0.00%)      int32_t k = 0;
+              .               
+    908,802,240 ( 0.25%)      while(i < n1 && j < n2) {
+  2,374,629,619 ( 0.66%)          if (diag[i].nd >= intv[j].nd0 && diag[i].nd < intv[j].nd1) ++i; // skip diagonals inside the interval
+    414,679,584 ( 0.12%)          else if (diag[i].nd >= intv[j].nd1) ++j; // skip to the next interval
+  1,847,376,140 ( 0.52%)          else diag[k++] = diag[i++]; // add non forbidden diagonals
+              .               }
+              .               
+    642,126,509 ( 0.18%)      while (i < n1) diag[k++] = diag[i++];
+              .               return k;
+              .           }
+              .           
+              .           
+              .           // function to remove diagonals not on the wave front
+              .           static int32_t k_gwfa_cleanup(k_gwfa_buf_t* buf, int32_t n, k_gwfa_diag_t* diag) {
+              .           
+              .               // if there are intervals to be cleaned
+      1,014,978 ( 0.00%)      if (buf->intv.n + buf->tmp.n > 0) {
+              .                   if (!(k_gwfa_intv_is_sorted(buf->tmp.n, buf->tmp.a))) {
+              .                       radix_sort_k_gwfa_intv(buf->tmp.a, buf->tmp.a + buf->tmp.n);
+              .                   }
+      1,651,017 ( 0.00%)          kv_copy(k_gwfa_intv_t, buf->km, buf->swap, buf->intv);
+      2,711,461 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:krealloc (4,739x)
+      1,217,102 ( 0.00%)          kv_resize(k_gwfa_intv_t, buf->km, buf->intv, buf->intv.n + buf->tmp.n);
+     57,354,260 ( 0.02%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:krealloc (7,774x)
+      1,361,078 ( 0.00%)          buf->intv.n = k_gwfa_intv_merg_lists(buf->intv.a, buf->swap.n, buf->swap.a, buf->tmp.n, buf->tmp.a);
+              .               }
+              .           
+          8,076 ( 0.00%)      n = k_gwfa_diag_cleanup(n, diag, buf->km, &buf->ooo);
+              .               
+        845,815 ( 0.00%)      if (buf->intv.n > 0) {
+        499,071 ( 0.00%)          n = k_gwfa_mixed_cleanup(n, diag, buf->intv.n, buf->intv.a);
+              .               }
+              .               return n;
+              .           }
+              .           
+              .           
+              .           // function to build the diag list from node data
+              .           static k_gwfa_diag_t* k_gwfa_rebuild_vector(s_gwfa_graph_t* graph, int32_t n, k_gwfa_diag_t* diag2, k_gwfa_buf_t* buf) {
+              .           
+-- line 1503 ----------------------------------------
+-- line 1578 ----------------------------------------
+              .           static inline int32_t k_gwfa_extend(int32_t diag, // index of the diagonal
+              .                                               int32_t off, // offset of the wavefront
+              .                                               int32_t ref_len,
+              .                                               const char* ref,
+              .                                               int32_t read_len,
+              .                                               const char* read) {
+              .           
+              .               // calculate the maximum offset
+  5,853,401,155 ( 1.64%)      int32_t max_off = (read_len - diag < ref_len ? read_len - diag : ref_len) - 1;
+              .               const char* ref_ = ref + 1;
+  3,512,040,693 ( 0.98%)      const char* read_ = read + diag + 1;
+              .           
+              .               uint64_t compare = 0; // variable to store the comparison of the two bit sequences
+              .               
+              .               // extend until we reached either the end of the ref/read or we found a mismatch
+ 10,169,722,380 ( 2.84%)      while (off + 7 < max_off) {
+    890,133,596 ( 0.25%)          uint64_t seq1 = *(uint64_t*)(ref_ + off); // load 8 bytes from the reference
+    890,133,596 ( 0.25%)          uint64_t seq2 = *(uint64_t*)(read_ + off); // load 8 bytes from the read
+    889,929,771 ( 0.25%)          compare =  seq1 ^ seq2; // bitwise compare seq1 and seq2 with XOR
+  1,780,471,017 ( 0.50%)          if (compare == 0) off += 8; // if we have matches we continue for 8 more bytes
+              .                   else break;
+              .               }
+              .           
+              .               // if we find a mismatch we calculate its position
+              .               if (compare) {
+  2,684,251,524 ( 0.75%)          off += __builtin_ctzl(compare) >> 3; // count leading zeros and convert to byte offset
+              .               
+              .               } else if (off + 7 >= max_off) { // if we reached the end off the ref or read we calculate the remaining offset
+    981,883,946 ( 0.27%)          while (off < max_off && *(ref_ + off) == *(read_ + off)) ++off; // iterate over all remaining positions and compare the read and ref
+              .               }
+              .           
+              .               return off;
+              .           }
+              .           
+              .           
+              .           // function to update diag vector
+              .           static inline int32_t k_gwfa_update_diag_vector(k_gwfa_buf_t* buf, k_gwfa_diag_t* diag, int32_t* w, int32_t read_len, int32_t ref_len, int32_t node) {
+              .               // find in-bound cells
+              .               int32_t d = diag->nd - K_GWFA_DIAG_SHIFT;
+  5,500,185,741 ( 1.54%)      if (d + diag->off < read_len && diag->off < ref_len) {
+  1,855,789,050 ( 0.52%)          (*w)++;
+    173,417,882 ( 0.05%)      } else if (diag->off == ref_len) { // if we reached the end of a node
+              .                   k_gwfa_intv_t* intv;
+  1,589,333,128 ( 0.44%)          kv_pushp(k_gwfa_intv_t, buf->km, buf->tmp, &intv);
+        480,933 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:krealloc (4,283x)
+    173,407,981 ( 0.05%)          intv->nd0 = k_gwfa_gen_nd(node, d);
+    490,565,116 ( 0.14%)          intv->nd1 = intv->nd0 + 1;
+          9,893 ( 0.00%)      } else if (d + diag->off == read_len)  { // if we reached the end of the read we terminate the algorithm
+              .                   // ToDo: traceback
+              .                   return 1;
+              .               }
+              .               return 0;
+              .           }
+              .           
+              .           
+              .           // function to expand the wavefront for an entire matrix in one batch
+              .           int k_gwfa_expand_expand_batch(k_gwfa_buf_t* buf,
+              .                                       const s_gwfa_graph_t* graph,
+              .                                       int32_t read_len,
+              .                                       const char* read,
+              .                                       int32_t n, // number of diagonals we extend
+              .                                       k_gwfa_diag_t* diag1, // pointer to the lowest diagonal in the matrix
+              .                                       k_gwfa_diag_v* vec, // vector to hold the extended diagonals
+    642,491,598 ( 0.18%)                              kdq_t(k_gwfa_diag_t)* queue) {
+              .           
+     91,784,514 ( 0.03%)      int32_t node = diag1[0].nd>>32;
+              .               // int32_t d = (int32_t)(diag1[0].nd & 0xFFFFFFFF) - K_GWFA_DIAG_SHIFT;
+    275,353,542 ( 0.08%)      int32_t ref_len = graph->nodes[node]->size; // length of the reference in the current node
+     45,892,257 ( 0.01%)      const char* ref = graph->nodes[node]->seq; // seqeuence in the current node
+              .               k_gwfa_diag_t* diag2;
+              .               int32_t m = 0;
+     43,093,994 ( 0.01%)      int32_t w = 0;
+              .               int32_t d;
+              .               int32_t absent = 0;
+    137,676,771 ( 0.04%)      uint32_t vec_pos = vec->n;
+              .           
+              .               // extend all diagonals
+  3,441,302,808 ( 0.96%)      for (int j = 0; j < n; ++j) {
+              .                   int32_t off;
+              .                   // calculate the position of the wave front in the diagonal
+  3,945,912,146 ( 1.10%)          off = k_gwfa_extend((int32_t)diag1[j].nd - K_GWFA_DIAG_SHIFT,
+              .                                       diag1[j].off,
+              .                                       ref_len,
+              .                                       ref,
+              .                                       read_len,
+              .                                       read);
+  3,028,272,495 ( 0.85%)          diag1[j].ant += (off - diag1[j].off);
+  1,009,424,165 ( 0.28%)          diag1[j].off = off;
+              .               }
+              .           
+              .           
+    504,948,337 ( 0.14%)      kv_resize(k_gwfa_diag_t, buf->km, *vec, vec->n + n + 2); // increase the size of the vector to store the diagonals as well as the one above and bellow which are now added
+        713,741 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:krealloc (5,135x)
+    137,676,771 ( 0.04%)      diag2 = &vec->a[vec_pos];
+              .           
+              .           
+              .           
+              .           
+              .               // add diagonal below
+     91,789,649 ( 0.03%)      diag2[w].nd = diag1[0].nd - 1;
+    137,676,771 ( 0.04%)      diag2[w].ant = diag1[0].ant + 1;
+     91,784,514 ( 0.03%)      diag2[w].ooo = diag1[0].ooo;
+     91,784,514 ( 0.03%)      diag2[w].trace = diag1[0].trace;
+    137,676,771 ( 0.04%)      diag2[w].off = diag1[0].off + 1;
+              .               if(k_gwfa_update_diag_vector(buf, &diag2[w], &w, read_len, ref_len, node)) {
+          4,939 ( 0.00%)          return 1;
+              .               }
+              .           
+              .               
+              .               // extend first diagonal seperately as it has no diagonal below
+    100,179,303 ( 0.03%)      diag2[w].nd = diag1[0].nd;
+    337,320,103 ( 0.09%)      diag2[w].ant = n == 1 || diag1[0].off > diag1[1].off ? diag1[0].ant + 2: diag1[1].ant + 1;
+     91,784,514 ( 0.03%)      diag2[w].ooo = n == 1 || diag1[0].off > diag1[1].off ? diag1[0].ooo : diag1[1].ooo;
+     96,875,654 ( 0.03%)      diag2[w].trace = n == 1 || diag1[0].off > diag1[1].off ? diag1[0].trace : diag1[1].trace;
+    120,415,344 ( 0.03%)      diag2[w].off = (n == 1 || diag1[0].off > diag1[1].off ? diag1[0].off : diag1[1].off) + 1;
+              .               // check if the diagonal has reached the end of the node or the end of the read after it was extended
+    243,452,600 ( 0.07%)      if (diag1[0].off == ref_len - 1 || (int32_t)diag1[0].nd - K_GWFA_DIAG_SHIFT + diag1[0].off == read_len - 1) {
+     43,094,009 ( 0.01%)          diag1[0].ooo = 1;
+    430,940,090 ( 0.12%)          *kdq_pushp(k_gwfa_diag_t, queue) = diag1[0];
+  1,292,820,270 ( 0.36%)  => /home/fzurbonsen/projectA/algorithms/s_gwfa/src/s_gwfa.h:kdq_pushp_k_gwfa_diag_t (43,094,009x)
+              .               }
+     45,892,257 ( 0.01%)      if(k_gwfa_update_diag_vector(buf, &diag2[w], &w, read_len, ref_len, node)) {
+              .                   return 1;
+              .               }
+              .           
+              .           
+              .           
+              .               // iterate over all center diagonals and extend them
+  3,000,704,906 ( 0.84%)      for (int i = 1; i < n - 1; ++i) {
+  1,885,130,464 ( 0.53%)          uint32_t ant = diag1[i-1].ant + 1;
+    942,565,232 ( 0.26%)          int32_t off = diag1[i-1].off;
+    942,565,232 ( 0.26%)          int8_t ooo = diag1[i-1].ooo;
+    942,565,232 ( 0.26%)          int32_t trace = diag1[i-1].trace;
+              .           
+  3,770,260,928 ( 1.05%)          if (!(off > diag1[i].off + 1)) {
+  1,457,471,070 ( 0.41%)              ant = diag1[i].ant + 2;
+    728,735,535 ( 0.20%)              ooo = diag1[i].ooo;
+  1,457,471,070 ( 0.41%)              trace = diag1[i].trace;
+              .                       off = diag1[i].off + 1;
+              .                   }
+              .           
+  3,770,260,928 ( 1.05%)          if (!(off > diag1[i+1].off + 1)) {
+    909,684,436 ( 0.25%)              ant = diag1[i+1].ant + 1;
+    454,842,218 ( 0.13%)              ooo = diag1[i+1].ooo;
+    909,684,436 ( 0.25%)              trace = diag1[i+1].trace;
+              .                       off = diag1[i+1].off + 1;
+              .                   }
+              .           
+              .                   // assign new diagonal in diag2
+  5,655,391,392 ( 1.58%)          diag2[w].nd = diag1[i].nd;
+    942,565,232 ( 0.26%)          diag2[w].ant = ant;
+    942,565,232 ( 0.26%)          diag2[w].ooo = ooo;
+    942,565,232 ( 0.26%)          diag2[w].trace = trace;
+    942,565,232 ( 0.26%)          diag2[w].off = off;
+              .           
+              .                   // check if the diagonal has reached the end of the node or the end of the read after it was extended
+  7,194,581,081 ( 2.01%)          if (diag1[i].off == ref_len - 1 || (int32_t)diag1[i].nd - K_GWFA_DIAG_SHIFT + diag1[i].off == read_len - 1) {
+     69,193,051 ( 0.02%)              diag1[i].ooo = 1;
+  1,107,088,816 ( 0.31%)              *kdq_pushp(k_gwfa_diag_t, queue) = diag1[i];
+  2,075,791,530 ( 0.58%)  => /home/fzurbonsen/projectA/algorithms/s_gwfa/src/s_gwfa.h:kdq_pushp_k_gwfa_diag_t (69,193,051x)
+              .                   }
+              .                   if(k_gwfa_update_diag_vector(buf, &diag2[w], &w, read_len, ref_len, node)) {
+              .                       return 1;
+              .                   }
+              .               }
+              .           
+              .           
+              .           
+              .               // extend last diagonal seperately as it has no diagonal above
+     91,774,656 ( 0.03%)      if (n >= 2) {
+  1,999,353,423 ( 0.56%)          diag2[w].nd = diag1[n-1].nd;
+    204,303,880 ( 0.06%)          diag2[w].ant = diag1[n-2].off > diag1[n-1].off + 1 ? diag1[n-2].ant + 1 : diag1[n-1].ant + 2;
+     39,604,138 ( 0.01%)          diag2[w].ooo = diag1[n-2].off > diag1[n-1].off + 1 ? diag1[n-2].ooo : diag1[n-1].ooo;
+     55,404,049 ( 0.02%)          diag2[w].trace = diag1[n-2].off > diag1[n-1].off + 1 ? diag1[n-2].trace : diag1[n-1].trace;
+     59,406,207 ( 0.02%)          diag2[w].off = diag1[n-2].off > diag1[n-1].off + 1 ? diag1[n-2].off : diag1[n-1].off + 1;
+              .                   // check if the diagonal has reached the end of the node or the end of the read after it was extended
+     91,415,589 ( 0.03%)          if (diag1[n-1].off == ref_len - 1 || (int32_t)diag1[n-1].nd - K_GWFA_DIAG_SHIFT + diag1[n-1].off == read_len - 1) {
+     14,467,182 ( 0.00%)              diag1[n-1].ooo = 1;
+    173,606,184 ( 0.05%)              *kdq_pushp(k_gwfa_diag_t, queue) = diag1[n-1];
+    434,015,460 ( 0.12%)  => /home/fzurbonsen/projectA/algorithms/s_gwfa/src/s_gwfa.h:kdq_pushp_k_gwfa_diag_t (14,467,182x)
+              .                   }
+              .                   if(k_gwfa_update_diag_vector(buf, &diag2[w], &w, read_len, ref_len, node)) {
+              .                       return 1;
+              .                   }
+              .               }
+              .           
+              .               // add diagonal above
+    113,114,184 ( 0.03%)      diag2[w].nd = diag1[n-1].nd + 1;
+    137,661,954 ( 0.04%)      diag2[w].ant = diag1[n-1].ant + 1;
+     91,774,636 ( 0.03%)      diag2[w].ooo = diag1[n-1].ooo;
+     91,774,636 ( 0.03%)      diag2[w].trace = diag1[n-1].trace;
+     91,774,636 ( 0.03%)      diag2[w].off = diag1[n-1].off;
+              .               if(k_gwfa_update_diag_vector(buf, &diag2[w], &w, read_len, ref_len, node)) {
+              .                   return 1;
+              .               }
+              .           
+    183,549,272 ( 0.05%)      vec->n += w;
+     45,887,318 ( 0.01%)      return 0;
+    367,138,056 ( 0.10%)  }
+              .           
+              .           // function to extend the wave front
+              .           k_gwfa_diag_t* k_gwfa_extend_expand(k_gwfa_buf_t* buf,
+              .                                               const s_gwfa_graph_t* graph,
+              .                                               int32_t read_len,
+              .                                               const char* read,
+              .                                               k_gwfa_diag_t* diag1,
+              .                                               int32_t* n_,
+              .                                               int32_t* terminate,
+              .                                               int32_t* first,
+              .                                               int32_t v1,
+              .                                               int32_t traceback,
+              .                                               int32_t* end_node,
+     45,674,113 ( 0.01%)                                      int32_t* end_tb) {
+              .           
+      1,985,831 ( 0.00%)      int32_t n = *n_; // number of diagonals
+              .               int32_t m = 0;
+              .               int32_t i, j, k;
+              .               int32_t absent = 0;
+              .               kdq_t(k_gwfa_diag_t)* queue;
+      5,957,493 ( 0.00%)      k_gwfa_diag_v vec = {0,0,0};
+              .               k_gwfa_diag_t* diag2;
+              .               int32_t do_cleanup = 1;
+      1,985,831 ( 0.00%)      *end_node = -1;
+      1,985,831 ( 0.00%)      *end_tb = -1;
+              .           
+      1,985,831 ( 0.00%)      k_gwfa_set64_clear(buf->ha);
+      3,971,662 ( 0.00%)      buf->tmp.n = 0;
+              .           
+              .               // calculate sufficient size of the queue
+     75,930,433 ( 0.02%)      for (i = 0, j = 1; i < 32; ++i, j <<= 1)
+     46,901,456 ( 0.01%)          if (j >= n) break;
+              .               if (i < 4) i = 4;
+      3,971,662 ( 0.00%)      queue = kdq_init2(k_gwfa_diag_t, buf->km, i);
+     59,574,930 ( 0.02%)      kv_resize(k_gwfa_diag_t, buf->km, vec, n * 2);
+    105,737,388 ( 0.03%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:krealloc (1,985,831x)
+              .           
+              .           
+              .               
+              .           #ifdef DEBUG__
+              .                   fprintf(stderr, "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
+              .                   for (i = 0; i < n; ++i) {
+              .                       k_gwfa_diag_print(stderr, &diag1[i]);
+              .                   }
+              .           #endif // DEBUG__
+              .           
+              .           
+              .               // iterate over all diagonals in the list1
+  4,055,554,322 ( 1.13%)      for (i = 1, j = 0; i <= n; ++i) {
+  8,063,481,070 ( 2.25%)          if (i == n || diag1[i].nd != diag1[i-1].nd + 1) {
+    690,364,747 ( 0.19%)              if(k_gwfa_expand_expand_batch(buf,
+ 97,414,996,956 (27.22%)  => algorithms/s_gwfa/src/s_gwfa.c:k_gwfa_expand_expand_batch (45,892,257x)
+              .                                                       graph,
+              .                                                       read_len,
+              .                                                       read,
+              .                                                       i - j, 
+     91,784,514 ( 0.03%)                                              &diag1[j], 
+              .                                                       &vec,
+              .                                                       queue)) {
+          9,878 ( 0.00%)                  *terminate = 1;
+         34,573 ( 0.00%)                  *end_node = diag1[i].nd>>32;
+         14,817 ( 0.00%)                  *end_tb = diag1[i].trace;
+          9,878 ( 0.00%)                  return NULL;
+              .                       }
+              .                       j = i;
+              .                   }
+              .               }
+      5,942,676 ( 0.00%)      if (kdq_size(queue) == 0) do_cleanup = 0;
+      7,923,568 ( 0.00%)      kfree(buf->km, diag1);
+     90,897,335 ( 0.03%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:kfree (1,980,892x)
+              .           
+              .               
+              .               // while there are diagonals in the queue we extend and expand them
+    650,966,156 ( 0.18%)      while (kdq_size(queue)) {
+              .                   k_gwfa_diag_t diag;
+              .           
+              .                   // fprintf(stderr, "queue size: %i\n", queue->count);
+              .           
+  1,293,555,725 ( 0.36%)          diag = *kdq_shift(k_gwfa_diag_t, queue);
+              .           
+    483,768,198 ( 0.14%)          int32_t node = diag.nd>>32; // index of the node
+  1,128,792,462 ( 0.32%)          int32_t ref_len = graph->nodes[node]->size; // length of the reference in the current node
+    161,256,066 ( 0.05%)          const char* ref = graph->nodes[node]->seq; // seqeuence in the current node
+    322,512,132 ( 0.09%)          int32_t d = (int32_t)(diag.nd & 0xFFFFFFFF) - K_GWFA_DIAG_SHIFT; // index of the diagonal
+              .                   // uint32_t vec_pos = diag.vec_pos; // position in the vector
+              .                   int8_t ooo = diag.ooo; // out of order
+              .           
+              .                   // offset of the wave front in the diagonal we start by extending the node as far as possible
+              .                   int32_t off = k_gwfa_extend(d, 
+              .                                               diag.off,
+              .                                               ref_len,
+              .                                               ref,
+              .                                               read_len,
+              .                                               read);
+              .           
+    322,512,132 ( 0.09%)          int32_t pos_read = off + d; // position in the read
+    645,024,264 ( 0.18%)          int32_t ant = diag.ant + off - diag.off; // anti diagonal
+              .           
+              .           
+              .           
+              .                   // determin wether to expand the wave front, jump to next node or terminate the algorithm
+    676,671,984 ( 0.19%)          if (off + 1 < ref_len && pos_read + 1 < read_len) { // if we have neither reached the end of the node nor the read we expand the wave front around the diagonal
+              .                       
+              .                       // indicators to signal wether a diagonal was found in the vector at the expected position
+              .                       int32_t push1 = 1;
+              .                       int32_t push2 = 1;
+              .           
+              .                       // if there are at least 2 entries in the vector we try to update the diagonal below
+              .                       // our current diagonal assuming that the last added diagonal is our diagonal
+     47,470,998 ( 0.01%)              if (vec.n >= 2) { 
+    515,414,942 ( 0.14%)                  push1 = k_gwfa_diag_update(&vec.a[vec.n-2],
+              .                                                       node,
+              .                                                       d-1,
+              .                                                       ant + 1,
+              .                                                       off + 1,
+              .                                                       ooo,
+              .                                                       diag.trace);
+              .                       }
+              .           
+              .                       // if there is at least 1 entry in the diagonal we check wether the last entry is our
+              .                       // diagonal and if it is we update the diagonal to the current wave front position
+              .                       if (vec.n >= 1) {
+     31,647,332 ( 0.01%)                  push2 = k_gwfa_diag_update(&vec.a[vec.n-1],
+              .                                                       node,
+              .                                                       d,
+              .                                                       ant + 2,
+              .                                                       off + 1,
+              .                                                       ooo,
+              .                                                       diag.trace);
+              .                       }
+              .           
+              .                       // if we could not find the diagonal below in the vector then we push the diagonal to the vector
+      4,169,036 ( 0.00%)              if (push1) {
+     59,188,404 ( 0.02%)                  k_gwfa_diag_push(buf->km,
+              .                                           &vec,
+              .                                           node,
+              .                                           d-1,
+              .                                           off + 1,
+              .                                           ant + 1,
+              .                                           1,
+              .                                           diag.trace); // this new diagonal is added out of order
+              .                       }
+              .           
+              .                       // if either the diag below or the current diag couldn't be found then we push the diag to the vector
+              .                       // this can cause duplication of a diagonal
+              .                       if (push1 || push2) {
+         20,958 ( 0.00%)                  k_gwfa_diag_push(buf->km,
+              .                                           &vec,
+              .                                           node,
+              .                                           d,
+              .                                           off + 1,
+              .                                           ant + 2,
+              .                                           1,
+              .                                           diag.trace); // this new diagonal is added out of order
+              .                       }
+              .           
+              .                       // we always push the diagonal above
+         20,657 ( 0.00%)              k_gwfa_diag_push(buf->km,
+              .                                       &vec,
+              .                                       node,
+              .                                       d+1,
+              .                                       off,
+              .                                       ant + 1,
+              .                                       ooo,
+              .                                       diag.trace);
+              .           
+              .           
+              .           
+              .                   // if we reached the end of the node but not of the read we jump to the next nodes
+    290,864,412 ( 0.08%)          } else if (pos_read + 1 < read_len) {
+              .                       // ToDo: transition to next nodes
+    436,296,612 ( 0.12%)              int32_t n_edges = graph->nodes[node]->n_edges;
+    145,432,204 ( 0.04%)              int32_t n_next = 0;
+    145,432,204 ( 0.04%)              int32_t trace_value = -1;
+              .                       k_gwfa_intv_t* intv;
+              .           
+              .                       // add interval for the diagonals that have reached the end of the matrix
+  1,454,412,940 ( 0.41%)              kv_pushp(k_gwfa_intv_t, buf->km, buf->tmp, &intv);
+     54,591,304 ( 0.02%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:krealloc (7,575x)
+    145,432,204 ( 0.04%)              intv->nd0 = k_gwfa_gen_nd(node, d);
+    290,864,408 ( 0.08%)              intv->nd1 = intv->nd0 + 1;
+              .           
+              .                       // perform node traceback
+    436,296,612 ( 0.12%)              if (traceback) {
+              .                           trace_value = k_gwfa_trace_push(buf->km, &buf->trace, node, diag.trace, buf->ht);
+              .                       }
+              .           
+              .                       // traverse the neighbours of the node
+  1,002,133,716 ( 0.28%)              for (int32_t i = 0; i < n_edges; ++i) {
+  1,320,286,576 ( 0.37%)                  uint32_t node1 = graph->nodes[node]->edges[i]->end->idx;
+              .                           // k_gwfa_set64_put(buf->ha, (uint64_t)node1<<32 | (pos_read + 1), &absent); // test if the new diagonal has already been visited
+  2,526,924,372 ( 0.71%)                  k_gwfa_set64_put(buf->ha, (uint64_t)node1<<32 | (pos_read + 1), &absent);
+              .                           // check if we can extend without a mismatch
+  1,072,318,323 ( 0.30%)                  if (read[pos_read+1] == graph->nodes[node1]->seq[0]) {
+    431,951,654 ( 0.12%)                      n_next++;
+              .                               // if the new diagonal has not yet been visited
+              .                               if (absent) {
+              .                                   k_gwfa_diag_t* new_diag;
+     70,359,132 ( 0.02%)                          new_diag = kdq_pushp(k_gwfa_diag_t, queue);
+  1,055,386,980 ( 0.29%)  => /home/fzurbonsen/projectA/algorithms/s_gwfa/src/s_gwfa.h:kdq_pushp_k_gwfa_diag_t (35,179,566x)
+              .                                   new_diag->nd = k_gwfa_gen_nd(node1, pos_read+1);
+     35,179,566 ( 0.01%)                          new_diag->off = 0;
+     70,359,132 ( 0.02%)                          new_diag->ant = ant + 1;
+     70,359,132 ( 0.02%)                          new_diag->ooo = 1;
+              .                               }
+              .                           } else if (absent) { // we only care about mismatches if the diagonal does not yet exist
+              .                               // add diagonal to the "right" of the current diagonal i.e. add a deletion
+    207,672,582 ( 0.06%)                      k_gwfa_diag_push(buf->km,
+              .                                               &vec,
+              .                                               node1,
+              .                                               pos_read,
+              .                                               0,
+              .                                               ant + 1,
+              .                                               1,
+              .                                               trace_value);
+              .           
+              .                               // add diagonal to the "bottom right" i.e. a mismatch
+          2,361 ( 0.00%)                      k_gwfa_diag_push(buf->km,
+              .                                               &vec,
+              .                                               node1,
+              .                                               pos_read,
+              .                                               0,
+              .                                               ant + 1,
+              .                                               1,
+              .                                               trace_value);
+              .                           }
+              .                       }
+              .                       // if there are no neighbouring nodes or we can not extend without a mismatch we add an insertion
+    727,161,020 ( 0.20%)              if (n_edges == 0 || n_next != n_edges) {
+          6,536 ( 0.00%)                  k_gwfa_diag_push(buf->km,
+              .                                           &vec,
+              .                                           node,
+              .                                           d + 1,
+              .                                           off,
+    236,367,462 ( 0.07%)                                  ant + 1,
+              .                                           1,
+              .                                           diag.trace);
+              .                       }
+              .           
+              .           
+            782 ( 0.00%)          } else if (v1 < 0 || (node == v1 && off + 1 == ref_len)) {
+              .                       kdq_destroy(k_gwfa_diag_t, queue);
+              .                       kfree(buf->km, vec.a);
+              .                       *end_node = node;
+              .                       *end_tb = diag.trace;
+              .                       *terminate = 1;
+              .                       return NULL;
+              .           
+              .           
+              .                   // if we have reached the end of the read i.e. we ignore deletions at the end of the CIGAR
+              .                   } else if (pos_read + 1 == read_len) {
+              .                       kdq_destroy(k_gwfa_diag_t, queue);
+            784 ( 0.00%)              kfree(buf->km, vec.a);
+         11,725 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:kfree (196x)
+            588 ( 0.00%)              *end_node = node;
+            588 ( 0.00%)              *end_tb = diag.trace;
+            392 ( 0.00%)              *terminate = 1;
+            392 ( 0.00%)              return NULL;
+              .           
+              .           
+              .           
+              .                   // should never be reached
+              .                   } else assert(0);
+              .               }
+              .               kdq_destroy(k_gwfa_diag_t, queue);
+      7,922,784 ( 0.00%)      *n_ = n = vec.n;
+      1,980,696 ( 0.00%)      diag2 = vec.a;
+              .           
+              .               // diag2 = k_gwfa_rebuild_vector(graph, n, diag2, buf);
+              .           
+      4,468,881 ( 0.00%)      if (do_cleanup) *n_ = n = k_gwfa_cleanup(buf, n, diag2);
+              .           
+              .               return &vec.a[0];
+     23,830,724 ( 0.01%)  }
+              .           
+              .           
+              .           
+              .           
+              .           // core function to perform graph wave front alginment with editdistance scoring
+         92,430 ( 0.00%)  int32_t k_gwfa_ed(void* km, const s_gwfa_graph_t* graph, int32_t read_len, const char* read, int32_t traceback, k_gwfa_path_t* path) {
+          5,135 ( 0.00%)      int32_t n = 1; // number of diagonals in the list a
+              .               k_gwfa_diag_t* diag1; // pointer to a list of diagonals
+              .               k_gwfa_buf_t buf; // buffer that holds the hashes and memory ref
+              .               int32_t score = 0; // score of the alignment
+          5,135 ( 0.00%)      int32_t terminate = 0;
+          5,135 ( 0.00%)      int32_t first = 1;
+              .               int32_t absent = 0;
+              .               int32_t end_tb;
+              .               int32_t end_node;
+              .           
+              .               // initialise buffer and buffer fields
+              .               memset(&buf, 0, sizeof(buf));
+          5,135 ( 0.00%)      buf.km = km;
+          5,135 ( 0.00%)      buf.ha = k_gwfa_set64_init2(km);
+          5,135 ( 0.00%)      buf.ht = k_gwfa_map64_init2(km);
+              .               kv_init(buf.trace);
+        112,970 ( 0.00%)      kv_resize(k_gwfa_trace_t, km, buf.trace, graph->size + 16);
+      3,347,905 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:krealloc (5,135x)
+              .           
+              .               // set starting conditions for prefix alignment
+         25,675 ( 0.00%)      KCALLOC(buf.km, diag1, 1);
+        338,910 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:kcalloc (5,135x)
+          5,135 ( 0.00%)      diag1[0].nd = k_gwfa_gen_nd(0, 0);
+          5,135 ( 0.00%)      diag1[0].ant = 0;
+          5,135 ( 0.00%)      diag1[0].off = -1;
+          5,135 ( 0.00%)      k_gwfa_set64_put(buf.ha, diag1[0].nd, &absent);
+         20,540 ( 0.00%)      if (traceback) {
+              .                   diag1[0].trace = k_gwfa_trace_push(km, &buf.trace, -1, -1, buf.ht);
+              .               }
+              .           
+              .               // loop to perform wave front extension and expansion
+              .               while (1) {
+     27,801,634 ( 0.01%)          diag1 = k_gwfa_extend_expand(&buf,
+352,092,553,412 (98.38%)  => algorithms/s_gwfa/src/s_gwfa.c:k_gwfa_extend_expand (1,985,831x)
+              .                                               graph,
+              .                                               read_len,
+              .                                               read,
+              .                                               diag1,
+              .                                               &n,
+              .                                               &terminate,
+              .                                               &first,
+              .                                               -1,
+              .                                               traceback,
+              .                                               &end_node,
+              .                                               &end_tb);
+      7,943,324 ( 0.00%)          if (terminate) break;
+      1,980,696 ( 0.00%)          score++;
+              .               }
+              .           
+         15,405 ( 0.00%)      if (traceback) {
+              .                   k_gwfa_traceback(&buf, end_tb, end_node, path);
+              .               }
+         10,270 ( 0.00%)      path->score = score;
+              .           
+          5,135 ( 0.00%)      k_gwfa_set64_destroy(buf.ha);
+          5,135 ( 0.00%)      k_gwfa_map64_destroy(buf.ht);
+         20,540 ( 0.00%)      kfree(km, buf.intv.a);
+         91,489 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:kfree (5,135x)
+         15,405 ( 0.00%)      kfree(km, buf.swap.a);
+         81,353 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:kfree (5,135x)
+         15,405 ( 0.00%)      kfree(km, buf.trace.a);
+        265,793 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:kfree (5,135x)
+              .           
+              .               return score;
+         66,755 ( 0.00%)  }
+              .           
+              .           
+              .           
+              .           
+              .           
+              .           // core function to perform graph wave front alginment with infix editdistance scoring
+              .           int32_t k_gwfa_infix_ed(void* km, const s_gwfa_graph_t* graph, int32_t read_len, const char* read, int32_t traceback, k_gwfa_path_t* path) {
+              .               int32_t n = 0; // number of diagonals in the list a
+-- line 2112 ----------------------------------------
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: algorithms/s_gwfa/src/khashl.h
+--------------------------------------------------------------------------------
+Ir                   
+
+-- line 93 ----------------------------------------
+          .            ****************************/
+          .           
+          .           #define __kh_used(flag, i)       (flag[i>>5] >> (i&0x1fU) & 1U)
+          .           #define __kh_set_used(flag, i)   (flag[i>>5] |= 1U<<(i&0x1fU))
+          .           #define __kh_set_unused(flag, i) (flag[i>>5] &= ~(1U<<(i&0x1fU)))
+          .           
+          .           #define __kh_fsize(m) ((m) < 32? 1 : (m)>>5)
+          .           
+760,726,485 ( 0.21%)  static kh_inline khint_t __kh_h2b(khint_t hash, khint_t bits) { return hash * 2654435769U >> (32 - bits); } /* Fibonacci hashing */
+          .           
+          .           /*******************
+          .            * Hash table base *
+          .            *******************/
+          .           
+          .           #define __KHASHL_TYPE(HType, khkey_t) \
+          .           	typedef struct HType { \
+          .           		void *km; \
+-- line 109 ----------------------------------------
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: algorithms/s_gwfa/src/s_gwfa.h
+--------------------------------------------------------------------------------
+Ir                      
+
+-- line 182 ----------------------------------------
+             .           
+             .           #include "kdq.h"
+             .           #include "kalloc.h"
+             .           #include "kvec.h"
+             .           #include "khashl.h"
+             .           #include "ksort.h"
+             .           #include <assert.h>
+             .           
+12,868,339,709 ( 3.60%)  KHASHL_INIT(KH_LOCAL, k_gwfa_set64_t, k_gwfa_set64, uint64_t, kh_hash_dummy, kh_eq_generic)
+     6,491,185 ( 0.00%)  => ???:0x000000000010ce00 (7,151x)
+     3,031,609 ( 0.00%)  => ???:0x000000000010ca30 (12,286x)
+       976,051 ( 0.00%)  => ???:0x000000000010cc30 (12,286x)
+       231,244 ( 0.00%)  => ???:0x000000000010cce0 (5,135x)
+             .           
+             .           typedef struct k_gwfa_diag_t {
+             .               uint64_t nd; // higher 32 bits: node ID; lower 32 bits: diagonal+0x4000000
+             .               uint32_t ant; // the anti diagonal
+             .               uint32_t vec_pos; // position in the vector
+             .               int32_t off; // offset of the furthest non mismatching position with the current edit distance
+             .               int8_t ooo; // out of order
+             .               int32_t trace;
+-- line 198 ----------------------------------------
+-- line 203 ----------------------------------------
+             .               uint64_t nd1; // ending node/diagonal of the interval
+             .           } k_gwfa_intv_t;
+             .           
+             .           typedef struct k_gwfa_trace_t {
+             .               int32_t n;
+             .               int32_t prev;
+             .           } k_gwfa_trace_t;
+             .           
+        66,755 ( 0.00%)  KHASHL_MAP_INIT(KH_LOCAL, k_gwfa_map64_t, k_gwfa_map64, uint64_t, int32_t, kh_hash_uint64, kh_eq_generic)
+     1,857,311 ( 0.00%)  => ???:0x000000000010ca30 (5,135x)
+       723,973 ( 0.00%)  => ???:0x000000000010cc30 (15,405x)
+             .           
+ 7,668,836,678 ( 2.14%)  KDQ_INIT(k_gwfa_diag_t)
+   175,285,260 ( 0.05%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:kfree (3,961,784x)
+   142,234,838 ( 0.04%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:kcalloc (1,985,831x)
+    63,831,038 ( 0.02%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:kmalloc (1,985,831x)
+             .           
+             .           typedef kvec_t(k_gwfa_diag_t) k_gwfa_diag_v;
+             .           typedef kvec_t(k_gwfa_diag_t*) k_gwfa_diagp_v;
+             .           typedef kvec_t(k_gwfa_intv_t) k_gwfa_intv_v;
+             .           typedef kvec_t(k_gwfa_trace_t) k_gwfa_trace_v;
+             .           
+             .           typedef struct k_gwfa_buf_t {
+             .               void* km;
+-- line 221 ----------------------------------------
+
+--------------------------------------------------------------------------------
+The following files chosen for auto-annotation could not be found:
+--------------------------------------------------------------------------------
+  ./malloc/./malloc/malloc.c
+  ./string/../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S
+
+--------------------------------------------------------------------------------
+Ir                       
+--------------------------------------------------------------------------------
+349,027,597,580 (97.52%)  events annotated
+

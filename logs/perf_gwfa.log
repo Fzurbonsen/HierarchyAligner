@@ -1,0 +1,2713 @@
+--------------------------------------------------------------------------------
+Profile data file 'callgrind.out.1034747' (creator: callgrind-3.18.1)
+--------------------------------------------------------------------------------
+I1 cache: 
+D1 cache: 
+LL cache: 
+Timerange: Basic block 0 - 21452098331
+Trigger: Program termination
+Profiled target:  bin/test (PID 1034747, part 1)
+Events recorded:  Ir
+Events shown:     Ir
+Event sort order: Ir
+Thresholds:       99
+Include dirs:     
+User annotated:   
+Auto-annotation:  on
+
+--------------------------------------------------------------------------------
+Ir                       
+--------------------------------------------------------------------------------
+141,987,030,720 (100.0%)  PROGRAM TOTALS
+
+--------------------------------------------------------------------------------
+Ir                        file:function
+--------------------------------------------------------------------------------
+110,941,695,537 (78.14%)  algorithms/gwfa/gwf-ed.c:gwf_ed [/home/fzurbonsen/projectA/bin/test]
+ 14,007,669,803 ( 9.87%)  ???:myersCalcEditDistanceSemiGlobal(unsigned long const*, int, int, int, unsigned char const*, int, int, EdlibAlignMode, int*, int**, int*) [clone .isra.0] [/home/fzurbonsen/projectA/bin/test]
+  2,375,407,428 ( 1.67%)  ???:obtainAlignment(unsigned char const*, unsigned char const*, int, unsigned char const*, unsigned char const*, int, EqualityDefinition const&, int, int, unsigned char**, int*) [/home/fzurbonsen/projectA/bin/test]
+  2,101,594,379 ( 1.48%)  ???:myersCalcEditDistanceNW(unsigned long const*, int, int, int, unsigned char const*, int, int, int*, int*, bool, AlignmentData**, int) [/home/fzurbonsen/projectA/bin/test]
+  1,687,546,533 ( 1.19%)  algorithms/gwfa/gwf-ed.c:rs_sort_gwf_ed'2 [/home/fzurbonsen/projectA/bin/test]
+  1,215,414,311 ( 0.86%)  algorithms/gwfa/gwf-ed.c:rs_sort_gwf_intv'2 [/home/fzurbonsen/projectA/bin/test]
+  1,018,309,244 ( 0.72%)  ???:std::basic_istream<char, std::char_traits<char> >& std::operator>><char, std::char_traits<char>, std::allocator<char> >(std::basic_istream<char, std::char_traits<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&) [/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30]
+    700,822,657 ( 0.49%)  ???:edlibAlign [/home/fzurbonsen/projectA/bin/test]
+    502,201,489 ( 0.35%)  algorithms/gwfa/gwf-ed.c:rs_sort_gwf_ed [/home/fzurbonsen/projectA/bin/test]
+    393,274,561 ( 0.28%)  algorithms/gwfa/gwf-ed.c:rs_insertsort_gwf_ed [/home/fzurbonsen/projectA/bin/test]
+    391,838,360 ( 0.28%)  ???:std::istream::sentry::sentry(std::istream&, bool) [/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30]
+    384,339,976 ( 0.27%)  algorithms/gwfa/gwf-ed.c:rs_sort_gwf_intv [/home/fzurbonsen/projectA/bin/test]
+    367,144,815 ( 0.26%)  ./malloc/./malloc/malloc.c:_int_free [/usr/lib/x86_64-linux-gnu/libc.so.6]
+    363,648,815 ( 0.26%)  ./malloc/./malloc/malloc.c:_int_malloc [/usr/lib/x86_64-linux-gnu/libc.so.6]
+    308,232,534 ( 0.22%)  ???:std::_Hash_bytes(void const*, unsigned long, unsigned long) [/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30]
+    284,770,076 ( 0.20%)  algorithms/gwfa/kalloc.c:kfree [/home/fzurbonsen/projectA/bin/test]
+    233,088,970 ( 0.16%)  algorithms/gwfa/gwf-ed.c:rs_insertsort_gwf_intv [/home/fzurbonsen/projectA/bin/test]
+    218,426,802 ( 0.15%)  algorithms/gwfa/kalloc.c:kmalloc [/home/fzurbonsen/projectA/bin/test]
+    183,084,973 ( 0.13%)  algorithms/gwfa/gwf-ed.c:gwf_trace_push [/home/fzurbonsen/projectA/bin/test]
+    182,198,676 ( 0.13%)  ./string/../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S:__memcpy_avx_unaligned_erms [/usr/lib/x86_64-linux-gnu/libc.so.6]
+    181,733,211 ( 0.13%)  ./malloc/./malloc/malloc.c:malloc [/usr/lib/x86_64-linux-gnu/libc.so.6]
+    172,420,102 ( 0.12%)  ???:std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_append(char const*, unsigned long) [/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30]
+    140,662,559 ( 0.10%)  ???:edlibAlignmentToCigar [/home/fzurbonsen/projectA/bin/test]
+    133,440,653 ( 0.09%)  ./stdlib/../stdlib/strtol_l.c:____strtol_l_internal [/usr/lib/x86_64-linux-gnu/libc.so.6]
+    116,833,347 ( 0.08%)  /usr/include/c++/11/bits/hashtable_policy.h:std::__detail::_Map_base<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, projectA_node_t*>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, projectA_node_t*> >, std::__detail::_Select1st, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true>, true>::operator[](std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [/home/fzurbonsen/projectA/bin/test]
+    116,674,984 ( 0.08%)  ???:std::basic_istream<char, std::char_traits<char> >& std::getline<char, std::char_traits<char>, std::allocator<char> >(std::basic_istream<char, std::char_traits<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, char) [/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30]
+    112,687,192 ( 0.08%)  algorithms/gwfa.cpp:projectA_hash_graph_to_gwf_graph(projectA_hash_graph_t*) [/home/fzurbonsen/projectA/bin/test]
+     98,065,712 ( 0.07%)  ./malloc/./malloc/malloc.c:malloc_consolidate [/usr/lib/x86_64-linux-gnu/libc.so.6]
+     96,444,690 ( 0.07%)  algorithms/gwfa/gwf-ed.c:kdq_pushp_gwf_diag_t [/home/fzurbonsen/projectA/bin/test]
+     93,748,309 ( 0.07%)  ./malloc/./malloc/malloc.c:free [/usr/lib/x86_64-linux-gnu/libc.so.6]
+     86,705,370 ( 0.06%)  ./string/../sysdeps/x86_64/multiarch/memcmp-avx2-movbe.S:__memcmp_avx2_movbe [/usr/lib/x86_64-linux-gnu/libc.so.6]
+     82,477,807 ( 0.06%)  /usr/include/c++/11/bits/basic_string.h:projectA_hash_read_gfa(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+     80,027,785 ( 0.06%)  ???:std::istream::get() [/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30]
+     76,789,034 ( 0.05%)  ???:std::locale::locale() [/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30]
+     76,143,727 ( 0.05%)  ???:std::ctype<char> const& std::use_facet<std::ctype<char> >(std::locale const&) [/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30]
+     73,445,208 ( 0.05%)  ???:std::locale::~locale() [/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30]
+     71,321,957 ( 0.05%)  ???:std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::compare(char const*) const [/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30]
+     70,643,047 ( 0.05%)  algorithms/gwfa/khashl.h:gwf_trace_push
+     70,013,314 ( 0.05%)  ???:std::basic_ios<char, std::char_traits<char> >::_M_cache_locale(std::locale const&) [/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30]
+     68,635,788 ( 0.05%)  ???:std::locale::id::_M_id() const [/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30]
+     65,496,674 ( 0.05%)  ???:std::ios_base::ios_base() [/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30]
+     64,400,578 ( 0.05%)  /usr/include/c++/11/bits/basic_string.tcc:void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) [clone .isra.0] [/home/fzurbonsen/projectA/bin/test]
+     58,720,948 ( 0.04%)  ???:std::ios_base::_M_init() [/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30]
+     57,775,272 ( 0.04%)  ./malloc/./malloc/malloc.c:unlink_chunk.constprop.0 [/usr/lib/x86_64-linux-gnu/libc.so.6]
+     51,945,362 ( 0.04%)  ???:std::basic_ios<char, std::char_traits<char> >::init(std::basic_streambuf<char, std::char_traits<char> >*) [/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30]
+     51,578,978 ( 0.04%)  /usr/include/c++/11/bits/hashtable.h:std::__detail::_Map_base<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, projectA_node_t*>, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, projectA_node_t*> >, std::__detail::_Select1st, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true>, true>::operator[](std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+     49,850,292 ( 0.04%)  ???:operator new(unsigned long) [/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30]
+     47,765,006 ( 0.03%)  ???:std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30]
+     45,169,960 ( 0.03%)  ???:std::locale::operator=(std::locale const&) [/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30]
+     43,998,593 ( 0.03%)  ./string/../sysdeps/x86_64/multiarch/memset-vec-unaligned-erms.S:__memset_avx2_unaligned_erms [/usr/lib/x86_64-linux-gnu/libc.so.6]
+     42,894,750 ( 0.03%)  algorithms/gwfa/kalloc.c:krealloc [/home/fzurbonsen/projectA/bin/test]
+     39,514,668 ( 0.03%)  ???:std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::push_back(char) [/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30]
+     36,238,736 ( 0.03%)  ???:0x00000000000c2320 [/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30]
+     35,475,978 ( 0.02%)  src/file_io.cpp:projectA_hash_read_gfa(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [/home/fzurbonsen/projectA/bin/test]
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: /usr/include/c++/11/bits/basic_string.tcc
+--------------------------------------------------------------------------------
+Ir                  
+
+-- line 198 ----------------------------------------
+         .           	  }
+         .           
+         .           	_M_set_length(__len);
+         .                 }
+         .           
+         .             template<typename _CharT, typename _Traits, typename _Alloc>
+         .               template<typename _InIterator>
+         .                 void
+36,061,520 ( 0.03%)        basic_string<_CharT, _Traits, _Alloc>::
+         .                 _M_construct(_InIterator __beg, _InIterator __end,
+         .           		   std::forward_iterator_tag)
+         .                 {
+         .           	// NB: Not required, but considered best practice.
+14,611,108 ( 0.01%)  	if (__gnu_cxx::__is_null_pointer(__beg) && __beg != __end)
+         .           	  std::__throw_logic_error(__N("basic_string::"
+         .           				       "_M_construct null not valid"));
+         .           
+ 3,648,590 ( 0.00%)  	size_type __dnew = static_cast<size_type>(std::distance(__beg, __end));
+         .           
+ 7,297,180 ( 0.01%)  	if (__dnew > size_type(_S_local_capacity))
+         .           	  {
+ 6,050,250 ( 0.00%)  	    _M_data(_M_create(__dnew, size_type(0)));
+   335,972 ( 0.00%)  => ???:0x000000000010cec0 (4,568x)
+         .           	    _M_capacity(__dnew);
+         .           	  }
+         .           
+         .           	// Check for out_of_range and length_error exceptions.
+         .           	__try
+         .           	  { this->_S_copy_chars(_M_data(), __beg, __end); }
+         .           	__catch(...)
+         .           	  {
+         .           	    _M_dispose();
+         .           	    __throw_exception_again;
+         .           	  }
+         .           
+ 3,643,455 ( 0.00%)  	_M_set_length(__dnew);
+28,849,216 ( 0.02%)        }
+         .           
+         .             template<typename _CharT, typename _Traits, typename _Alloc>
+         .               void
+         .               basic_string<_CharT, _Traits, _Alloc>::
+         .               _M_construct(size_type __n, _CharT __c)
+         .               {
+         .                 if (__n > size_type(_S_local_capacity))
+         .           	{
+-- line 241 ----------------------------------------
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: algorithms/gwfa/khashl.h
+--------------------------------------------------------------------------------
+Ir                  
+
+-- line 74 ----------------------------------------
+         .            ****************************/
+         .           
+         .           #define __kh_used(flag, i)       (flag[i>>5] >> (i&0x1fU) & 1U)
+         .           #define __kh_set_used(flag, i)   (flag[i>>5] |= 1U<<(i&0x1fU))
+         .           #define __kh_set_unused(flag, i) (flag[i>>5] &= ~(1U<<(i&0x1fU)))
+         .           
+         .           #define __kh_fsize(m) ((m) < 32? 1 : (m)>>5)
+         .           
+44,403,474 ( 0.03%)  static kh_inline khint_t __kh_h2b(khint_t hash, khint_t bits) { return hash * 2654435769U >> (32 - bits); }
+         .           
+         .           /*******************
+         .            * Hash table base *
+         .            *******************/
+         .           
+         .           #define __KHASHL_TYPE(HType, khkey_t) \
+         .           	typedef struct HType { \
+         .           		khint_t bits, count; \
+-- line 90 ----------------------------------------
+-- line 321 ----------------------------------------
+         .           	key +=  (key << 3);
+         .           	key ^=  (key >> 6);
+         .           	key += ~(key << 11);
+         .           	key ^=  (key >> 16);
+         .           	return key;
+         .           }
+         .           
+         .           static kh_inline khint_t kh_hash_uint64(khint64_t key) {
+11,308,380 ( 0.01%)  	key = ~key + (key << 21);
+ 8,481,285 ( 0.01%)  	key = key ^ key >> 24;
+ 8,481,285 ( 0.01%)  	key = (key + (key << 3)) + (key << 8);
+ 8,481,285 ( 0.01%)  	key = key ^ key >> 14;
+ 8,481,285 ( 0.01%)  	key = (key + (key << 2)) + (key << 4);
+ 5,654,190 ( 0.00%)  	key = key ^ key >> 28;
+         .           	key = key + (key << 31);
+ 2,827,095 ( 0.00%)  	return (khint_t)key;
+         .           }
+         .           
+         .           static kh_inline khint_t kh_hash_str(const char *s) {
+         .           	khint_t h = (khint_t)*s;
+         .           	if (h) for (++s ; *s; ++s) h = (h << 5) - h + (khint_t)*s;
+         .           	return h;
+         .           }
+         .           
+-- line 344 ----------------------------------------
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: /usr/include/c++/11/bits/hashtable_policy.h
+--------------------------------------------------------------------------------
+Ir                  
+
+-- line 211 ----------------------------------------
+         .              *  template parameter of class template _Hashtable controls whether
+         .              *  nodes also store a hash code. In some cases (e.g. strings) this
+         .              *  may be a performance win.
+         .              */
+         .             struct _Hash_node_base
+         .             {
+         .               _Hash_node_base* _M_nxt;
+         .           
+   545,967 ( 0.00%)      _Hash_node_base() noexcept : _M_nxt() { }
+         .           
+         .               _Hash_node_base(_Hash_node_base* __next) noexcept : _M_nxt(__next) { }
+         .             };
+         .           
+         .             /**
+         .              *  struct _Hash_node_value_base
+         .              *
+         .              *  Node type with the value to store.
+-- line 227 ----------------------------------------
+-- line 274 ----------------------------------------
+         .              *  Primary template struct _Hash_node.
+         .              */
+         .             template<typename _Value, bool _Cache_hash_code>
+         .               struct _Hash_node
+         .               : _Hash_node_base
+         .               , _Hash_node_value<_Value, _Cache_hash_code>
+         .               {
+         .                 _Hash_node*
+ 1,253,572 ( 0.00%)        _M_next() const noexcept
+ 2,311,946 ( 0.00%)        { return static_cast<_Hash_node*>(this->_M_nxt); }
+         .               };
+         .           
+         .             /// Base class for node iterators.
+         .             template<typename _Value, bool _Cache_hash_code>
+         .               struct _Node_iterator_base
+         .               {
+         .                 using __node_type = _Hash_node<_Value, _Cache_hash_code>;
+         .           
+-- line 291 ----------------------------------------
+-- line 422 ----------------------------------------
+         .             {
+         .               typedef std::size_t first_argument_type;
+         .               typedef std::size_t second_argument_type;
+         .               typedef std::size_t result_type;
+         .           
+         .               result_type
+         .               operator()(first_argument_type __num,
+         .           	       second_argument_type __den) const noexcept
+18,115,185 ( 0.01%)      { return __num % __den; }
+         .             };
+         .           
+         .             /// Default ranged hash function H.  In principle it should be a
+         .             /// function object composed from objects of type H1 and H2 such that
+         .             /// h(k, N) = h2(h1(k), N), but that would mean making extra copies of
+         .             /// h1 and h2.  So instead we'll just use a tag to tell class template
+         .             /// hashtable to do that composition.
+         .             struct _Default_ranged_hash { };
+-- line 438 ----------------------------------------
+-- line 439 ----------------------------------------
+         .           
+         .             /// Default value for rehash policy.  Bucket size is (usually) the
+         .             /// smallest prime that keeps the load factor small enough.
+         .             struct _Prime_rehash_policy
+         .             {
+         .               using __has_load_factor = true_type;
+         .           
+         .               _Prime_rehash_policy(float __z = 1.0) noexcept
+    20,561 ( 0.00%)      : _M_max_load_factor(__z), _M_next_resize(0) { }
+         .           
+         .               float
+         .               max_load_factor() const noexcept
+         .               { return _M_max_load_factor; }
+         .           
+         .               // Return a bucket size no smaller than n.
+         .               std::size_t
+         .               _M_next_bkt(std::size_t __n) const;
+-- line 455 ----------------------------------------
+-- line 688 ----------------------------------------
+         .                 const mapped_type&
+         .                 at(const key_type& __k) const;
+         .               };
+         .           
+         .             template<typename _Key, typename _Pair, typename _Alloc, typename _Equal,
+         .           	   typename _Hash, typename _RangeHash, typename _Unused,
+         .           	   typename _RehashPolicy, typename _Traits>
+         .               auto
+43,777,032 ( 0.03%)      _Map_base<_Key, _Pair, _Alloc, _Select1st, _Equal,
+         .           	      _Hash, _RangeHash, _Unused, _RehashPolicy, _Traits, true>::
+         .               operator[](const key_type& __k)
+         .               -> mapped_type&
+         .               {
+         .                 __hashtable* __h = static_cast<__hashtable*>(this);
+         .                 __hash_code __code = __h->_M_hash_code(__k);
+         .                 std::size_t __bkt = __h->_M_bucket_index(__code);
+ 5,671,886 ( 0.00%)        if (auto __node = __h->_M_find_node(__bkt, __k, __code))
+ 2,821,395 ( 0.00%)  	return __node->_M_v().second;
+         .           
+         .                 typename __hashtable::_Scoped_node __node {
+         .           	__h,
+         .           	std::piecewise_construct,
+         .           	std::tuple<const key_type&>(__k),
+         .           	std::tuple<>()
+         .                 };
+         .                 auto __pos
+     7,000 ( 0.00%)  	= __h->_M_insert_unique_node(__bkt, __code, __node._M_node);
+    95,761 ( 0.00%)  => /usr/include/c++/11/bits/hashtable.h:std::_Hashtable<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > > >, std::__detail::_Select1st, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::_M_insert_unique_node(unsigned long, unsigned long, std::__detail::_Hash_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >, true>*, unsigned long) (1,000x)
+         .                 __node._M_node = nullptr;
+   550,235 ( 0.00%)        return __pos->second;
+37,033,772 ( 0.03%)      }
+         .           
+         .             template<typename _Key, typename _Pair, typename _Alloc, typename _Equal,
+         .           	   typename _Hash, typename _RangeHash, typename _Unused,
+         .           	   typename _RehashPolicy, typename _Traits>
+         .               auto
+         .               _Map_base<_Key, _Pair, _Alloc, _Select1st, _Equal,
+         .           	      _Hash, _RangeHash, _Unused, _RehashPolicy, _Traits, true>::
+         .               operator[](key_type&& __k)
+-- line 725 ----------------------------------------
+-- line 1211 ----------------------------------------
+         .           
+         .                 _Hash_code_base(const _Hash& __hash) : __ebo_hash(__hash) { }
+         .           
+         .                 __hash_code
+         .                 _M_hash_code(const _Key& __k) const
+         .                 {
+         .           	static_assert(__is_invocable<const _Hash&, const _Key&>{},
+         .           	    "hash function must be invocable with an argument of key type");
+    87,364 ( 0.00%)  	return _M_hash()(__k);
+         .                 }
+         .           
+         .                 template<typename _Kt>
+         .           	__hash_code
+         .           	_M_hash_code_tr(const _Kt& __k) const
+         .           	{
+         .           	  static_assert(__is_invocable<const _Hash&, const _Kt&>{},
+         .           	    "hash function must be invocable with an argument of key type");
+-- line 1227 ----------------------------------------
+-- line 1243 ----------------------------------------
+         .           			    __bkt_count);
+         .                 }
+         .           
+         .                 std::size_t
+         .                 _M_bucket_index(const _Hash_node_value<_Value, true>& __n,
+         .           		      std::size_t __bkt_count) const
+         .           	noexcept( noexcept(declval<const _RangeHash&>()((__hash_code)0,
+         .           							(std::size_t)0)) )
+ 1,632,345 ( 0.00%)        { return _RangeHash{}(__n._M_hash_code, __bkt_count); }
+         .           
+         .                 void
+         .                 _M_store_code(_Hash_node_code_cache<false>&, __hash_code) const
+         .                 { }
+         .           
+         .                 void
+         .                 _M_copy_code(_Hash_node_code_cache<false>&,
+         .           		   const _Hash_node_code_cache<false>&) const
+         .                 { }
+         .           
+         .                 void
+         .                 _M_store_code(_Hash_node_code_cache<true>& __n, __hash_code __c) const
+   509,596 ( 0.00%)        { __n._M_hash_code = __c; }
+         .           
+         .                 void
+         .                 _M_copy_code(_Hash_node_code_cache<true>& __to,
+         .           		   const _Hash_node_code_cache<true>& __from) const
+         .                 { __to._M_hash_code = __from._M_hash_code; }
+         .           
+         .                 void
+         .                 _M_swap(_Hash_code_base& __x)
+-- line 1272 ----------------------------------------
+-- line 1588 ----------------------------------------
+         .           
+         .                 static bool
+         .                 _S_node_equals(const _Hash_node_code_cache<false>&,
+         .           		     const _Hash_node_code_cache<false>&)
+         .                 { return true; }
+         .           
+         .                 static bool
+         .                 _S_equals(__hash_code __c, const _Hash_node_code_cache<true>& __n)
+ 6,681,722 ( 0.00%)        { return __c == __n._M_hash_code; }
+         .           
+         .                 static bool
+         .                 _S_node_equals(const _Hash_node_code_cache<true>& __lhn,
+         .           		     const _Hash_node_code_cache<true>& __rhn)
+         .                 { return __lhn._M_hash_code == __rhn._M_hash_code; }
+         .           
+         .               protected:
+         .                 _Hashtable_base() = default;
+-- line 1604 ----------------------------------------
+-- line 1609 ----------------------------------------
+         .           
+         .                 bool
+         .                 _M_equals(const _Key& __k, __hash_code __c,
+         .           		const _Hash_node_value<_Value, __hash_cached::value>& __n) const
+         .                 {
+         .           	static_assert(__is_invocable<const _Equal&, const _Key&, const _Key&>{},
+         .           	  "key equality predicate must be invocable with two arguments of "
+         .           	  "key type");
+ 9,092,660 ( 0.01%)  	return _S_equals(__c, __n) && _M_eq()(__k, _ExtractKey{}(__n._M_v()));
+         .                 }
+         .           
+         .                 template<typename _Kt>
+         .           	bool
+         .           	_M_equals_tr(const _Kt& __k, __hash_code __c,
+         .           		     const _Hash_node_value<_Value,
+         .           					    __hash_cached::value>& __n) const
+         .           	{
+-- line 1625 ----------------------------------------
+-- line 1904 ----------------------------------------
+         .                 __n->~__node_type();
+         .                 __node_alloc_traits::deallocate(_M_node_allocator(), __ptr, 1);
+         .               }
+         .           
+         .             template<typename _NodeAlloc>
+         .               void
+         .               _Hashtable_alloc<_NodeAlloc>::_M_deallocate_nodes(__node_ptr __n)
+         .               {
+ 1,102,217 ( 0.00%)        while (__n)
+         .           	{
+         .           	  __node_ptr __tmp = __n;
+         .           	  __n = __n->_M_next();
+         .           	  _M_deallocate_node(__tmp);
+         .           	}
+         .               }
+         .           
+         .             template<typename _NodeAlloc>
+-- line 1920 ----------------------------------------
+-- line 1921 ----------------------------------------
+         .               auto
+         .               _Hashtable_alloc<_NodeAlloc>::_M_allocate_buckets(std::size_t __bkt_count)
+         .               -> __buckets_ptr
+         .               {
+         .                 __buckets_alloc_type __alloc(_M_node_allocator());
+         .           
+         .                 auto __ptr = __buckets_alloc_traits::allocate(__alloc, __bkt_count);
+         .                 __buckets_ptr __p = std::__to_address(__ptr);
+    45,464 ( 0.00%)        __builtin_memset(__p, 0, __bkt_count * sizeof(__node_base_ptr));
+11,358,617 ( 0.01%)  => ???:0x000000000010c9d0 (5,656x)
+         .                 return __p;
+         .               }
+         .           
+         .             template<typename _NodeAlloc>
+         .               void
+         .               _Hashtable_alloc<_NodeAlloc>::
+         .               _M_deallocate_buckets(__buckets_ptr __bkts,
+         .           			  std::size_t __bkt_count)
+-- line 1937 ----------------------------------------
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: /usr/include/c++/11/bits/basic_string.h
+--------------------------------------------------------------------------------
+Ir                  
+
+-- line 157 ----------------------------------------
+         .                 // Use empty-base optimization: http://www.cantrip.org/emptyopt.html
+         .                 struct _Alloc_hider : allocator_type // TODO check __is_final
+         .                 {
+         .           #if __cplusplus < 201103L
+         .           	_Alloc_hider(pointer __dat, const _Alloc& __a = _Alloc())
+         .           	: allocator_type(__a), _M_p(__dat) { }
+         .           #else
+         .           	_Alloc_hider(pointer __dat, const _Alloc& __a)
+ 3,470,874 ( 0.00%)  	: allocator_type(__a), _M_p(__dat) { }
+         .           
+         .           	_Alloc_hider(pointer __dat, _Alloc&& __a = _Alloc())
+23,570,024 ( 0.02%)  	: allocator_type(std::move(__a)), _M_p(__dat) { }
+         .           #endif
+         .           
+         .           	pointer _M_p; // The actual data.
+         .                 };
+         .           
+         .                 _Alloc_hider	_M_dataplus;
+         .                 size_type		_M_string_length;
+         .           
+-- line 176 ----------------------------------------
+-- line 179 ----------------------------------------
+         .                 union
+         .                 {
+         .           	_CharT           _M_local_buf[_S_local_capacity + 1];
+         .           	size_type        _M_allocated_capacity;
+         .                 };
+         .           
+         .                 void
+         .                 _M_data(pointer __p)
+   924,448 ( 0.00%)        { _M_dataplus._M_p = __p; }
+         .           
+         .                 void
+         .                 _M_length(size_type __length)
+11,991,807 ( 0.01%)        { _M_string_length = __length; }
+         .           
+         .                 pointer
+         .                 _M_data() const
+37,283,096 ( 0.03%)        { return _M_dataplus._M_p; }
+         .           
+         .                 pointer
+    32,165 ( 0.00%)        _M_local_data()
+         .                 {
+         .           #if __cplusplus >= 201103L
+ 4,289,706 ( 0.00%)  	return std::pointer_traits<pointer>::pointer_to(*_M_local_buf);
+         .           #else
+         .           	return pointer(_M_local_buf);
+         .           #endif
+         .                 }
+         .           
+         .                 const_pointer
+         .                 _M_local_data() const
+         .                 {
+         .           #if __cplusplus >= 201103L
+ 1,620,060 ( 0.00%)  	return std::pointer_traits<const_pointer>::pointer_to(*_M_local_buf);
+         .           #else
+         .           	return const_pointer(_M_local_buf);
+         .           #endif
+         .                 }
+         .           
+         .                 void
+         .                 _M_capacity(size_type __capacity)
+    45,185 ( 0.00%)        { _M_allocated_capacity = __capacity; }
+         .           
+         .                 void
+         .                 _M_set_length(size_type __n)
+         .                 {
+         .           	_M_length(__n);
+         .           	traits_type::assign(_M_data()[__n], _CharT());
+         7 ( 0.00%)        }
+         .           
+         .                 bool
+         .                 _M_is_local() const
+         .                 { return _M_data() == _M_local_data(); }
+         .           
+         .                 // Create & Destroy
+         .                 pointer
+         .                 _M_create(size_type&, size_type);
+         .           
+         .                 void
+         .                 _M_dispose()
+         .                 {
+18,430,762 ( 0.01%)  	if (!_M_is_local())
+         .           	  _M_destroy(_M_allocated_capacity);
+         .                 }
+         .           
+         .                 void
+         .                 _M_destroy(size_type __size) throw()
+         .                 { _Alloc_traits::deallocate(_M_get_allocator(), _M_data(), __size + 1); }
+         .           
+         .                 // _M_construct_aux is used to implement the 21.3.1 para 15 which
+         .                 // requires special behaviour if _InIterator is an integral type
+         .                 template<typename _InIterator>
+         .                   void
+         .                   _M_construct_aux(_InIterator __beg, _InIterator __end,
+         .           			 std::__false_type)
+         .           	{
+         .                     typedef typename iterator_traits<_InIterator>::iterator_category _Tag;
+ 7,277,541 ( 0.01%)            _M_construct(__beg, __end, _Tag());
+   138,795 ( 0.00%)  => /usr/include/c++/11/bits/basic_string.tcc:void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) [clone .isra.0] (2,435x)
+         .           	}
+         .           
+         .                 // _GLIBCXX_RESOLVE_LIB_DEFECTS
+         .                 // 438. Ambiguity in the "do the right thing" clause
+         .                 template<typename _Integer>
+         .                   void
+         .                   _M_construct_aux(_Integer __beg, _Integer __end, std::__true_type)
+         .           	{ _M_construct_aux_2(static_cast<size_type>(__beg), __end); }
+-- line 263 ----------------------------------------
+-- line 348 ----------------------------------------
+         .           		|| less<const _CharT*>()(_M_data() + this->size(), __s));
+         .                 }
+         .           
+         .                 // When __n = 1 way faster than the general multichar
+         .                 // traits_type::copy/move/assign.
+         .                 static void
+         .                 _S_copy(_CharT* __d, const _CharT* __s, size_type __n)
+         .                 {
+ 5,573,524 ( 0.00%)  	if (__n == 1)
+         .           	  traits_type::assign(*__d, *__s);
+         .           	else
+         .           	  traits_type::copy(__d, __s, __n);
+         .                 }
+         .           
+         .                 static void
+         .                 _S_move(_CharT* __d, const _CharT* __s, size_type __n)
+         .                 {
+-- line 364 ----------------------------------------
+-- line 403 ----------------------------------------
+         .                 static void
+         .                 _S_copy_chars(_CharT* __p, const _CharT* __k1, const _CharT* __k2)
+         .                 _GLIBCXX_NOEXCEPT
+         .                 { _S_copy(__p, __k1, __k2 - __k1); }
+         .           
+         .                 static int
+         .                 _S_compare(size_type __n1, size_type __n2) _GLIBCXX_NOEXCEPT
+         .                 {
+    45,444 ( 0.00%)  	const difference_type __d = difference_type(__n1 - __n2);
+         .           
+   178,902 ( 0.00%)  	if (__d > __gnu_cxx::__numeric_traits<int>::__max)
+         .           	  return __gnu_cxx::__numeric_traits<int>::__max;
+    75,740 ( 0.00%)  	else if (__d < __gnu_cxx::__numeric_traits<int>::__min)
+         .           	  return __gnu_cxx::__numeric_traits<int>::__min;
+         .           	else
+    30,296 ( 0.00%)  	  return int(__d);
+         .                 }
+         .           
+         .                 void
+         .                 _M_assign(const basic_string&);
+         .           
+         .                 void
+         .                 _M_mutate(size_type __pos, size_type __len1, const _CharT* __s,
+         .           		size_type __len2);
+-- line 426 ----------------------------------------
+-- line 434 ----------------------------------------
+         .                 // arguments, per 17.4.4.4 para. 2 item 2.
+         .           
+         .                 /**
+         .                  *  @brief  Default constructor creates an empty string.
+         .                  */
+         .                 basic_string()
+         .                 _GLIBCXX_NOEXCEPT_IF(is_nothrow_default_constructible<_Alloc>::value)
+         .                 : _M_dataplus(_M_local_data())
+     5,135 ( 0.00%)        { _M_set_length(0); }
+         .           
+         .                 /**
+         .                  *  @brief  Construct an empty string using allocator @a a.
+         .                  */
+         .                 explicit
+         .                 basic_string(const _Alloc& __a) _GLIBCXX_NOEXCEPT
+         .                 : _M_dataplus(_M_local_data(), __a)
+         .                 { _M_set_length(0); }
+-- line 450 ----------------------------------------
+-- line 451 ----------------------------------------
+         .           
+         .                 /**
+         .                  *  @brief  Construct string with copy of value of @a __str.
+         .                  *  @param  __str  Source string.
+         .                  */
+         .                 basic_string(const basic_string& __str)
+         .                 : _M_dataplus(_M_local_data(),
+         .           		    _Alloc_traits::_S_select_on_copy(__str._M_get_allocator()))
+ 5,588,909 ( 0.00%)        { _M_construct(__str._M_data(), __str._M_data() + __str.length()); }
+         .           
+         .                 // _GLIBCXX_RESOLVE_LIB_DEFECTS
+         .                 // 2583. no way to supply an allocator for basic_string(str, pos)
+         .                 /**
+         .                  *  @brief  Construct string as copy of a substring.
+         .                  *  @param  __str  Source string.
+         .                  *  @param  __pos  Index of first character to copy from.
+         .                  *  @param  __a  Allocator to use.
+-- line 467 ----------------------------------------
+-- line 513 ----------------------------------------
+         .                  *  @param  __a  Allocator to use (default is default allocator).
+         .                  *
+         .                  *  NB: @a __s must have at least @a __n characters, &apos;\\0&apos;
+         .                  *  has no special meaning.
+         .                  */
+         .                 basic_string(const _CharT* __s, size_type __n,
+         .           		   const _Alloc& __a = _Alloc())
+         .                 : _M_dataplus(_M_local_data(), __a)
+ 2,248,214 ( 0.00%)        { _M_construct(__s, __s + __n); }
+         .           
+         .                 /**
+         .                  *  @brief  Construct string as copy of a C string.
+         .                  *  @param  __s  Source C string.
+         .                  *  @param  __a  Allocator to use (default is default allocator).
+         .                  */
+         .           #if __cpp_deduction_guides && ! defined _GLIBCXX_DEFINING_STRING_INSTANTIATIONS
+         .                 // _GLIBCXX_RESOLVE_LIB_DEFECTS
+         .                 // 3076. basic_string CTAD ambiguity
+         .                 template<typename = _RequireAllocator<_Alloc>>
+         .           #endif
+        24 ( 0.00%)        basic_string(const _CharT* __s, const _Alloc& __a = _Alloc())
+         .                 : _M_dataplus(_M_local_data(), __a)
+         .                 {
+    10,279 ( 0.00%)  	const _CharT* __end = __s ? __s + traits_type::length(__s)
+         .           	  // We just need a non-null pointer here to get an exception:
+         .           	  : reinterpret_cast<const _CharT*>(__alignof__(_CharT));
+    36,444 ( 0.00%)  	_M_construct(__s, __end, random_access_iterator_tag());
+   680,288 ( 0.00%)  => /usr/include/c++/11/bits/basic_string.tcc:void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag) [clone .isra.0] (12,148x)
+        27 ( 0.00%)        }
+         .           
+         .                 /**
+         .                  *  @brief  Construct string as multiple characters.
+         .                  *  @param  __n  Number of characters.
+         .                  *  @param  __c  Character to use.
+         .                  *  @param  __a  Allocator to use (default is default allocator).
+         .                  */
+         .           #if __cpp_deduction_guides && ! defined _GLIBCXX_DEFINING_STRING_INSTANTIATIONS
+-- line 548 ----------------------------------------
+-- line 560 ----------------------------------------
+         .                  *  @param  __str  Source string.
+         .                  *
+         .                  *  The newly-created string contains the exact contents of @a __str.
+         .                  *  @a __str is a valid, but unspecified string.
+         .                  */
+         .                 basic_string(basic_string&& __str) noexcept
+         .                 : _M_dataplus(_M_local_data(), std::move(__str._M_get_allocator()))
+         .                 {
+    77,250 ( 0.00%)  	if (__str._M_is_local())
+         .           	  {
+         .           	    traits_type::copy(_M_local_buf, __str._M_local_buf,
+         .           			      _S_local_capacity + 1);
+         .           	  }
+         .           	else
+         .           	  {
+         .           	    _M_data(__str._M_data());
+         .           	    _M_capacity(__str._M_allocated_capacity);
+-- line 576 ----------------------------------------
+-- line 724 ----------------------------------------
+         .           	    // Destroy existing storage before replacing allocator.
+         .           	    _M_destroy(_M_allocated_capacity);
+         .           	    _M_data(_M_local_data());
+         .           	    _M_set_length(0);
+         .           	  }
+         .           	// Replace allocator if POCMA is true.
+         .           	std::__alloc_on_move(_M_get_allocator(), __str._M_get_allocator());
+         .           
+    17,570 ( 0.00%)  	if (__str._M_is_local())
+         .           	  {
+         .           	    // We've always got room for a short string, just copy it
+         .           	    // (unless this is a self-move, because that would violate the
+         .           	    // char_traits::copy precondition that the ranges don't overlap).
+         .           	    if (__builtin_expect(std::__addressof(__str) != this, true))
+         .           	      {
+        14 ( 0.00%)  		if (__str.size())
+         .           		  this->_S_copy(_M_data(), __str._M_data(), __str.size());
+         .           		_M_set_length(__str.size());
+         .           	      }
+         .           	  }
+         .           	else if (_Alloc_traits::_S_propagate_on_move_assign()
+         .           	    || _Alloc_traits::_S_always_equal()
+         .           	    || _M_get_allocator() == __str._M_get_allocator())
+         .           	  {
+         .           	    // Just move the allocated pointer, our allocator can free it.
+         .           	    pointer __data = nullptr;
+         .           	    size_type __capacity;
+    17,556 ( 0.00%)  	    if (!_M_is_local())
+         .           	      {
+         .           		if (_Alloc_traits::_S_always_equal())
+         .           		  {
+         .           		    // __str can reuse our existing storage.
+         .           		    __data = _M_data();
+     3,643 ( 0.00%)  		    __capacity = _M_allocated_capacity;
+         .           		  }
+         .           		else // __str can't use it, so free it.
+         .           		  _M_destroy(_M_allocated_capacity);
+         .           	      }
+         .           
+         .           	    _M_data(__str._M_data());
+         .           	    _M_length(__str.length());
+     8,778 ( 0.00%)  	    _M_capacity(__str._M_allocated_capacity);
+     7,286 ( 0.00%)  	    if (__data)
+         .           	      {
+         .           		__str._M_data(__data);
+         .           		__str._M_capacity(__capacity);
+         .           	      }
+         .           	    else
+         .           	      __str._M_data(__str._M_local_buf);
+         .           	  }
+         .           	else // Need to do a deep copy
+-- line 774 ----------------------------------------
+-- line 833 ----------------------------------------
+         .                 { return iterator(_M_data() + this->size()); }
+         .           
+         .                 /**
+         .                  *  Returns a read-only (constant) iterator that points one past the
+         .                  *  last character in the %string.
+         .                  */
+         .                 const_iterator
+         .                 end() const _GLIBCXX_NOEXCEPT
+     2,000 ( 0.00%)        { return const_iterator(_M_data() + this->size()); }
+         .           
+         .                 /**
+         .                  *  Returns a read/write reverse iterator that points to the last
+         .                  *  character in the %string.  Iteration is done in reverse element
+         .                  *  order.
+         .                  */
+         .                 reverse_iterator
+         .                 rbegin() _GLIBCXX_NOEXCEPT
+-- line 849 ----------------------------------------
+-- line 913 ----------------------------------------
+         .           #endif
+         .           
+         .               public:
+         .                 // Capacity:
+         .                 ///  Returns the number of characters in the string, not including any
+         .                 ///  null-termination.
+         .                 size_type
+         .                 size() const _GLIBCXX_NOEXCEPT
+ 2,684,772 ( 0.00%)        { return _M_string_length; }
+         .           
+         .                 ///  Returns the number of characters in the string, not including any
+         .                 ///  null-termination.
+         .                 size_type
+         .                 length() const _GLIBCXX_NOEXCEPT
+    35,165 ( 0.00%)        { return _M_string_length; }
+         .           
+         .                 ///  Returns the size() of the largest possible %string.
+         .                 size_type
+         .                 max_size() const _GLIBCXX_NOEXCEPT
+         .                 { return (_Alloc_traits::max_size(_M_get_allocator()) - 1) / 2; }
+         .           
+         .                 /**
+         .                  *  @brief  Resizes the %string to the specified number of characters.
+-- line 935 ----------------------------------------
+-- line 970 ----------------------------------------
+         .           
+         .                 /**
+         .                  *  Returns the total number of characters that the %string can hold
+         .                  *  before needing to allocate more memory.
+         .                  */
+         .                 size_type
+         .                 capacity() const _GLIBCXX_NOEXCEPT
+         .                 {
+ 4,096,269 ( 0.00%)  	return _M_is_local() ? size_type(_S_local_capacity)
+         .           	                     : _M_allocated_capacity;
+         .                 }
+         .           
+         .                 /**
+         .                  *  @brief  Attempt to preallocate enough memory for specified number of
+         .                  *          characters.
+         .                  *  @param  __res_arg  Number of characters required.
+         .                  *  @throw  std::length_error  If @a __res_arg exceeds @c max_size().
+-- line 986 ----------------------------------------
+-- line 1206 ----------------------------------------
+         .           
+         .                 /**
+         .                  *  @brief  Append a string to this string.
+         .                  *  @param __str  The string to append.
+         .                  *  @return  Reference to this string.
+         .                  */
+         .                 basic_string&
+         .                 append(const basic_string& __str)
+    43,925 ( 0.00%)        { return _M_append(__str._M_data(), __str.size()); }
+ 4,235,065 ( 0.00%)  => ???:0x000000000010c8b0 (8,785x)
+         .           
+         .                 /**
+         .                  *  @brief  Append a substring.
+         .                  *  @param __str  The string to append.
+         .                  *  @param __pos  Index of the first character of str to append.
+         .                  *  @param __n  The number of characters to append.
+         .                  *  @return  Reference to this string.
+         .                  *  @throw  std::out_of_range if @a __pos is not a valid index.
+-- line 1222 ----------------------------------------
+-- line 1336 ----------------------------------------
+         .                 /**
+         .                  *  @brief  Append a single character.
+         .                  *  @param __c  Character to append.
+         .                  */
+         .                 void
+         .                 push_back(_CharT __c)
+         .                 {
+         .           	const size_type __size = this->size();
+ 4,096,269 ( 0.00%)  	if (__size + 1 > this->capacity())
+         .           	  this->_M_mutate(__size, size_type(0), 0, size_type(1));
+         .           	traits_type::assign(this->_M_data()[__size], __c);
+         .           	this->_M_set_length(__size + 1);
+         .                 }
+         .           
+         .                 /**
+         .                  *  @brief  Set value to contents of another string.
+         .                  *  @param  __str  Source string to use.
+-- line 1352 ----------------------------------------
+-- line 1379 ----------------------------------------
+         .           		    _M_data(__ptr);
+         .           		    _M_capacity(__len);
+         .           		    _M_set_length(__len);
+         .           		  }
+         .           	      }
+         .           	    std::__alloc_on_copy(_M_get_allocator(), __str._M_get_allocator());
+         .           	  }
+         .           #endif
+ 3,554,339 ( 0.00%)  	this->_M_assign(__str);
+   644,885 ( 0.00%)  => ???:0x000000000010c9c0 (7,074x)
+         .           	return *this;
+         .                 }
+         .           
+         .           #if __cplusplus >= 201103L
+         .                 /**
+         .                  *  @brief  Set value to contents of another string.
+         .                  *  @param  __str  Source string to use.
+         .                  *  @return  Reference to this string.
+-- line 1395 ----------------------------------------
+-- line 2865 ----------------------------------------
+         .                  *  string is ordered after @a __str.  Determines the effective
+         .                  *  length rlen of the strings to compare as the smallest of
+         .                  *  size() and str.size().  The function then compares the two
+         .                  *  strings by calling traits::compare(data(), str.data(),rlen).
+         .                  *  If the result of the comparison is nonzero returns it,
+         .                  *  otherwise the shorter one is ordered first.
+         .                 */
+         .                 int
+   592,983 ( 0.00%)        compare(const basic_string& __str) const
+         .                 {
+         .           	const size_type __size = this->size();
+         .           	const size_type __osize = __str.size();
+         .           	const size_type __len = std::min(__size, __osize);
+         .           
+         .           	int __r = traits_type::compare(_M_data(), __str.data(), __len);
+   319,905 ( 0.00%)  	if (!__r)
+         .           	  __r = _S_compare(__size, __osize);
+         .           	return __r;
+         .                 }
+         .           
+         .           #if __cplusplus >= 201703L
+         .                 /**
+         .                  *  @brief  Compare to a string_view.
+         .                  *  @param __svt An object convertible to string_view to compare against.
+-- line 2888 ----------------------------------------
+-- line 6229 ----------------------------------------
+         .               { return __lhs.compare(__rhs) == 0; }
+         .           
+         .             template<typename _CharT>
+         .               inline
+         .               typename __gnu_cxx::__enable_if<__is_char<_CharT>::__value, bool>::__type
+         .               operator==(const basic_string<_CharT>& __lhs,
+         .           	       const basic_string<_CharT>& __rhs) _GLIBCXX_NOEXCEPT
+         .               { return (__lhs.size() == __rhs.size()
+19,900,521 ( 0.01%)  	      && !std::char_traits<_CharT>::compare(__lhs.data(), __rhs.data(),
+         .           						    __lhs.size())); }
+         .           
+         .             /**
+         .              *  @brief  Test equivalence of string and C string.
+         .              *  @param __lhs  String.
+         .              *  @param __rhs  C string.
+         .              *  @return  True if @a __lhs.compare(@a __rhs) == 0.  False otherwise.
+         .              */
+         .             template<typename _CharT, typename _Traits, typename _Alloc>
+         .               inline bool
+         .               operator==(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+         .           	       const _CharT* __rhs)
+ 6,811,397 ( 0.00%)      { return __lhs.compare(__rhs) == 0; }
+ 2,228,590 ( 0.00%)  => ???:0x000000000010c890 (35,945x)
+         .           
+         .           #if __cpp_lib_three_way_comparison
+         .             /**
+         .              *  @brief  Three-way comparison of a string and a C string.
+         .              *  @param __lhs  A string.
+         .              *  @param __rhs  A null-terminated string.
+         .              *  @return  A value indicating whether `__lhs` is less than, equal to,
+         .              *	       greater than, or incomparable with `__rhs`.
+-- line 6258 ----------------------------------------
+-- line 6332 ----------------------------------------
+         .             /**
+         .              *  @brief  Test if string precedes string.
+         .              *  @param __lhs  First string.
+         .              *  @param __rhs  Second string.
+         .              *  @return  True if @a __lhs precedes @a __rhs.  False otherwise.
+         .              */
+         .             template<typename _CharT, typename _Traits, typename _Alloc>
+         .               inline bool
+   169,866 ( 0.00%)      operator<(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+         .           	      const basic_string<_CharT, _Traits, _Alloc>& __rhs)
+         .               _GLIBCXX_NOEXCEPT
+         .               { return __lhs.compare(__rhs) < 0; }
+         .           
+         .             /**
+         .              *  @brief  Test if string precedes C string.
+         .              *  @param __lhs  String.
+         .              *  @param __rhs  C string.
+-- line 6348 ----------------------------------------
+-- line 6563 ----------------------------------------
+         .              *  Stores characters from is into @a __str until &apos;\n&apos; is
+         .              *  found, the end of the stream is encountered, or str.max_size()
+         .              *  is reached.  Any previous contents of @a __str are erased.  If
+         .              *  end of line is encountered, it is extracted but not stored into
+         .              *  @a __str.
+         .              */
+         .             template<typename _CharT, typename _Traits, typename _Alloc>
+         .               inline basic_istream<_CharT, _Traits>&
+         6 ( 0.00%)      getline(basic_istream<_CharT, _Traits>& __is,
+         .           	    basic_string<_CharT, _Traits, _Alloc>& __str)
+ 7,911,708 ( 0.01%)      { return std::getline(__is, __str, __is.widen('\n')); }
+   685,580 ( 0.00%)  => ???:0x000000000010cef0 (1,001x)
+         .           
+         .           #if __cplusplus >= 201103L
+         .             /// Read a line from an rvalue stream into a string.
+         .             template<typename _CharT, typename _Traits, typename _Alloc>
+         .               inline basic_istream<_CharT, _Traits>&
+         .               getline(basic_istream<_CharT, _Traits>&& __is,
+         .           	    basic_string<_CharT, _Traits, _Alloc>& __str, _CharT __delim)
+         .               { return std::getline(__is, __str, __delim); }
+-- line 6581 ----------------------------------------
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: src/file_io.cpp
+--------------------------------------------------------------------------------
+Ir                 
+
+-- line 381 ----------------------------------------
+        .                       cerr << "Error: Position was not formated propperly, skipping to next Position!\n";
+        .                       state = 0;
+        .                   }
+        .               }
+        .           }
+        .           
+        .           
+        .           // Function to read graph from gfa and store as hash graph
+       12 ( 0.00%)  projectA_hash_graph_t* projectA_hash_read_gfa(const string& fileName) {
+        .           
+        .               // Create a new projectA_hash_graph_t object
+       19 ( 0.00%)      projectA_hash_graph_t* graph = new projectA_hash_graph_t();
+      203 ( 0.00%)  => ???:0x000000000010cb70 (1x)
+        .               // Initialize number of nodes
+        .               graph->n_nodes = 0;
+        .           
+        .               // Open the file
+        5 ( 0.00%)      ifstream file(fileName);
+   12,438 ( 0.00%)  => ???:0x000000000010cdd0 (1x)
+        .               // Check if the file could be opened
+        2 ( 0.00%)      if (!file.is_open()) {
+        .                   cerr << "Error: Unable to open file " << fileName << endl;
+        .                   return nullptr;
+        .               }
+        .           
+        .               string line;
+        .               // Read each line of the file
+3,341,514 ( 0.00%)      while (getline(file, line)) {
+        .                   // Skip empty lines and comments
+5,569,185 ( 0.00%)          if (line.empty() || line[0] == '#') continue;
+        .           
+        .                   // Read new line
+        .                   istringstream iss(line);
+        .                   string keyword;
+3,341,511 ( 0.00%)          iss >> keyword;
+268,435,441 ( 0.19%)  => ???:0x000000000010cc80 (1,113,837x)
+        .           
+        .                   // Check if the line is a sequence/node
+2,227,674 ( 0.00%)          if (keyword == "S") {
+        .                       uint32_t len;
+        .                       string id, seq, skip;
+4,735,050 ( 0.00%)              iss >> id >> seq >> skip;
+728,118,948 ( 0.51%)  => ???:0x000000000010cc80 (1,420,515x)
+  947,010 ( 0.00%)              len = seq.size();
+2,841,030 ( 0.00%)              projectA_hash_graph_append_node(graph, id, len, seq, 0);
+505,661,049 ( 0.36%)  => /home/fzurbonsen/projectA/src/graph.cpp:projectA_hash_graph_append_node(projectA_hash_graph_t*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, unsigned int) (473,505x)
+        .                   }
+        .           
+        .                   // Check if the line is an edge
+2,227,674 ( 0.00%)          if (keyword == "L") {
+        .                       string start, end;
+        .                       string skip;
+7,683,960 ( 0.01%)              iss >> start >> skip >> end >> skip;
+707,679,737 ( 0.50%)  => ???:0x000000000010cc80 (2,561,320x)
+2,561,320 ( 0.00%)              projectA_hash_graph_append_edge(graph, start, end);
+752,695,173 ( 0.53%)  => /home/fzurbonsen/projectA/src/graph.cpp:projectA_hash_graph_append_edge(projectA_hash_graph_t*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (640,330x)
+        .                   }
+        .               }
+        .           
+        .               file.close();
+        .               return graph;
+       12 ( 0.00%)  }
+        .           
+        .           
+        .           // Function to read a node list file
+       13 ( 0.00%)  void projectA_read_node_list(vector<projectA_node_list_t>& node_lists, const string& fileName) {
+        .           
+        .               projectA_node_list_t node_list;
+        1 ( 0.00%)      node_list.n_nodes = 0;
+        .           
+        .               // Open the file
+        5 ( 0.00%)      ifstream file(fileName);
+    1,738 ( 0.00%)  => ???:0x000000000010cdd0 (1x)
+        .               // Check if the file could be opened
+        2 ( 0.00%)      if (!file.is_open()) {
+        .                   cerr << "Error: Unable to open file " << fileName << endl;
+        .                   return;
+        .               }
+        .           
+        .               string line;
+        1 ( 0.00%)      uint32_t line_counter = 0;
+        1 ( 0.00%)      bool n_line = false;
+        .           
+        .               // Read each line of the file
+   46,218 ( 0.00%)      while (getline(file, line)) {
+   15,405 ( 0.00%)          line_counter++;
+        .           
+        .                   // Skip empty lines and comments
+   61,620 ( 0.00%)          if (line.empty() || line[0] == '#') continue;
+        .           
+        .                   // Read new line
+        .                   istringstream iss(line);
+        .                   string keyword;
+   30,810 ( 0.00%)          iss >> keyword;
+2,475,070 ( 0.00%)  => ???:0x000000000010cc80 (10,270x)
+        .           
+        .                   // Check if the line is a sequence/node
+   20,540 ( 0.00%)          if (keyword == "N") {
+        .           
+        .           
+        .                       // Check for valid preceding line
+   10,270 ( 0.00%)              if (n_line) {
+        .                           cerr << "Error: file not formatted correctly!\n";
+        .                           cerr << "Error in file: " << fileName << " in line: " << line_counter << endl;
+        .                           cerr << "Previous N-line was not followed by an R-line!\n";
+        .                           exit(1);
+        .                       }
+    5,135 ( 0.00%)              n_line = true;
+        .           
+   20,540 ( 0.00%)              if (iss.peek() == EOF) {
+  302,965 ( 0.00%)  => ???:0x000000000010c8f0 (5,135x)
+        .                           cerr << "Error: file not formatted correctly!\n";
+        .                           cerr << "Error in file: " << fileName << " in line: " << line_counter << endl;
+        .                           cerr << "N-line is empty!\n";
+        .                           exit(1);
+        .                       }
+        .           
+        .                       string id;
+        .           
+        .                       // Read ids until we reach the end of the line
+  187,356 ( 0.00%)              while(iss >> id) {
+8,487,198 ( 0.01%)  => ???:0x000000000010cc80 (31,226x)
+   52,182 ( 0.00%)                  if (!id.empty()) {
+        .                               node_list.nodes.push_back(id); // Add the node id to the node_list struct
+   52,182 ( 0.00%)                      node_list.n_nodes++; // Increase the node counter
+        .                           }
+        .                       }
+        .           
+        .                       // Check if there was at least one node in the N-line
+   15,405 ( 0.00%)              if (node_list.n_nodes == 0) {
+        .                           cerr << "Error: file not formatted correctly!\n";
+        .                           cerr << "Error in file: " << fileName << " in line: " << line_counter << endl;
+        .                           cerr << "N-line is empty!\n";
+        .                           exit(1);
+        .                       }
+        .                   }
+        .           
+        .                   // Check if the line is an edge
+   25,675 ( 0.00%)          if (keyword == "R") {
+        .           
+        .                       // Check for valid preceding line
+   10,270 ( 0.00%)              if (!n_line) {
+        .                           cerr << "Error: file not formatted correctly!\n";
+        .                           cerr << "Error in file: " << fileName << " in line: " << line_counter << endl;
+        .                           cerr << "R-line was not preceeded by an N-line!\n";
+        .                           exit(1);
+        .                       }
+    5,135 ( 0.00%)              n_line = false;
+        .           
+        .                       // Check if there is an instance in the line
+   20,540 ( 0.00%)              if (iss.peek() == EOF) {
+  302,965 ( 0.00%)  => ???:0x000000000010c8f0 (5,135x)
+        .                           cerr << "Error: file not formatted correctly!\n";
+        .                           cerr << "Error in file: " << fileName << " in line: " << line_counter << endl;
+        .                           cerr << "R-line is empty!\n";
+        .                           exit(1);
+        .                       }
+        .           
+        .                       // Add read to the node_list struct
+   15,405 ( 0.00%)              iss >> node_list.read;
+32,848,885 ( 0.02%)  => ???:0x000000000010cc80 (5,135x)
+    5,135 ( 0.00%)              node_list.read_len = node_list.read.size();
+        .           
+        .                       // Check if the line actually holds a value
+   10,270 ( 0.00%)              if (node_list.read.empty()) {
+        .                           cerr << "Error: file not formatted correctly!\n";
+        .                           cerr << "Error in file: " << fileName << " in line: " << line_counter << endl;
+        .                           cerr << "R-line is empty!\n";
+        .                           exit(1);
+        .                       }
+        .           
+        .                       // If we read a node we can add the struct to our node_lists vector
+        .                       node_lists.push_back(node_list);
+        .                       // Clear the node_list node vector for next input
+        .                       node_list.nodes.clear();
+        .                       node_list.read.clear();
+    5,135 ( 0.00%)              node_list.n_nodes = 0;
+        .                   }
+        .           
+        .                   // Check for invalid line indicators
+   30,810 ( 0.00%)          if (keyword != "N" && keyword != "R") {
+        .                       cerr << "Error: file not formatted correctly!\n";
+        .                       cerr << "Error in file: " << fileName << " in line: " << line_counter << endl;
+        .                       cerr << keyword << " is not a valid line inidcator!\n";
+        .                       exit(1);
+        .                   }
+        .               }
+        .           
+        .               // Check if we ended on an N-line
+        2 ( 0.00%)      if (n_line) {
+        .                   cerr << "Error: file not formatted correctly!\n";
+        .                   cerr << "Error in file: " << fileName << " in line: " << line_counter << endl;
+        .                   cerr << "Ended on an N-line!\n";
+        .                   exit(1);
+        .               }
+        .           
+        .               file.close();
+        .               return;
+       11 ( 0.00%)  }
+        .           
+        .           
+        .           // Function to read simulation positions from a JSON file and populate node_lists
+       13 ( 0.00%)  void projectA_read_sim_positions(unordered_map<string, vector<string>>& node_lists, const string& fileName) {
+        5 ( 0.00%)      ifstream file(fileName);
+    1,870 ( 0.00%)  => ???:0x000000000010cdd0 (1x)
+        2 ( 0.00%)      if (!file.is_open()) {
+        .                   cerr << "Error: Unable to open file " << fileName << endl;
+        .                   return;
+        .               }
+        .           
+        .               string line;
+    3,003 ( 0.00%)      while (getline(file, line)) {
+        .                   json j = json::parse(line);
+        .                   string read_name = j["sequence"];  // Use "sequence" field as the key in the map
+        .           
+        .                   // Prepare to store node IDs for this read in a vector
+        .                   vector<string> node_ids;
+        .           
+        .                   // Extract node IDs from the JSON data
+   46,518 ( 0.00%)          for (const auto& map_entry : j["path"]["mapping"]) {
+  151,850 ( 0.00%)  => /home/fzurbonsen/projectA/include/nlohmann/detail/iterators/iter_impl.hpp:nlohmann::json_abi_v3_11_3::detail::iter_impl<nlohmann::json_abi_v3_11_3::basic_json<std::map, std::vector, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, long, unsigned long, double, std::allocator, nlohmann::json_abi_v3_11_3::adl_serializer, std::vector<unsigned char, std::allocator<unsigned char> >, void> >::operator*() const (6,074x)
+        .                       string node_id = map_entry["position"]["node_id"];
+        .                       node_ids.push_back(node_id);
+        .                   }
+        .           
+        .                   // Add the node_ids vector to node_lists with read_name as the key
+    2,000 ( 0.00%)          node_lists[read_name] = node_ids;
+  502,796 ( 0.00%)  => /usr/include/c++/11/bits/vector.tcc:std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::operator=(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) [clone .isra.0] (1,000x)
+    2,000 ( 0.00%)      }
+31,011,443 ( 0.02%)  => /home/fzurbonsen/projectA/include/nlohmann/json.hpp:nlohmann::json_abi_v3_11_3::basic_json<std::map, std::vector, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, long, unsigned long, double, std::allocator, nlohmann::json_abi_v3_11_3::adl_serializer, std::vector<unsigned char, std::allocator<unsigned char> >, void>::~basic_json() (1,000x)
+       13 ( 0.00%)  }
+    3,309 ( 0.00%)  => ???:0x000000000010c860 (1x)
+        .           
+        .           // Function to read simulation positions from two input files and populate node_lists
+        .           void projectA_read_sim_positions_from_two_files(unordered_map<string, vector<string>>& node_lists,
+        .                                                            const string& readsFileName, const string& nodeIdsFileName) {
+        .               ifstream readsFile(readsFileName);
+        .               ifstream nodeIdsFile(nodeIdsFileName);
+        .           
+        .               if (!readsFile.is_open()) {
+-- line 602 ----------------------------------------
+-- line 714 ----------------------------------------
+        .               // Iterate over all nodes
+        .               for (auto& node : path) {
+        .           
+        .                   // Print the path id
+        .                   fprintf(file, "[%s]->", node.c_str());
+        .               }
+        .           
+        .               fprintf(file, "\n");
+        3 ( 0.00%)  }
+--------------------------------------------------------------------------------
+-- Auto-annotated source: algorithms/gwfa/gwf-ed.c
+--------------------------------------------------------------------------------
+Ir                      
+
+-- line 5 ----------------------------------------
+             .           #include "kalloc.h"
+             .           #include "ksort.h"
+             .           
+             .           /**********************
+             .            * Indexing the graph *
+             .            **********************/
+             .           
+             .           #define arc_key(x) ((x).a)
+       738,144 ( 0.00%)  KRADIX_SORT_INIT(gwf_arc, gwf_arc_t, arc_key, 8)
+       533,968 ( 0.00%)  => algorithms/gwfa/gwf-ed.c:rs_sort_gwf_arc (12x)
+       183,600 ( 0.00%)  => algorithms/gwfa/gwf-ed.c:rs_insertsort_gwf_arc (5,123x)
+             .           
+             .           // index the graph such that we can quickly access the neighbors of a vertex
+             .           void gwf_ed_index_arc_core(uint64_t *idx, uint32_t n_vtx, uint32_t n_arc, gwf_arc_t *arc)
+        56,485 ( 0.00%)  {
+             .           	uint32_t i, st;
+        10,270 ( 0.00%)  	radix_sort_gwf_arc(arc, arc + n_arc);
+       103,447 ( 0.00%)  	for (st = 0, i = 1; i <= n_arc; ++i) {
+       259,489 ( 0.00%)  		if (i == n_arc || arc[i].a>>32 != arc[st].a>>32) {
+             .           			uint32_t v = arc[st].a>>32;
+        41,908 ( 0.00%)  			assert(v < n_vtx);
+       125,724 ( 0.00%)  			idx[v] = (uint64_t)st << 32 | (i - st);
+             .           			st = i;
+             .           		}
+             .           	}
+        30,810 ( 0.00%)  }
+             .           
+             .           void gwf_ed_index(void *km, gwf_graph_t *g)
+        15,405 ( 0.00%)  {
+        25,675 ( 0.00%)  	KMALLOC(km, g->aux, g->n_vtx);
+     2,215,102 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:kmalloc (5,135x)
+        20,540 ( 0.00%)  	gwf_ed_index_arc_core(g->aux, g->n_vtx, g->n_arc, g->arc);
+     1,366,277 ( 0.00%)  => algorithms/gwfa/gwf-ed.c:gwf_ed_index_arc_core (5,135x)
+         5,135 ( 0.00%)  }
+             .           
+             .           // free the index
+             .           void gwf_cleanup(void *km, gwf_graph_t *g)
+        15,405 ( 0.00%)  {
+        10,270 ( 0.00%)  	kfree(km, g->aux);
+       200,585 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:kfree (5,135x)
+         5,135 ( 0.00%)  	g->aux = 0;
+        10,270 ( 0.00%)  }
+             .           
+             .           /**************************************
+             .            * Graph WaveFront with edit distance *
+             .            **************************************/
+             .           
+             .           #include "khashl.h" // make it compatible with kalloc
+             .           #include "kdq.h"
+             .           #include "kvec.h"
+             .           
+             .           #define GWF_DIAG_SHIFT 0x40000000
+             .           
+             .           static inline uint64_t gwf_gen_vd(uint32_t v, int32_t d)
+             .           {
+    77,941,749 ( 0.05%)  	return (uint64_t)v<<32 | (GWF_DIAG_SHIFT + d);
+             .           }
+             .           
+             .           /*
+             .            * Diagonal interval
+             .            */
+             .           typedef struct {
+             .           	uint64_t vd0, vd1;
+             .           } gwf_intv_t;
+             .           
+             .           typedef kvec_t(gwf_intv_t) gwf_intv_v;
+             .           
+             .           #define intvd_key(x) ((x).vd0)
+ 1,833,428,251 ( 1.29%)  KRADIX_SORT_INIT(gwf_intv, gwf_intv_t, intvd_key, 8)
+ 1,716,475,001 ( 1.21%)  => algorithms/gwfa/gwf-ed.c:rs_sort_gwf_intv (32,049x)
+   116,368,256 ( 0.08%)  => algorithms/gwfa/gwf-ed.c:rs_insertsort_gwf_intv (130,900x)
+             .           
+             .           static int gwf_intv_is_sorted(int32_t n_a, const gwf_intv_t *a)
+             .           {
+             .           	int32_t i;
+    16,103,313 ( 0.01%)  	for (i = 1; i < n_a; ++i)
+    11,933,133 ( 0.01%)  		if (a[i-1].vd0 > a[i].vd0) break;
+             .           	return (i == n_a);
+             .           }
+             .           
+             .           void gwf_ed_print_intv(size_t n, gwf_intv_t *a) // for debugging only
+             .           {
+             .           	size_t i;
+             .           	for (i = 0; i < n; ++i)
+             .           		printf("Z\t%d\t%d\t%d\n", (int32_t)(a[i].vd0>>32), (int32_t)a[i].vd0 - GWF_DIAG_SHIFT, (int32_t)a[i].vd1 - GWF_DIAG_SHIFT);
+             .           }
+             .           
+             .           // merge overlapping intervals; input must be sorted
+             .           static size_t gwf_intv_merge_adj(size_t n, gwf_intv_t *a)
+             .           {
+             .           	size_t i, k;
+             .           	uint64_t st, en;
+       337,706 ( 0.00%)  	if (n == 0) return 0;
+       337,706 ( 0.00%)  	st = a[0].vd0, en = a[0].vd1;
+    27,051,598 ( 0.02%)  	for (i = 1, k = 0; i < n; ++i) {
+    17,246,418 ( 0.01%)  		if (a[i].vd0 > en) {
+    11,207,322 ( 0.01%)  			a[k].vd0 = st, a[k++].vd1 = en;
+     3,735,774 ( 0.00%)  			st = a[i].vd0, en = a[i].vd1;
+    27,021,288 ( 0.02%)  		} else en = en > a[i].vd1? en : a[i].vd1;
+             .           	}
+     1,013,118 ( 0.00%)  	a[k].vd0 = st, a[k++].vd1 = en;
+             .           	return k;
+             .           }
+             .           
+             .           // merge two sorted interval lists
+             .           static size_t gwf_intv_merge2(gwf_intv_t *a, size_t n_b, const gwf_intv_t *b, size_t n_c, const gwf_intv_t *c)
+             .           {
+     1,502,663 ( 0.00%)  	size_t i = 0, j = 0, k = 0;
+    40,875,645 ( 0.03%)  	while (i < n_b && j < n_c) {
+    72,654,489 ( 0.05%)  		if (b[i].vd0 <= c[j].vd0)
+    14,124,732 ( 0.01%)  			a[k++] = b[i++];
+    18,166,152 ( 0.01%)  		else a[k++] = c[j++];
+             .           	}
+        97,622 ( 0.00%)  	while (i < n_b) a[k++] = b[i++];
+     7,197,294 ( 0.01%)  	while (j < n_c) a[k++] = c[j++];
+             .           	return gwf_intv_merge_adj(k, a);
+             .           }
+             .           
+             .           /*
+             .            * Diagonal
+             .            */
+             .           typedef struct { // a diagonal
+             .           	uint64_t vd; // higher 32 bits: vertex ID; lower 32 bits: diagonal+0x4000000
+-- line 120 ----------------------------------------
+-- line 121 ----------------------------------------
+             .           	int32_t k;
+             .           	uint32_t xo; // higher 31 bits: anti diagonal; lower 1 bit: out-of-order or not
+             .           	int32_t t;
+             .           } gwf_diag_t;
+             .           
+             .           typedef kvec_t(gwf_diag_t) gwf_diag_v;
+             .           
+             .           #define ed_key(x) ((x).vd)
+ 2,583,904,703 ( 1.82%)  KRADIX_SORT_INIT(gwf_ed, gwf_diag_t, ed_key, 8)
+ 1,933,012,170 ( 1.36%)  => algorithms/gwfa/gwf-ed.c:rs_sort_gwf_ed'2 (41,690x)
+             .           
+   237,605,545 ( 0.17%)  KDQ_INIT(gwf_diag_t)
+   189,281,451 ( 0.13%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:kfree (3,971,042x)
+   154,814,807 ( 0.11%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:kcalloc (1,985,521x)
+    64,177,208 ( 0.05%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:kmalloc (1,985,521x)
+             .           
+             .           void gwf_ed_print_diag(size_t n, gwf_diag_t *a) // for debugging only
+             .           {
+             .           	size_t i;
+             .           	for (i = 0; i < n; ++i) {
+             .           		int32_t d = (int32_t)a[i].vd - GWF_DIAG_SHIFT;
+             .           		printf("Z\t%d\t%d\t%d\t%d\t%d\n", (int32_t)(a[i].vd>>32), d, a[i].k, d + a[i].k, a[i].xo>>1);
+             .           	}
+             .           }
+             .           
+             .           // push (v,d,k) to the end of the queue
+             .           static inline void gwf_diag_push(void *km, gwf_diag_v *a, uint32_t v, int32_t d, int32_t k, uint32_t x, uint32_t ooo, int32_t t)
+             .           {
+             .           	gwf_diag_t *p;
+    61,037,319 ( 0.04%)  	kv_pushp(gwf_diag_t, km, *a, &p);
+        26,462 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:krealloc (6x)
+    79,530,173 ( 0.06%)  	p->vd = gwf_gen_vd(v, d), p->k = k, p->xo = x<<1|ooo, p->t = t;
+     2,289,935 ( 0.00%)  }
+             .           
+             .           // determine the wavefront on diagonal (v,d)
+             .           static inline int32_t gwf_diag_update(gwf_diag_t *p, uint32_t v, int32_t d, int32_t k, uint32_t x, uint32_t ooo, int32_t t)
+             .           {
+             .           	uint64_t vd = gwf_gen_vd(v, d);
+     1,614,120 ( 0.00%)  	if (p->vd == vd) {
+     1,990,937 ( 0.00%)  		p->xo = p->k > k? p->xo : x<<1|ooo;
+       126,213 ( 0.00%)  		p->t  = p->k > k? p->t : t;
+       242,394 ( 0.00%)  		p->k  = p->k > k? p->k : k;
+             .           		return 0;
+             .           	}
+           476 ( 0.00%)  	return 1;
+             .           }
+             .           
+             .           static int gwf_diag_is_sorted(int32_t n_a, const gwf_diag_t *a)
+             .           {
+             .           	int32_t i;
+   451,886,697 ( 0.32%)  	for (i = 1; i < n_a; ++i)
+   338,786,082 ( 0.24%)  		if (a[i-1].vd > a[i].vd) break;
+             .           	return (i == n_a);
+             .           }
+             .           
+             .           // sort a[]. This uses the gwf_diag_t::ooo field to speed up sorting.
+             .           static void gwf_diag_sort(int32_t n_a, gwf_diag_t *a, void *km, gwf_diag_v *ooo)
+             .           {
+             .           	int32_t i, j, k, n_b, n_c;
+             .           	gwf_diag_t *b, *c;
+             .           
+       741,998 ( 0.00%)  	kv_resize(gwf_diag_t, km, *ooo, n_a);
+    18,939,593 ( 0.01%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:krealloc (2,679x)
+   363,912,238 ( 0.26%)  	for (i = 0, n_c = 0; i < n_a; ++i)
+   482,751,056 ( 0.34%)  		if (a[i].xo&1) ++n_c;
+       504,258 ( 0.00%)  	n_b = n_a - n_c;
+     1,176,602 ( 0.00%)  	b = ooo->a, c = b + n_b;
+   362,063,292 ( 0.25%)  	for (i = j = k = 0; i < n_a; ++i) {
+   306,460,176 ( 0.22%)  		if (a[i].xo&1) c[k++] = a[i];
+   900,417,464 ( 0.63%)  		else b[j++] = a[i];
+             .           	}
+       672,344 ( 0.00%)  	radix_sort_gwf_ed(c, c + n_c);
+    33,718,926 ( 0.02%)  	for (k = 0; k < n_c; ++k) c[k].xo &= 0xfffffffeU;
+             .           
+     2,312,761 ( 0.00%)  	i = j = k = 0;
+   601,686,416 ( 0.42%)  	while (i < n_b && j < n_c) {
+ 1,082,570,832 ( 0.76%)  		if (b[i].vd <= c[j].vd)
+   682,816,758 ( 0.48%)  			a[k++] = b[i++];
+    38,897,130 ( 0.03%)  		else a[k++] = c[j++];
+             .           	}
+     1,087,492 ( 0.00%)  	while (i < n_b) a[k++] = b[i++];
+     4,182,708 ( 0.00%)  	while (j < n_c) a[k++] = c[j++];
+             .           }
+             .           
+             .           // remove diagonals not on the wavefront
+             .           static int32_t gwf_diag_dedup(int32_t n_a, gwf_diag_t *a, void *km, gwf_diag_v *ooo)
+             .           {
+             .           	int32_t i, n, st;
+             .           	if (!gwf_diag_is_sorted(n_a, a))
+             .           		gwf_diag_sort(n_a, a, km, ooo);
+   484,571,828 ( 0.34%)  	for (i = 1, st = 0, n = 0; i <= n_a; ++i) {
+ 1,089,023,667 ( 0.77%)  		if (i == n_a || a[i].vd != a[st].vd) {
+             .           			int32_t j, max_j = st;
+   356,743,318 ( 0.25%)  			if (st + 1 < i)
+    24,502,942 ( 0.02%)  				for (j = st + 1; j < i; ++j) // choose the far end (i.e. the wavefront)
+    30,936,366 ( 0.02%)  					if (a[max_j].k < a[j].k) max_j = j;
+ 1,043,125,677 ( 0.73%)  			a[n++] = a[max_j];
+             .           			st = i;
+             .           		}
+             .           	}
+             .           	return n;
+             .           }
+             .           
+             .           // use forbidden bands to remove diagonals not on the wavefront
+             .           static int32_t gwf_mixed_dedup(int32_t n_a, gwf_diag_t *a, int32_t n_b, gwf_intv_t *b)
+             .           {
+     1,857,383 ( 0.00%)  	int32_t i = 0, j = 0, k = 0;
+   191,580,356 ( 0.13%)  	while (i < n_a && j < n_b) {
+   488,267,880 ( 0.34%)  		if (a[i].vd >= b[j].vd0 && a[i].vd < b[j].vd1) ++i;
+    90,831,112 ( 0.06%)  		else if (a[i].vd >= b[j].vd1) ++j;
+   433,788,160 ( 0.31%)  		else a[k++] = a[i++];
+             .           	}
+   703,990,953 ( 0.50%)  	while (i < n_a) a[k++] = a[i++];
+             .           	return k;
+             .           }
+             .           
+             .           /*
+             .            * Traceback stack
+             .            */
+   112,686,881 ( 0.08%)  KHASHL_MAP_INIT(KH_LOCAL, gwf_map64_t, gwf_map64, uint64_t, int32_t, kh_hash_uint64, kh_eq_generic)
+       548,484 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:krealloc (6,804x)
+       219,256 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:kmalloc (6,804x)
+        88,464 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:kfree (6,804x)
+             .           
+             .           typedef struct {
+             .           	int32_t v;
+             .           	int32_t pre;
+             .           } gwf_trace_t;
+             .           
+             .           typedef kvec_t(gwf_trace_t) gwf_trace_v;
+             .           
+             .           static int32_t gwf_trace_push(void *km, gwf_trace_v *a, int32_t v, int32_t pre, gwf_map64_t *h)
+    33,679,116 ( 0.02%)  {
+    11,226,372 ( 0.01%)  	uint64_t key = (uint64_t)v << 32 | (uint32_t)pre;
+             .           	khint_t k;
+             .           	int absent;
+             .           	k = gwf_map64_put(h, key, &absent);
+             .           	if (absent) {
+             .           		gwf_trace_t *p;
+       192,702 ( 0.00%)  		kv_pushp(gwf_trace_t, km, *a, &p);
+        17,542 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:krealloc (76x)
+        85,240 ( 0.00%)  		p->v = v, p->pre = pre;
+        63,930 ( 0.00%)  		kh_val(h, k) = a->n - 1;
+             .           		return a->n - 1;
+             .           	}
+     2,785,283 ( 0.00%)  	return kh_val(h, k);
+    22,452,744 ( 0.02%)  }
+             .           
+             .           /*
+             .            * Core GWFA routine
+             .            */
+   203,883,634 ( 0.14%)  KHASHL_INIT(KH_LOCAL, gwf_set64_t, gwf_set64, uint64_t, kh_hash_dummy, kh_eq_generic)
+       608,554 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:kfree (21,406x)
+       338,910 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:kcalloc (5,135x)
+       812,818 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:krealloc (6,001x)
+       196,731 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:kmalloc (6,001x)
+             .           
+             .           typedef struct {
+             .           	void *km;
+             .           	gwf_set64_t *ha; // hash table for adjacency
+             .           	gwf_map64_t *ht; // hash table for traceback
+             .           	gwf_intv_v intv;
+             .           	gwf_intv_v tmp, swap;
+             .           	gwf_diag_v ooo;
+             .           	gwf_trace_v t;
+             .           } gwf_edbuf_t;
+             .           
+             .           // remove diagonals not on the wavefront
+             .           static int32_t gwf_dedup(gwf_edbuf_t *buf, int32_t n_a, gwf_diag_t *a)
+             .           {
+       844,265 ( 0.00%)  	if (buf->intv.n + buf->tmp.n > 0) {
+       337,706 ( 0.00%)  		if (!gwf_intv_is_sorted(buf->tmp.n, buf->tmp.a))
+       325,898 ( 0.00%)  			radix_sort_gwf_intv(buf->tmp.a, buf->tmp.a + buf->tmp.n);
+     1,117,959 ( 0.00%)  		kv_copy(gwf_intv_t, buf->km, buf->swap, buf->intv);
+       480,629 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:krealloc (3,883x)
+     1,124,668 ( 0.00%)  		kv_resize(gwf_intv_t, buf->km, buf->intv, buf->intv.n + buf->tmp.n);
+       847,596 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:krealloc (4,462x)
+       679,874 ( 0.00%)  		buf->intv.n = gwf_intv_merge2(buf->intv.a, buf->swap.n, buf->swap.a, buf->tmp.n, buf->tmp.a);
+             .           	}
+             .           	n_a = gwf_diag_dedup(n_a, a, buf->km, &buf->ooo);
+     1,013,118 ( 0.00%)  	if (buf->intv.n > 0)
+       337,706 ( 0.00%)  		n_a = gwf_mixed_dedup(n_a, a, buf->intv.n, buf->intv.a);
+             .           	return n_a;
+             .           }
+             .           
+             .           // remove diagonals that lag far behind the furthest wavefront
+             .           static int32_t gwf_prune(int32_t n_a, gwf_diag_t *a, uint32_t max_lag)
+             .           {
+             .           	int32_t i, j;
+             .           	uint32_t max_x = 0;
+-- line 294 ----------------------------------------
+-- line 299 ----------------------------------------
+             .           		if ((a[i].xo>>1) + max_lag >= max_x)
+             .           			a[j++] = a[i];
+             .           	return j;
+             .           }
+             .           
+             .           // reach the wavefront
+             .           static inline int32_t gwf_extend1(int32_t d, int32_t k, int32_t vl, const char *ts, int32_t ql, const char *qs)
+             .           {
+ 4,347,114,695 ( 3.06%)  	int32_t max_k = (ql - d < vl? ql - d : vl) - 1;
+ 2,608,268,817 ( 1.84%)  	const char *ts_ = ts + 1, *qs_ = qs + d + 1;
+             .           #if 0
+             .           	// int32_t i = k + d; while (k + 1 < g->len[v] && i + 1 < ql && g->seq[v][k+1] == q[i+1]) ++k, ++i;
+             .           	while (k < max_k && *(ts_ + k) == *(qs_ + k))
+             .           		++k;
+             .           #else
+             .           	uint64_t cmp = 0;
+10,368,772,653 ( 7.30%)  	while (k + 7 < max_k) {
+   860,855,249 ( 0.61%)  		uint64_t x = *(uint64_t*)(ts_ + k); // warning: unaligned memory access
+ 1,721,710,498 ( 1.21%)  		uint64_t y = *(uint64_t*)(qs_ + k);
+   860,660,277 ( 0.61%)  		cmp = x ^ y;
+ 1,721,905,470 ( 1.21%)  		if (cmp == 0) k += 8;
+             .           		else break;
+             .           	}
+             .           	if (cmp)
+ 2,582,341,917 ( 1.82%)  		k += __builtin_ctzl(cmp) >> 3; // on x86, this is done via the BSR instruction: https://www.felixcloutier.com/x86/bsr
+             .           	else if (k + 7 >= max_k)
+    50,388,390 ( 0.04%)  		while (k < max_k && *(ts_ + k) == *(qs_ + k)) // use this for generic CPUs. It is slightly faster than the unoptimized version
+     1,092,054 ( 0.00%)  			++k;
+             .           #endif
+             .           	return k;
+             .           }
+             .           
+             .           // This is essentially Landau-Vishkin for linear sequences. The function speeds up alignment to long vertices. Not really necessary.
+             .           static void gwf_ed_extend_batch(void *km, const gwf_graph_t *g, int32_t ql, const char *q, int32_t n, gwf_diag_t *a, gwf_diag_v *B,
+             .           								kdq_t(gwf_diag_t) *A, gwf_intv_v *tmp_intv)
+             .           {
+             .           	int32_t j, m;
+     7,314,972 ( 0.01%)  	int32_t v = a->vd>>32;
+    18,287,430 ( 0.01%)  	int32_t vl = g->len[v];
+     7,314,972 ( 0.01%)  	const char *ts = g->seq[v];
+             .           	gwf_diag_t *b;
+             .           
+             .           	// wfa_extend
+ 1,776,333,966 ( 1.25%)  	for (j = 0; j < n; ++j) {
+             .           		int32_t k;
+ 4,320,137,877 ( 3.04%)  		k = gwf_extend1((int32_t)a[j].vd - GWF_DIAG_SHIFT, a[j].k, vl, ts, ql, q);
+ 3,464,888,268 ( 2.44%)  		a[j].xo += (k - a[j].k) << 2;
+   866,222,067 ( 0.61%)  		a[j].k = k;
+             .           	}
+             .           
+             .           	// wfa_next
+    25,725,642 ( 0.02%)  	kv_resize(gwf_diag_t, km, *B, B->n + n + 2);
+       662,415 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:krealloc (5,135x)
+    14,629,944 ( 0.01%)  	b = &B->a[B->n];
+     7,325,242 ( 0.01%)  	b[0].vd = a[0].vd - 1;
+    10,972,458 ( 0.01%)  	b[0].xo = a[0].xo + 2; // 2 == 1<<1
+    10,972,458 ( 0.01%)  	b[0].k = a[0].k + 1;
+     7,314,972 ( 0.01%)  	b[0].t = a[0].t;
+     7,314,972 ( 0.01%)  	b[1].vd = a[0].vd;
+    30,577,470 ( 0.02%)  	b[1].xo =  n == 1 || a[0].k > a[1].k? a[0].xo + 4 : a[1].xo + 2;
+     7,314,972 ( 0.01%)  	b[1].t  =  n == 1 || a[0].k > a[1].k? a[0].t : a[1].t;
+     8,453,505 ( 0.01%)  	b[1].k  = (n == 1 || a[0].k > a[1].k? a[0].k : a[1].k) + 1;
+ 3,459,426,414 ( 2.44%)  	for (j = 1; j < n - 1; ++j) {
+ 1,719,374,126 ( 1.21%)  		uint32_t x = a[j-1].xo + 2;
+ 1,719,374,126 ( 1.21%)  		int32_t k = a[j-1].k, t = a[j-1].t;
+ 4,746,616,472 ( 3.34%)  		x = k > a[j].k + 1? x : a[j].xo + 4;
+   653,934,110 ( 0.46%)  		t = k > a[j].k + 1? t : a[j].t;
+ 1,719,374,126 ( 1.21%)  		k = k > a[j].k + 1? k : a[j].k + 1;
+ 4,210,856,134 ( 2.97%)  		x = k > a[j+1].k + 1? x : a[j+1].xo + 2;
+   386,053,941 ( 0.27%)  		t = k > a[j+1].k + 1? t : a[j+1].t;
+ 1,719,374,126 ( 1.21%)  		k = k > a[j+1].k + 1? k : a[j+1].k + 1;
+ 4,298,435,315 ( 3.03%)  		b[j+1].vd = a[j].vd, b[j+1].k = k, b[j+1].xo = x, b[j+1].t = t;
+             .           	}
+     7,314,972 ( 0.01%)  	if (n >= 2) {
+    19,605,012 ( 0.01%)  		b[n].vd = a[n-1].vd;
+    25,897,662 ( 0.02%)  		b[n].xo = a[n-2].k > a[n-1].k + 1? a[n-2].xo + 2 : a[n-1].xo + 4;
+     6,726,054 ( 0.00%)  		b[n].t  = a[n-2].k > a[n-1].k + 1? a[n-2].t : a[n-1].t;
+     8,632,554 ( 0.01%)  		b[n].k  = a[n-2].k > a[n-1].k + 1? a[n-2].k : a[n-1].k + 1;
+             .           	}
+    14,629,944 ( 0.01%)  	b[n+1].vd = a[n-1].vd + 1;
+    10,972,458 ( 0.01%)  	b[n+1].xo = a[n-1].xo + 2;
+     7,314,972 ( 0.01%)  	b[n+1].t  = a[n-1].t;
+     7,314,972 ( 0.01%)  	b[n+1].k  = a[n-1].k;
+             .           
+             .           	// drop out-of-bound cells
+ 2,646,993,487 ( 1.86%)  	for (j = 0; j < n; ++j) {
+             .           		gwf_diag_t *p = &a[j];
+ 6,101,526,620 ( 4.30%)  		if (p->k == vl - 1 || (int32_t)p->vd - GWF_DIAG_SHIFT + p->k == ql - 1)
+    16,868,306 ( 0.01%)  			p->xo |= 1, *kdq_pushp(gwf_diag_t, A) = *p;
+    72,292,740 ( 0.05%)  => algorithms/gwfa/gwf-ed.c:kdq_pushp_gwf_diag_t (2,409,758x)
+             .           	}
+ 3,497,805,642 ( 2.46%)  	for (j = 0, m = 0; j < n + 2; ++j) {
+             .           		gwf_diag_t *p = &b[j];
+   873,537,039 ( 0.62%)  		int32_t d = (int32_t)p->vd - GWF_DIAG_SHIFT;
+ 5,241,184,190 ( 3.69%)  		if (d + p->k < ql && p->k < vl) {
+ 7,825,651,830 ( 5.51%)  			b[m++] = *p;
+     8,040,338 ( 0.01%)  		} else if (p->k == vl) {
+             .           			gwf_intv_t *q;
+    32,076,772 ( 0.02%)  			kv_pushp(gwf_intv_t, km, *tmp_intv, &q);
+       487,229 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:krealloc (4,320x)
+    16,004,668 ( 0.01%)  			q->vd0 = gwf_gen_vd(v, d), q->vd1 = q->vd0 + 1;
+             .           		}
+             .           	}
+    10,972,458 ( 0.01%)  	B->n += m;
+     3,657,486 ( 0.00%)  }
+             .           
+             .           // wfa_extend and wfa_next combined
+             .           static gwf_diag_t *gwf_ed_extend(gwf_edbuf_t *buf, const gwf_graph_t *g, int32_t ql, const char *q, int32_t v1, uint32_t max_lag, int32_t traceback,
+             .           								 int32_t *end_v, int32_t *end_off, int32_t *end_tb, int32_t *n_a_, gwf_diag_t *a)
+             .           {
+             .           	int32_t i, x, n = *n_a_, do_dedup = 1;
+             .           	kdq_t(gwf_diag_t) *A;
+     3,971,042 ( 0.00%)  	gwf_diag_v B = {0,0,0};
+             .           	gwf_diag_t *b;
+             .           
+     3,971,042 ( 0.00%)  	*end_v = *end_off = *end_tb = -1;
+     1,985,521 ( 0.00%)  	buf->tmp.n = 0;
+     1,985,521 ( 0.00%)  	gwf_set64_clear(buf->ha); // hash table $h to avoid visiting a vertex twice
+    75,238,111 ( 0.05%)  	for (i = 0, x = 1; i < 32; ++i, x <<= 1)
+    40,597,337 ( 0.03%)  		if (x >= n) break;
+             .           	if (i < 4) i = 4;
+     1,985,521 ( 0.00%)  	A = kdq_init2(gwf_diag_t, buf->km, i); // $A is a queue
+    55,594,588 ( 0.04%)  	kv_resize(gwf_diag_t, buf->km, B, n * 2);
+   105,698,671 ( 0.07%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:krealloc (1,985,521x)
+             .           #if 0 // unoptimized version without calling gwf_ed_extend_batch() at all. The final result will be the same.
+             .           	A->count = n;
+             .           	memcpy(A->a, a, n * sizeof(*a));
+             .           #else // optimized for long vertices.
+ 4,333,095,856 ( 3.05%)  	for (x = 0, i = 1; i <= n; ++i) {
+ 7,784,085,477 ( 5.48%)  		if (i == n || a[i].vd != a[i-1].vd + 1) {
+    29,259,888 ( 0.02%)  			gwf_ed_extend_batch(buf->km, g, ql, q, i - x, &a[x], &B, A, &buf->tmp);
+             .           			x = i;
+             .           		}
+             .           	}
+     5,956,563 ( 0.00%)  	if (kdq_size(A) == 0) do_dedup = 0;
+             .           #endif
+     5,956,563 ( 0.00%)  	kfree(buf->km, a); // $a is not used as it has been copied to $A
+    91,525,534 ( 0.06%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:kfree (1,985,521x)
+             .           
+    18,908,364 ( 0.01%)  	while (kdq_size(A)) {
+             .           		gwf_diag_t t;
+             .           		uint32_t x0;
+             .           		int32_t ooo, v, d, k, i, vl;
+             .           
+    19,308,637 ( 0.01%)  		t = *kdq_shift(gwf_diag_t, A);
+    19,205,232 ( 0.01%)  		ooo = t.xo&1, v = t.vd >> 32; // vertex
+     6,401,744 ( 0.00%)  		d = (int32_t)t.vd - GWF_DIAG_SHIFT; // diagonal
+             .           		k = t.k; // wavefront position on the vertex
+    12,803,488 ( 0.01%)  		vl = g->len[v]; // $vl is the vertex length
+     6,401,744 ( 0.00%)  		k = gwf_extend1(d, k, vl, g->seq[v], ql, q);
+     6,401,744 ( 0.00%)  		i = k + d; // query position
+    16,004,360 ( 0.01%)  		x0 = (t.xo >> 1) + ((k - t.k) << 1); // current anti diagonal
+             .           
+    16,803,146 ( 0.01%)  		if (k + 1 < vl && i + 1 < ql) { // the most common case: the wavefront is in the middle
+             .           			int32_t push1 = 1, push2 = 1;
+     2,759,953 ( 0.00%)  			if (B.n >= 2) push1 = gwf_diag_update(&B.a[B.n - 2], v, d-1, k+1, x0 + 1, ooo, t.t);
+     1,183,789 ( 0.00%)  			if (B.n >= 1) push2 = gwf_diag_update(&B.a[B.n - 1], v, d,   k+1, x0 + 2, ooo, t.t);
+     1,251,483 ( 0.00%)  			if (push1)          gwf_diag_push(buf->km, &B, v, d-1, k+1, x0 + 1, 1, t.t);
+             5 ( 0.00%)  			if (push2 || push1) gwf_diag_push(buf->km, &B, v, d,   k+1, x0 + 2, 1, t.t);
+             2 ( 0.00%)  			gwf_diag_push(buf->km, &B, v, d+1, k, x0 + 1, ooo, t.t);
+     8,404,437 ( 0.01%)  		} else if (i + 1 < ql) { // k + 1 == g->len[v]; reaching the end of the vertex but not the end of query
+    25,213,122 ( 0.02%)  			int32_t ov = g->aux[v]>>32, nv = (int32_t)g->aux[v], j, n_ext = 0, tw = -1;
+             .           			gwf_intv_t *p;
+    22,464,272 ( 0.02%)  			kv_pushp(gwf_intv_t, buf->km, buf->tmp, &p);
+       910,196 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:krealloc (4,384x)
+     8,404,374 ( 0.01%)  			p->vd0 = gwf_gen_vd(v, d), p->vd1 = p->vd0 + 1;
+    28,014,580 ( 0.02%)  			if (traceback) tw = gwf_trace_push(buf->km, &buf->t, v, t.t, buf->ht);
+   253,535,279 ( 0.18%)  => algorithms/gwfa/gwf-ed.c:gwf_trace_push (2,801,458x)
+    19,608,816 ( 0.01%)  			for (j = 0; j < nv; ++j) { // traverse $v's neighbors
+    11,204,442 ( 0.01%)  				uint32_t w = (uint32_t)g->arc[ov + j].a; // $w is next to $v
+    11,204,442 ( 0.01%)  				int32_t ol = g->arc[ov + j].o;
+             .           				int absent;
+    43,887,192 ( 0.03%)  				gwf_set64_put(buf->ha, (uint64_t)w<<32 | (i + 1), &absent); // test if ($w,$i) has been visited
+    31,436,210 ( 0.02%)  				if (q[i + 1] == g->seq[w][ol]) { // can be extended to the next vertex without a mismatch
+     5,159,297 ( 0.00%)  					++n_ext;
+             .           					if (absent) {
+             .           						gwf_diag_t *p;
+     1,610,130 ( 0.00%)  						p = kdq_pushp(gwf_diag_t, A);
+    24,151,950 ( 0.02%)  => algorithms/gwfa/gwf-ed.c:kdq_pushp_gwf_diag_t (805,065x)
+     9,571,605 ( 0.01%)  						p->vd = gwf_gen_vd(w, i+1-ol), p->k = ol, p->xo = (x0+2)<<1 | 1, p->t = tw;
+             .           					}
+             .           				} else if (absent) {
+     7,156,410 ( 0.01%)  					gwf_diag_push(buf->km, &B, w, i-ol,   ol, x0 + 1, 1, tw);
+             .           					gwf_diag_push(buf->km, &B, w, i+1-ol, ol, x0 + 2, 1, tw);
+             .           				}
+             .           			}
+    19,610,206 ( 0.01%)  			if (nv == 0 || n_ext != nv) // add an insertion to the target; this *might* cause a duplicate in corner cases
+     4,579,870 ( 0.00%)  				gwf_diag_push(buf->km, &B, v, d+1, k, x0 + 1, 1, t.t);
+        15,405 ( 0.00%)  		} else if (v1 < 0 || (v == v1 && k + 1 == vl)) { // i + 1 == ql
+        20,540 ( 0.00%)  			*end_v = v, *end_off = k, *end_tb = t.t, *n_a_ = 0;
+             .           			kdq_destroy(gwf_diag_t, A);
+        15,405 ( 0.00%)  			kfree(buf->km, B.a);
+       320,930 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:kfree (5,135x)
+             .           			return 0;
+             .           		} else if (k + 1 < vl) { // i + 1 == ql; reaching the end of the query but not the end of the vertex
+             .           			gwf_diag_push(buf->km, &B, v, d-1, k+1, x0 + 1, ooo, t.t); // add an deletion; this *might* case a duplicate in corner cases
+             .           		} else if (v != v1) { // i + 1 == ql && k + 1 == g->len[v]; not reaching the last vertex $v1
+             .           			int32_t ov = g->aux[v]>>32, nv = (int32_t)g->aux[v], j, tw = -1;
+             .           			if (traceback) tw = gwf_trace_push(buf->km, &buf->t, v, t.t, buf->ht);
+             .           			for (j = 0; j < nv; ++j) {
+             .           				uint32_t w = (uint32_t)g->arc[ov + j].a;
+             .           				int32_t ol = g->arc[ov + j].o;
+             .           				gwf_diag_push(buf->km, &B, w, i-ol, ol, x0 + 1, 1, tw); // deleting the first base on the next vertex
+             .           			}
+             .           		} else assert(0); // should never come here
+             .           	}
+             .           
+             .           	kdq_destroy(gwf_diag_t, A);
+     1,980,386 ( 0.00%)  	*n_a_ = n = B.n, b = B.a;
+             .           
+     3,960,772 ( 0.00%)  	if (do_dedup) *n_a_ = n = gwf_dedup(buf, n, b);
+     5,941,158 ( 0.00%)  	if (max_lag > 0) *n_a_ = n = gwf_prune(n, b, max_lag);
+             .           	return b;
+             .           }
+             .           
+             .           static void gwf_traceback(gwf_edbuf_t *buf, int32_t end_v, int32_t end_tb, gwf_path_t *path)
+             .           {
+        10,270 ( 0.00%)  	int32_t i = end_tb, n = 1;
+        62,980 ( 0.00%)  	while (i >= 0 && buf->t.a[i].v >= 0)
+         7,300 ( 0.00%)  		++n, i = buf->t.a[i].pre;
+        41,080 ( 0.00%)  	KMALLOC(buf->km, path->v, n);
+       164,662 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:kmalloc (5,135x)
+             .           	i = end_tb, n = 0;
+         5,135 ( 0.00%)  	path->v[n++] = end_v;
+        69,380 ( 0.00%)  	while (i >= 0 && buf->t.a[i].v >= 0)
+        10,950 ( 0.00%)  		path->v[n++] = buf->t.a[i].v, i = buf->t.a[i].pre;
+        10,270 ( 0.00%)  	path->nv = n;
+        30,340 ( 0.00%)  	for (i = 0; i < path->nv>>1; ++i)
+        24,860 ( 0.00%)  		n = path->v[i], path->v[i] = path->v[path->nv - 1 - i], path->v[path->nv - 1 - i] = n;
+             .           }
+             .           
+             .           int32_t gwf_ed(void *km, const gwf_graph_t *g, int32_t ql, const char *q, int32_t v0, int32_t v1, uint32_t max_lag, int32_t traceback, gwf_path_t *path)
+     6,059,263 ( 0.00%)  {
+             .           	int32_t s = 0, n_a = 1, end_tb;
+             .           	gwf_diag_t *a;
+             .           	gwf_edbuf_t buf;
+             .           
+             .           	memset(&buf, 0, sizeof(buf));
+         5,135 ( 0.00%)  	buf.km = km;
+         5,135 ( 0.00%)  	buf.ha = gwf_set64_init2(km);
+         5,135 ( 0.00%)  	buf.ht = gwf_map64_init2(km);
+       143,780 ( 0.00%)  	kv_resize(gwf_trace_t, km, buf.t, g->n_vtx + 16);
+       272,155 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:krealloc (5,135x)
+        30,810 ( 0.00%)  	KCALLOC(km, a, 1);
+       338,910 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:kcalloc (5,135x)
+        10,270 ( 0.00%)  	a[0].vd = gwf_gen_vd(v0, 0), a[0].k = -1, a[0].xo = 0; // the initial state
+        61,620 ( 0.00%)  	if (traceback) a[0].t = gwf_trace_push(km, &buf.t, -1, -1, buf.ht);
+     1,222,130 ( 0.00%)  => algorithms/gwfa/gwf-ed.c:gwf_trace_push (5,135x)
+     3,623,066 ( 0.00%)  	while (n_a > 0) {
+             .           		a = gwf_ed_extend(&buf, g, ql, q, v1, max_lag, traceback, &path->end_v, &path->end_off, &end_tb, &n_a, a);
+    15,167,676 ( 0.01%)  		if (path->end_off >= 0 || n_a == 0) break;
+     2,149,239 ( 0.00%)  		++s;
+             .           #ifdef GWF_DEBUG
+             .           		// printf("[%s] dist=%d, n=%d, n_intv=%ld, n_tb=%ld\n", __func__, s, n_a, buf.intv.n, buf.t.n);
+             .           #endif
+             .           	}
+        25,675 ( 0.00%)  	if (traceback) gwf_traceback(&buf, path->end_v, end_tb, path);
+         5,135 ( 0.00%)  	gwf_set64_destroy(buf.ha);
+         5,135 ( 0.00%)  	gwf_map64_destroy(buf.ht);
+        66,755 ( 0.00%)  	kfree(km, buf.intv.a); kfree(km, buf.tmp.a); kfree(km, buf.swap.a); kfree(km, buf.t.a);
+       546,521 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:kfree (20,540x)
+        35,945 ( 0.00%)  	path->s = path->end_v >= 0? s : -1;
+             .           	return path->s; // end_v < 0 could happen if v0 can't reach v1
+        61,620 ( 0.00%)  }
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: algorithms/gwfa/kalloc.c
+--------------------------------------------------------------------------------
+Ir                  
+
+-- line 35 ----------------------------------------
+         .           	abort();
+         .           }
+         .           
+         .           void *km_init2(void *km_par, size_t min_core_size)
+         .           {
+         .           	kmem_t *km;
+         .           	km = (kmem_t*)kcalloc(km_par, 1, sizeof(kmem_t));
+         .           	km->par = km_par;
+     5,135 ( 0.00%)  	km->min_core_size = min_core_size > 0? min_core_size : 0x80000;
+         .           	return (void*)km;
+         .           }
+         .           
+    20,540 ( 0.00%)  void *km_init(void) { return km_init2(0, 0); }
+         .           
+         .           void km_destroy(void *_km)
+    25,675 ( 0.00%)  {
+         .           	kmem_t *km = (kmem_t*)_km;
+         .           	void *km_par;
+         .           	header_t *p, *q;
+    10,270 ( 0.00%)  	if (km == NULL) return;
+     5,135 ( 0.00%)  	km_par = km->par;
+    30,810 ( 0.00%)  	for (p = km->core_head; p != NULL;) {
+    10,270 ( 0.00%)  		q = p->ptr;
+    10,270 ( 0.00%)  		kfree(km_par, p);
+   385,125 ( 0.00%)  => algorithms/gwfa/kalloc.c:kfree (5,135x)
+         .           		p = q;
+         .           	}
+    15,405 ( 0.00%)  	kfree(km_par, km);
+   657,218 ( 0.00%)  => algorithms/gwfa/kalloc.c:kfree (5,135x)
+    15,405 ( 0.00%)  }
+         .           
+         .           static header_t *morecore(kmem_t *km, size_t nu)
+         .           {
+         .           	header_t *q;
+         .           	size_t bytes, *p;
+    30,810 ( 0.00%)  	nu = (nu + 1 + (km->min_core_size - 1)) / km->min_core_size * km->min_core_size; /* the first +1 for core header */
+    10,270 ( 0.00%)  	bytes = nu * sizeof(header_t);
+    15,405 ( 0.00%)  	q = (header_t*)kmalloc(km->par, bytes);
+ 1,639,982 ( 0.00%)  => algorithms/gwfa/kalloc.c:kmalloc'2 (5,135x)
+    10,270 ( 0.00%)  	if (!q) panic("[morecore] insufficient memory");
+    20,540 ( 0.00%)  	q->ptr = km->core_head, q->size = nu, km->core_head = q;
+         .           	p = (size_t*)(q + 1);
+    10,270 ( 0.00%)  	*p = nu - 1; /* the size of the free block; -1 because the first unit is used for the core header */
+    15,405 ( 0.00%)  	kfree(km, p + 1); /* initialize the new "core"; NB: the core header is not looped. */
+   195,130 ( 0.00%)  => algorithms/gwfa/kalloc.c:kfree (5,135x)
+     5,135 ( 0.00%)  	return km->loop_head;
+         .           }
+         .           
+         .           void kfree(void *_km, void *ap) /* kfree() also adds a new core to the circular list */
+12,107,706 ( 0.01%)  {
+         .           	header_t *p, *q;
+         .           	kmem_t *km = (kmem_t*)_km;
+         .           	
+12,142,490 ( 0.01%)  	if (!ap) return;
+12,093,462 ( 0.01%)  	if (km == NULL) {
+    20,540 ( 0.00%)  		free(ap);
+   970,453 ( 0.00%)  => ???:0x000000000010cc30 (10,270x)
+         .           		return;
+         .           	}
+ 6,036,461 ( 0.00%)  	p = (header_t*)((size_t*)ap - 1);
+ 6,036,461 ( 0.00%)  	p->size = *((size_t*)ap - 1);
+         .           	/* Find the pointer that points to the block to be freed. The following loop can stop on two conditions:
+         .           	 *
+         .           	 * a) "p>q && p<q->ptr": @------#++++++++#+++++++@-------    @---------------#+++++++@-------
+         .           	 *    (can also be in    |      |                |        -> |                       |
+         .           	 *     two cores)        q      p           q->ptr           q                  q->ptr
+         .           	 *
+         .           	 *                       @--------    #+++++++++@--------    @--------    @------------------
+         .           	 *                       |            |         |         -> |            |
+-- line 98 ----------------------------------------
+-- line 101 ----------------------------------------
+         .           	 * b) "q>=q->ptr && (p>q || p<q->ptr)":  @-------#+++++   @--------#+++++++     @-------#+++++   @----------------
+         .           	 *                                       |                |        |         -> |                |
+         .           	 *                                  q->ptr                q        p       q->ptr                q
+         .           	 *
+         .           	 *                                       #+++++++@-----   #++++++++@-------     @-------------   #++++++++@-------
+         .           	 *                                       |       |                 |         -> |                         |
+         .           	 *                                       p  q->ptr                 q       q->ptr                         q
+         .           	 */
+92,160,404 ( 0.06%)  	for (q = km->loop_head; !(p > q && p < q->ptr); q = q->ptr)
+21,616,102 ( 0.02%)  		if (q >= q->ptr && (p > q || p < q->ptr)) break;
+30,182,305 ( 0.02%)  	if (p + p->size == q->ptr) { /* two adjacent blocks, merge p and q->ptr (the 2nd and 4th cases) */
+ 7,732,342 ( 0.01%)  		p->size += q->ptr->size;
+13,768,803 ( 0.01%)  		p->ptr = q->ptr->ptr;
+ 2,299,058 ( 0.00%)  	} else if (p + p->size > q->ptr && q->ptr >= p) {
+         .           		panic("[kfree] The end of the allocated block enters a free block.");
+         .           	} else p->ptr = q->ptr; /* backup q->ptr */
+         .           
+36,218,766 ( 0.03%)  	if (q + q->size == p) { /* two adjacent blocks, merge q and p (the other two cases) */
+ 4,296,714 ( 0.00%)  		q->size += p->size;
+ 2,148,357 ( 0.00%)  		q->ptr = p->ptr;
+ 2,148,357 ( 0.00%)  		km->loop_head = q;
+ 3,888,104 ( 0.00%)  	} else if (q + q->size > p && p >= q) {
+         .           		panic("[kfree] The end of a free block enters the allocated block.");
+ 7,776,208 ( 0.01%)  	} else km->loop_head = p, q->ptr = p; /* in two cores, cannot be merged; create a new block in the list */
+12,097,436 ( 0.01%)  }
+         .           
+         .           void *kmalloc(void *_km, size_t n_bytes)
+30,215,315 ( 0.02%)  {
+         .           	kmem_t *km = (kmem_t*)_km;
+         .           	size_t n_units;
+         .           	header_t *p, *q;
+         .           
+12,086,126 ( 0.01%)  	if (n_bytes == 0) return 0;
+12,096,396 ( 0.01%)  	if (km == NULL) return malloc(n_bytes);
+ 1,568,092 ( 0.00%)  => ???:0x000000000010cce0 (5,135x)
+12,075,856 ( 0.01%)  	n_units = (n_bytes + sizeof(size_t) + sizeof(header_t) - 1) / sizeof(header_t); /* header+n_bytes requires at least this number of units */
+         .           
+18,113,784 ( 0.01%)  	if (!(q = km->loop_head)) /* the first time when kmalloc() is called, intialize it */
+    25,675 ( 0.00%)  		q = km->loop_head = km->base.ptr = &km->base;
+ 9,895,882 ( 0.01%)  	for (p = q->ptr;; q = p, p = p->ptr) { /* search for a suitable block */
+33,784,399 ( 0.02%)  		if (p->size >= n_units) { /* p->size if the size of current block. This line means the current block is large enough. */
+12,107,134 ( 0.01%)  			if (p->size == n_units) q->ptr = p->ptr; /* no need to split the block */
+         .           			else { /* split the block. NB: memory is allocated at the end of the block! */
+12,055,004 ( 0.01%)  				p->size -= n_units; /* reduce the size of the free block */
+12,055,004 ( 0.01%)  				p += p->size; /* p points to the allocated block */
+ 6,027,502 ( 0.00%)  				*(size_t*)p = n_units; /* set the size */
+         .           			}
+ 6,037,928 ( 0.00%)  			km->loop_head = q; /* set the end of chain */
+ 6,037,928 ( 0.00%)  			return (size_t*)p + 1;
+         .           		}
+11,589,267 ( 0.01%)  		if (p == km->loop_head) { /* then ask for more "cores" */
+    10,270 ( 0.00%)  			if ((p = morecore(km, n_units)) == 0) return 0;
+         .           		}
+         .           	}
+24,167,117 ( 0.02%)  }
+         .           
+         .           void *kcalloc(void *_km, size_t count, size_t size)
+ 6,002,778 ( 0.00%)  {
+         .           	kmem_t *km = (kmem_t*)_km;
+         .           	void *p;
+ 8,003,704 ( 0.01%)  	if (size == 0 || count == 0) return 0;
+ 4,017,257 ( 0.00%)  	if (km == NULL) return calloc(count, size);
+ 1,224,799 ( 0.00%)  => ???:0x000000000010ca30 (5,135x)
+ 6,002,778 ( 0.00%)  	p = kmalloc(km, count * size);
+87,800,053 ( 0.06%)  => algorithms/gwfa/kalloc.c:kmalloc (2,000,926x)
+         .           	memset(p, 0, count * size);
+         .           	return p;
+ 6,002,778 ( 0.00%)  }
+         .           
+         .           void *krealloc(void *_km, void *ap, size_t n_bytes) // TODO: this can be made more efficient in principle
+16,227,248 ( 0.01%)  {
+         .           	kmem_t *km = (kmem_t*)_km;
+         .           	size_t cap, *p, *q;
+         .           
+ 6,085,218 ( 0.00%)  	if (n_bytes == 0) {
+         .           		kfree(km, ap); return 0;
+         .           	}
+ 4,056,812 ( 0.00%)  	if (km == NULL) return realloc(ap, n_bytes);
+ 6,060,366 ( 0.00%)  	if (ap == NULL) return kmalloc(km, n_bytes);
+64,606,732 ( 0.05%)  => algorithms/gwfa/kalloc.c:kmalloc (2,003,554x)
+         .           	p = (size_t*)ap - 1;
+    99,408 ( 0.00%)  	cap = (*p) * sizeof(header_t) - sizeof(size_t);
+    49,704 ( 0.00%)  	if (cap >= n_bytes) return ap; /* TODO: this prevents shrinking */
+    49,704 ( 0.00%)  	q = (size_t*)kmalloc(km, n_bytes);
+   882,170 ( 0.00%)  => algorithms/gwfa/kalloc.c:kmalloc (24,852x)
+         .           	memcpy(q, ap, cap);
+    74,556 ( 0.00%)  	kfree(km, ap);
+ 1,248,525 ( 0.00%)  => algorithms/gwfa/kalloc.c:kfree (24,852x)
+         .           	return q;
+10,191,734 ( 0.01%)  }
+         .           
+         .           void km_stat(const void *_km, km_stat_t *s)
+         .           {
+         .           	kmem_t *km = (kmem_t*)_km;
+         .           	header_t *p;
+         .           	memset(s, 0, sizeof(km_stat_t));
+         .           	if (km == NULL || km->loop_head == NULL) return;
+         .           	for (p = km->loop_head;; p = p->ptr) {
+-- line 192 ----------------------------------------
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: algorithms/gwfa.cpp
+--------------------------------------------------------------------------------
+Ir                  
+
+-- line 28 ----------------------------------------
+         .           
+         .           using namespace std;
+         .           
+         .           
+         .           // Constructor for parameter struct
+         .           projectA_gwfa_parameters_t::projectA_gwfa_parameters_t(void* km, gwf_graph_t* graph, int32_t ql, const char* q, int32_t v0,
+         .                                                                   int32_t v1, uint32_t max_lag, int32_t traceback, 
+         .                                                                   projectA_hash_graph_t* projectA_hash_graph) :
+    35,945 ( 0.00%)                                                          km(km), graph(graph), ql(ql), q(q), v0(v0), v1(v1), 
+    10,270 ( 0.00%)                                                          max_lag(max_lag), traceback(traceback),
+     5,135 ( 0.00%)                                                          projectA_hash_graph(projectA_hash_graph) {}
+         .           
+         .           
+         .           // Function to gree gwf graph
+    25,675 ( 0.00%)  void gwf_free(gwf_graph_t *g) {
+         .           	int32_t i;
+   182,221 ( 0.00%)  	for (i = 0; i < g->n_vtx; ++i) free(g->seq[i]);
+ 3,655,263 ( 0.00%)  => ???:0x000000000010cc30 (26,091x)
+    51,350 ( 0.00%)  	free(g->len); free(g->seq); free(g->arc); free(g->src); free(g);
+ 3,164,172 ( 0.00%)  => ???:0x000000000010cc30 (25,675x)
+         .               g = nullptr;
+    15,405 ( 0.00%)  }
+         .           
+         .           
+         .           // Function to transform hash graph to gwf graph
+    66,755 ( 0.00%)  gwf_graph_t* projectA_hash_graph_to_gwf_graph(projectA_hash_graph_t* in_graph) {
+         .           
+         .               // Map to get node id's for edges
+         .               unordered_map<projectA_node_t*, int32_t> node_map;
+         .           
+         .               // Initialize graph
+         .               gwf_graph_t* graph
+    20,540 ( 0.00%)      GFA_CALLOC(graph, 1);
+ 1,162,287 ( 0.00%)  => ???:0x000000000010ca30 (5,135x)
+    10,270 ( 0.00%)      graph->n_vtx = in_graph->n_nodes;
+    10,270 ( 0.00%)      graph->n_arc = in_graph->n_edges;
+         .           
+         .               // Allocate memory for graph struct fields
+    20,540 ( 0.00%)      GFA_MALLOC(graph->len, graph->n_vtx);
+   329,011 ( 0.00%)  => ???:0x000000000010cce0 (5,135x)
+    15,405 ( 0.00%)      GFA_MALLOC(graph->src, graph->n_vtx);
+   338,581 ( 0.00%)  => ???:0x000000000010cce0 (5,135x)
+    15,405 ( 0.00%)      GFA_MALLOC(graph->seq, graph->n_vtx);
+   490,098 ( 0.00%)  => ???:0x000000000010cce0 (5,135x)
+    25,675 ( 0.00%)      GFA_MALLOC(graph->arc, graph->n_arc);
+   914,286 ( 0.00%)  => ???:0x000000000010cce0 (5,135x)
+         .           
+         .               // Iterate over all nodes to create gwf nodes
+         .               int32_t i, k;
+   124,904 ( 0.00%)      for (i = k = 0; i < in_graph->nodes_in_order.size(); ++i) {
+         .                   // Assign local variables
+         .                   auto& node = in_graph->nodes_in_order[i];
+         .                   uint32_t v;
+    52,182 ( 0.00%)          uint32_t len = node->len; // Sequence length
+         .                   uint32_t count_prev = node->prev.size(); // Number of outgoing edges
+         .                   uint32_t edge_origin_id;
+         .           
+         .                   // Add node to node_map
+    52,182 ( 0.00%)          node_map[node] = i;
+         .           
+         .                   // Assign node length
+    52,182 ( 0.00%)          graph->len[i] = len;
+         .           
+         .                   // Allocate memory for sequence
+   208,728 ( 0.00%)          GFA_MALLOC(graph->seq[i], len + 1);
+ 5,520,953 ( 0.00%)  => ???:0x000000000010cce0 (26,091x)
+         .           
+         .                   // Copy sequence
+41,866,851 ( 0.03%)          for (int32_t j = 0; j < len; ++j) {
+41,762,487 ( 0.03%)              graph->seq[i][j] = node->seq[j];
+         .                   }
+27,867,749 ( 0.02%)          graph->seq[i][len] = 0; // 0 terminated string
+         .           
+         .                   // Iterate over all incoming edges
+   333,599 ( 0.00%)          for (int32_t j = 0; j < count_prev; ++j, ++k) {
+         .                       edge_origin_id = node_map[node->prev[j]];
+   155,544 ( 0.00%)              graph->arc[k].a = (uint64_t)edge_origin_id<<32 | i;
+    25,924 ( 0.00%)              graph->arc[k].o = 0;
+         .                   }
+         .               }
+         .           
+         .               return graph;
+         .           }
+         .           
+         .           
+         .           // Function to convert path to alignment
+    71,890 ( 0.00%)  void projectA_gwfa_path_to_alignment(projectA_hash_graph_t* graph, gwf_path_t* path, projectA_alignment_t* alignment, int32_t score) {
+         .           
+         .               // Copy alignment size and score
+    10,270 ( 0.00%)      alignment->size = path->nv;
+     5,135 ( 0.00%)      alignment->score = score;
+         .           
+         .               // Reserve memory for alignmnet vectors
+    10,270 ( 0.00%)      alignment->nodes.reserve(alignment->size);
+    20,540 ( 0.00%)      alignment->cigar.reserve(alignment->size);
+ 1,419,788 ( 0.00%)  => /usr/include/c++/11/bits/vector.tcc:std::vector<projectA_cigar_t, std::allocator<projectA_cigar_t> >::reserve(unsigned long) (5,135x)
+         .           
+         .               // Iterate over the path
+    46,895 ( 0.00%)      for (int i = 0; i < path->nv; ++i) {
+    17,570 ( 0.00%)          auto& node = path->v[i];
+         .           
+         .                   // Add node to the nodes vector
+    35,140 ( 0.00%)          alignment->nodes.push_back(graph->nodes_in_order[node]->id);
+         .           
+         .                   // Add sequence to referece sequence
+    35,140 ( 0.00%)          alignment->reference = alignment->reference + graph->nodes_in_order[node]->seq;
+         .               }
+    56,485 ( 0.00%)  }
+         .           
+         .           
+         .           // Function to initialize gwfa
+        14 ( 0.00%)  void* projectA_gwfa_init(vector<projectA_alignment_t*>& alignments, int32_t numThreads) {
+         .           
+         .               // Create io vectors for the gwfa algorithm
+         3 ( 0.00%)      projectA_gwfa_io_t* out = new projectA_gwfa_io_t;
+        59 ( 0.00%)  => ???:0x000000000010cb70 (1x)
+         7 ( 0.00%)      for (int i = 0; i < numThreads; ++i) {
+         .                   // Prepare vectors
+         .                   vector<projectA_gwfa_parameters_t> params;
+         .                   vector<projectA_gwfa_path_t> paths;
+         .           
+         .                   // Reserve memory
+         5 ( 0.00%)          params.reserve(alignments.size()/numThreads);
+         3 ( 0.00%)          paths.reserve(alignments.size()/numThreads);
+         .           
+         .                   // Push vectors to I/O struct
+         .                   out->parameters.push_back(params);
+         1 ( 0.00%)          out->paths.push_back(paths);
+         .               }
+         .           
+         .               // Assign size
+         1 ( 0.00%)      out->size =  alignments.size();
+         .           
+         .               // Create the specifications for gwfa.
+         .               int32_t v0 = 0;
+         .               int32_t v1 = -1;
+         .               uint32_t max_lag = 0;
+         .               int32_t traceback = 1;
+         .           
+         .               // Iterate over the input graphs
+         1 ( 0.00%)      int32_t thread_index = 0;
+    15,407 ( 0.00%)      for (auto& itr : alignments) {
+         .                   // Construct gwfa graph
+    20,540 ( 0.00%)          gwf_graph_t* new_gwf_graph = projectA_hash_graph_to_gwf_graph(itr->graph);
+148,701,877 ( 0.10%)  => algorithms/gwfa.cpp:projectA_hash_graph_to_gwf_graph(projectA_hash_graph_t*) (5,135x)
+         .           
+         .                   // Construct parameter entry
+    20,540 ( 0.00%)          projectA_gwfa_parameters_t entry(km_init(), new_gwf_graph, itr->read.size(), itr->read.c_str(), v0, v1, max_lag, traceback, itr->graph);
+ 1,265,879 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:km_init (5,135x)
+         .           
+         .                   // Append entry to parameter vector
+     5,135 ( 0.00%)          out->parameters[thread_index].push_back(entry);
+         .           
+         .                   // Update thread index
+    20,543 ( 0.00%)          thread_index = (thread_index == numThreads - 1) ? 0 : thread_index + 1;
+         .               }
+         .           
+         .               // Cast return value int void pointer
+         .               return static_cast<void*>(out);
+        12 ( 0.00%)  }
+         .           
+         .           
+         .           // Function to calculate a batch in gwfa
+        12 ( 0.00%)  void* projectA_gwfa_calculate_batch(void* ptr, int32_t thread_index) {
+         .           
+         .               // Check if ptr is valid
+         2 ( 0.00%)      if (ptr == nullptr) {
+         .                   cerr << "Error: input is nullptr!\n";
+         .                   exit(1);
+         .               }
+         .           
+         .               // Define and cast local variables
+         .               auto input = static_cast<projectA_gwfa_io_t*>(ptr);
+         1 ( 0.00%)      auto& parameters = input->parameters[thread_index];
+         .               auto& paths = input->paths[thread_index];
+         .           
+         .               // Run gwfa on every set of parameters
+    20,546 ( 0.00%)      for (int32_t i = 0; i < parameters.size(); ++i) {
+         .                   // Create local variables
+         .                   auto& parameter = parameters[i];
+         .                   projectA_gwfa_path_t path;
+         .                   int32_t score;
+         .                   gwf_path_t gwf_path;
+         .           
+         .                   // Run gwfa
+    15,405 ( 0.00%)          gwf_ed_index(parameter.km, parameter.graph);
+ 3,648,134 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/gwf-ed.c:gwf_ed_index (5,135x)
+    66,755 ( 0.00%)          score = gwf_ed(parameter.km, parameter.graph, parameter.ql, parameter.q, parameter.v0, parameter.v1,
+116,378,224,167 (81.96%)  => /home/fzurbonsen/projectA/algorithms/gwfa/gwf-ed.c:gwf_ed (5,135x)
+         .                                   parameter.max_lag, parameter.traceback, &gwf_path);
+         .           
+     5,135 ( 0.00%)          path.score = score;
+    20,540 ( 0.00%)          path.path = gwf_path;
+         .           
+         .                   paths.push_back(path);
+         .               }
+         .               
+         .               // Cast return value into void pointer
+         .               return static_cast<void*>(ptr);
+        12 ( 0.00%)  }
+         .           
+         .           
+         .           // Function to handle post of gwfa
+         8 ( 0.00%)  void projectA_gwfa_post(void* ptr, vector<projectA_alignment_t*>& alignments, int32_t numThreads) {
+         .           
+         .               // Check if ptr is valid
+         2 ( 0.00%)      if (ptr == nullptr) {
+         .                   cerr << "Error: input is nullptr!\n";
+         .                   exit(1);
+         .               }
+         .           
+         .               // Define and cast local variables
+         .               auto input = static_cast<projectA_gwfa_io_t*>(ptr);
+         .               auto& parameters_vec = input->parameters;
+         .               auto& paths_vec = input->paths;
+         .           
+         .               // Iterate over all entries in the paths
+         1 ( 0.00%)      int32_t thread_index = 0;
+         1 ( 0.00%)      int32_t j = 0;
+    15,412 ( 0.00%)      for (int32_t i = 0; i < input->size; ++i) {
+     5,135 ( 0.00%)          auto& paths = paths_vec[thread_index];
+         .                   auto& parameters = parameters_vec[thread_index];
+         .           
+         .                   // Check for out of bounds error 
+    30,810 ( 0.00%)          if (j >= paths.size() || j >= parameters.size()) {
+         .                       cerr << "Error: The index is out of bound!\n";
+         .                       cerr << "index: " << j << "\tin vector of the thread: " << thread_index << endl;
+         .                       cerr << "at value: " << i << endl;
+         .                       exit(1);
+         .                   }
+         .           
+         .                   // Push alignment to alignments vector
+    46,215 ( 0.00%)          projectA_gwfa_path_to_alignment(parameters[j].projectA_hash_graph, &(paths[j].path), alignments[i], paths[j].score);
+ 9,884,105 ( 0.01%)  => algorithms/gwfa.cpp:projectA_gwfa_path_to_alignment(projectA_hash_graph_t*, gwf_path_t*, projectA_alignment_t*, int) (5,135x)
+         .           
+         .                   // Update thread index
+    15,405 ( 0.00%)          if (thread_index == numThreads - 1) {
+     5,135 ( 0.00%)              thread_index = 0;
+     5,135 ( 0.00%)              ++j;
+         .                   } else {
+         .                       ++thread_index;
+         .                   }
+         .           
+         .               }
+         .           
+         .           
+         7 ( 0.00%)      for (auto& parameters : parameters_vec) {
+    15,409 ( 0.00%)          for (auto& parameter : parameters) {
+    15,405 ( 0.00%)              gwf_cleanup(parameter.km, parameter.graph);
+   241,665 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/gwf-ed.c:gwf_cleanup (5,135x)
+    10,270 ( 0.00%)              gwf_free(parameter.graph);
+ 7,094,086 ( 0.00%)  => algorithms/gwfa.cpp:gwf_free(gwf_graph_t*) (5,135x)
+    10,270 ( 0.00%)              km_destroy(parameter.km);
+ 1,165,583 ( 0.00%)  => /home/fzurbonsen/projectA/algorithms/gwfa/kalloc.c:km_destroy (5,135x)
+         .                   }
+         .               }
+         .           
+         2 ( 0.00%)      delete input;
+       123 ( 0.00%)  => ???:0x000000000010cb30 (1x)
+         .               ptr = nullptr;
+         7 ( 0.00%)  }
+         .           
+         .           
+         .           // Function to get the algorithm struct for gwfa
+         2 ( 0.00%)  projectA_algorithm_t* projectA_get_gwfa() {
+         .               // Create new object
+         2 ( 0.00%)      projectA_algorithm_t* gwfa = new projectA_algorithm_t;
+        59 ( 0.00%)  => ???:0x000000000010cb70 (1x)
+         .           
+         .               // Assign function pointers
+         2 ( 0.00%)      gwfa->init = projectA_gwfa_init;
+         2 ( 0.00%)      gwfa->calculate_batch = projectA_gwfa_calculate_batch;
+         2 ( 0.00%)      gwfa->post = projectA_gwfa_post;
+         .           
+         .               return gwfa;
+         2 ( 0.00%)  }
+         .           
+         .           
+         .           // Function to delete projectA_algorithm_t struct
+         1 ( 0.00%)  void projectA_gwfa_destroy(projectA_algorithm_t* gwfa) {
+         .           
+         .               // Check if the struct still exists
+         2 ( 0.00%)      if (gwfa == nullptr) {
+         .                   cerr << "Warning: gwfa struct is null pointer!\n";
+         .                   return;
+         .               }
+         .           
+         .               // Delete struct
+         1 ( 0.00%)      delete gwfa;
+       125 ( 0.00%)  => ???:0x000000000010cb30 (1x)
+         3 ( 0.00%)  }
+--------------------------------------------------------------------------------
+-- Auto-annotated source: /usr/include/c++/11/bits/hashtable.h
+--------------------------------------------------------------------------------
+Ir                  
+
+-- line 295 ----------------------------------------
+         .                 {
+         .           	// Take ownership of a node with a constructed element.
+         .           	_Scoped_node(__node_ptr __n, __hashtable_alloc* __h)
+         .           	: _M_h(__h), _M_node(__n) { }
+         .           
+         .           	// Allocate a node and construct an element within it.
+         .           	template<typename... _Args>
+         .           	  _Scoped_node(__hashtable_alloc* __h, _Args&&... __args)
+     1,000 ( 0.00%)  	  : _M_h(__h),
+     1,000 ( 0.00%)  	    _M_node(__h->_M_allocate_node(std::forward<_Args>(__args)...))
+         .           	  { }
+         .           
+         .           	// Destroy element and deallocate node.
+   528,687 ( 0.00%)  	~_Scoped_node() { if (_M_node) _M_h->_M_deallocate_node(_M_node); };
+         .           
+         .           	_Scoped_node(const _Scoped_node&) = delete;
+         .           	_Scoped_node& operator=(const _Scoped_node&) = delete;
+         .           
+         .           	__hashtable_alloc* _M_h;
+         .           	__node_ptr _M_node;
+         .                 };
+         .           
+-- line 316 ----------------------------------------
+-- line 414 ----------------------------------------
+         .                 _M_update_bbegin(__node_ptr __n)
+         .                 {
+         .           	_M_before_begin._M_nxt = __n;
+         .           	_M_update_bbegin();
+         .                 }
+         .           
+         .                 bool
+         .                 _M_uses_single_bucket(__buckets_ptr __bkts) const
+    10,281 ( 0.00%)        { return __builtin_expect(__bkts == &_M_single_bucket, false); }
+         .           
+         .                 bool
+         .                 _M_uses_single_bucket() const
+         .                 { return _M_uses_single_bucket(_M_buckets); }
+         .           
+         .                 __hashtable_alloc&
+         .                 _M_base_alloc() { return *this; }
+         .           
+         .                 __buckets_ptr
+         .                 _M_allocate_buckets(size_type __bkt_count)
+         .                 {
+    22,732 ( 0.00%)  	if (__builtin_expect(__bkt_count == 1, false))
+         .           	  {
+         .           	    _M_single_bucket = nullptr;
+    11,366 ( 0.00%)  	    return &_M_single_bucket;
+         .           	  }
+         .           
+         .           	return __hashtable_alloc::_M_allocate_buckets(__bkt_count);
+         .                 }
+         .           
+         .                 void
+         .                 _M_deallocate_buckets(__buckets_ptr __bkts, size_type __bkt_count)
+         .                 {
+    43,294 ( 0.00%)  	if (_M_uses_single_bucket(__bkts))
+         .           	  return;
+         .           
+         .           	__hashtable_alloc::_M_deallocate_buckets(__bkts, __bkt_count);
+         .                 }
+         .           
+         .                 void
+         .                 _M_deallocate_buckets()
+    21,647 ( 0.00%)        { _M_deallocate_buckets(_M_buckets, _M_bucket_count); }
+         .           
+         .                 // Gets bucket begin, deals with the fact that non-empty buckets contain
+         .                 // their before begin node.
+         .                 __node_ptr
+         .                 _M_bucket_begin(size_type __bkt) const;
+         .           
+         .                 __node_ptr
+         .                 _M_begin() const
+    52,466 ( 0.00%)        { return static_cast<__node_ptr>(_M_before_begin._M_nxt); }
+         .           
+         .                 // Assign *this using another _Hashtable instance. Whether elements
+         .                 // are copied or moved depends on the _Ht reference.
+         .                 template<typename _Ht>
+         .           	void
+         .           	_M_assign_elements(_Ht&&);
+         .           
+         .                 template<typename _Ht, typename _NodeGenerator>
+-- line 471 ----------------------------------------
+-- line 520 ----------------------------------------
+         .                 template<typename _InputIterator>
+         .           	_Hashtable(_InputIterator __first, _InputIterator __last,
+         .           		   size_type __bkt_count_hint,
+         .           		   const _Hash&, const _Equal&, const allocator_type&,
+         .           		   false_type __uks);
+         .           
+         .               public:
+         .                 // Constructor, destructor, assignment, swap
+    51,404 ( 0.00%)        _Hashtable() = default;
+         .           
+         .                 _Hashtable(const _Hashtable&);
+         .           
+         .                 _Hashtable(const _Hashtable&, const allocator_type&);
+         .           
+         .                 explicit
+         .                 _Hashtable(size_type __bkt_count_hint,
+         .           		 const _Hash& __hf = _Hash(),
+-- line 536 ----------------------------------------
+-- line 787 ----------------------------------------
+         .               private:
+         .                 // Bucket index computation helpers.
+         .                 size_type
+         .                 _M_bucket_index(const __node_value_type& __n) const noexcept
+         .                 { return __hash_code_base::_M_bucket_index(__n, _M_bucket_count); }
+         .           
+         .                 size_type
+         .                 _M_bucket_index(__hash_code __c) const
+ 3,350,082 ( 0.00%)        { return __hash_code_base::_M_bucket_index(__c, _M_bucket_count); }
+         .           
+         .                 // Find and insert helper functions and types
+         .                 // Find the node before the one matching the criteria.
+         .                 __node_base_ptr
+         .                 _M_find_before_node(size_type, const key_type&, __hash_code) const;
+         .           
+         .                 template<typename _Kt>
+         .           	__node_base_ptr
+         .           	_M_find_before_node_tr(size_type, const _Kt&, __hash_code) const;
+         .           
+         .                 __node_ptr
+         .                 _M_find_node(size_type __bkt, const key_type& __key,
+         .           		   __hash_code __c) const
+         .                 {
+ 1,748,164 ( 0.00%)  	__node_base_ptr __before_n = _M_find_before_node(__bkt, __key, __c);
+ 2,662,236 ( 0.00%)  => /usr/include/c++/11/bits/hashtable.h:std::_Hashtable<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::vector<projectA_alignment_t*, std::allocator<projectA_alignment_t*> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::vector<projectA_alignment_t*, std::allocator<projectA_alignment_t*> > > >, std::__detail::_Select1st, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::_M_find_before_node(unsigned long, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, unsigned long) const (15,405x)
+ 1,136,712 ( 0.00%)  	if (__before_n)
+ 2,835,943 ( 0.00%)  	  return static_cast<__node_ptr>(__before_n->_M_nxt);
+         .           	return nullptr;
+         .                 }
+         .           
+         .                 template<typename _Kt>
+         .           	__node_ptr
+         .           	_M_find_node_tr(size_type __bkt, const _Kt& __key,
+         .           			__hash_code __c) const
+         .           	{
+-- line 820 ----------------------------------------
+-- line 1520 ----------------------------------------
+         .           	  __ht.clear();
+         .           	}
+         .               }
+         .           
+         .             template<typename _Key, typename _Value, typename _Alloc,
+         .           	   typename _ExtractKey, typename _Equal,
+         .           	   typename _Hash, typename _RangeHash, typename _Unused,
+         .           	   typename _RehashPolicy, typename _Traits>
+    25,727 ( 0.00%)      _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
+         .           	       _Hash, _RangeHash, _Unused, _RehashPolicy, _Traits>::
+         .               ~_Hashtable() noexcept
+         .               {
+         .                 clear();
+         .                 _M_deallocate_buckets();
+    15,437 ( 0.00%)      }
+         .           
+         .             template<typename _Key, typename _Value, typename _Alloc,
+         .           	   typename _ExtractKey, typename _Equal,
+         .           	   typename _Hash, typename _RangeHash, typename _Unused,
+         .           	   typename _RehashPolicy, typename _Traits>
+         .               void
+         .               _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
+         .           	       _Hash, _RangeHash, _Unused, _RehashPolicy, _Traits>::
+-- line 1542 ----------------------------------------
+-- line 1650 ----------------------------------------
+         .           	   typename _RehashPolicy, typename _Traits>
+         .               auto
+         .               _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
+         .           	       _Hash, _RangeHash, _Unused, _RehashPolicy, _Traits>::
+         .               count(const key_type& __k) const
+         .               -> size_type
+         .               {
+         .                 auto __it = find(__k);
+    24,810 ( 0.00%)        if (!__it._M_cur)
+         .           	return 0;
+         .           
+         .                 if (__unique_keys::value)
+         .           	return 1;
+         .           
+         .                 // All equivalent values are next to each other, if we find a
+         .                 // non-equivalent value after an equivalent one it means that we won't
+         .                 // find any new equivalent value.
+-- line 1666 ----------------------------------------
+-- line 1819 ----------------------------------------
+         .           
+         .             // Find the node before the one whose key compares equal to k in the bucket
+         .             // bkt. Return nullptr if no node is found.
+         .             template<typename _Key, typename _Value, typename _Alloc,
+         .           	   typename _ExtractKey, typename _Equal,
+         .           	   typename _Hash, typename _RangeHash, typename _Unused,
+         .           	   typename _RehashPolicy, typename _Traits>
+         .               auto
+ 4,546,848 ( 0.00%)      _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
+         .           	       _Hash, _RangeHash, _Unused, _RehashPolicy, _Traits>::
+         .               _M_find_before_node(size_type __bkt, const key_type& __k,
+         .           			__hash_code __code) const
+         .               -> __node_base_ptr
+         .               {
+14,485,025 ( 0.01%)        __node_base_ptr __prev_p = _M_buckets[__bkt];
+ 7,836,876 ( 0.01%)        if (!__prev_p)
+   497,848 ( 0.00%)  	return nullptr;
+         .           
+ 7,663,023 ( 0.01%)        for (__node_ptr __p = static_cast<__node_ptr>(__prev_p->_M_nxt);;
+         .           	   __p = __p->_M_next())
+         .           	{
+         .           	  if (this->_M_equals(__k, __code, *__p))
+         .           	    return __prev_p;
+         .           
+ 9,519,082 ( 0.01%)  	  if (!__p->_M_nxt || _M_bucket_index(*__p->_M_next()) != __bkt)
+         .           	    break;
+         .           	  __prev_p = __p;
+         .           	}
+         .           
+         .                 return nullptr;
+ 5,115,204 ( 0.00%)      }
+         .           
+         .             template<typename _Key, typename _Value, typename _Alloc,
+         .           	   typename _ExtractKey, typename _Equal,
+         .           	   typename _Hash, typename _RangeHash, typename _Unused,
+         .           	   typename _RehashPolicy, typename _Traits>
+         .               template<typename _Kt>
+         .                 auto
+         .                 _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
+-- line 1857 ----------------------------------------
+-- line 1882 ----------------------------------------
+         .           	   typename _ExtractKey, typename _Equal,
+         .           	   typename _Hash, typename _RangeHash, typename _Unused,
+         .           	   typename _RehashPolicy, typename _Traits>
+         .               void
+         .               _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
+         .           	       _Hash, _RangeHash, _Unused, _RehashPolicy, _Traits>::
+         .               _M_insert_bucket_begin(size_type __bkt, __node_ptr __node)
+         .               {
+ 3,203,702 ( 0.00%)        if (_M_buckets[__bkt])
+         .           	{
+         .           	  // Bucket is not empty, we just need to insert the new node
+         .           	  // after the bucket before begin.
+   517,938 ( 0.00%)  	  __node->_M_nxt = _M_buckets[__bkt]->_M_nxt;
+   517,938 ( 0.00%)  	  _M_buckets[__bkt]->_M_nxt = __node;
+         .           	}
+         .                 else
+         .           	{
+         .           	  // The bucket is empty, the new node is inserted at the
+         .           	  // beginning of the singly-linked list and the bucket will
+         .           	  // contain _M_before_begin pointer.
+   553,436 ( 0.00%)  	  __node->_M_nxt = _M_before_begin._M_nxt;
+   276,718 ( 0.00%)  	  _M_before_begin._M_nxt = __node;
+         .           
+   553,906 ( 0.00%)  	  if (__node->_M_nxt)
+         .           	    // We must update former begin bucket that is pointing to
+         .           	    // _M_before_begin.
+   266,437 ( 0.00%)  	    _M_buckets[_M_bucket_index(*__node->_M_next())] = __node;
+         .           
+   830,154 ( 0.00%)  	  _M_buckets[__bkt] = &_M_before_begin;
+         .           	}
+         .               }
+         .           
+         .             template<typename _Key, typename _Value, typename _Alloc,
+         .           	   typename _ExtractKey, typename _Equal,
+         .           	   typename _Hash, typename _RangeHash, typename _Unused,
+         .           	   typename _RehashPolicy, typename _Traits>
+         .               void
+-- line 1918 ----------------------------------------
+-- line 2000 ----------------------------------------
+         .           	return __pos;
+         .                 }
+         .           
+         .             template<typename _Key, typename _Value, typename _Alloc,
+         .           	   typename _ExtractKey, typename _Equal,
+         .           	   typename _Hash, typename _RangeHash, typename _Unused,
+         .           	   typename _RehashPolicy, typename _Traits>
+         .               auto
+    11,000 ( 0.00%)      _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
+         .           	       _Hash, _RangeHash, _Unused, _RehashPolicy, _Traits>::
+         .               _M_insert_unique_node(size_type __bkt, __hash_code __code,
+         .           			  __node_ptr __node, size_type __n_elt)
+         .               -> iterator
+         .               {
+ 1,073,374 ( 0.00%)        const __rehash_state& __saved_state = _M_rehash_policy._M_state();
+         .                 std::pair<bool, std::size_t> __do_rehash
+ 3,212,122 ( 0.00%)  	= _M_rehash_policy._M_need_rehash(_M_bucket_count, _M_element_count,
+    12,103 ( 0.00%)  => ???:0x000000000010ccd0 (1,000x)
+         .           					  __n_elt);
+         .           
+ 1,071,374 ( 0.00%)        if (__do_rehash.first)
+         .           	{
+    34,098 ( 0.00%)  	  _M_rehash(__do_rehash.second, __saved_state);
+    37,369 ( 0.00%)  => /usr/include/c++/11/bits/hashtable.h:std::_Hashtable<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > > >, std::__detail::_Select1st, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::_M_rehash(unsigned long, unsigned long const&) (7x)
+         .           	  __bkt = _M_bucket_index(__code);
+         .           	}
+         .           
+         .                 this->_M_store_code(*__node, __code);
+         .           
+         .                 // Always insert at the beginning of the bucket.
+         .                 _M_insert_bucket_begin(__bkt, __node);
+   541,687 ( 0.00%)        ++_M_element_count;
+         .                 return iterator(__node);
+    10,007 ( 0.00%)      }
+         .           
+         .             template<typename _Key, typename _Value, typename _Alloc,
+         .           	   typename _ExtractKey, typename _Equal,
+         .           	   typename _Hash, typename _RangeHash, typename _Unused,
+         .           	   typename _RehashPolicy, typename _Traits>
+         .               auto
+         .               _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
+         .           	       _Hash, _RangeHash, _Unused, _RehashPolicy, _Traits>::
+-- line 2039 ----------------------------------------
+-- line 2313 ----------------------------------------
+         .           	   typename _Hash, typename _RangeHash, typename _Unused,
+         .           	   typename _RehashPolicy, typename _Traits>
+         .               void
+         .               _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
+         .           	       _Hash, _RangeHash, _Unused, _RehashPolicy, _Traits>::
+         .               clear() noexcept
+         .               {
+         .                 this->_M_deallocate_nodes(_M_begin());
+    51,405 ( 0.00%)        __builtin_memset(_M_buckets, 0,
+     8,891 ( 0.00%)  => ???:0x000000000010c9d0 (1x)
+         .           		       _M_bucket_count * sizeof(__node_base_ptr));
+    10,281 ( 0.00%)        _M_element_count = 0;
+    10,281 ( 0.00%)        _M_before_begin._M_nxt = nullptr;
+         .               }
+         .           
+         .             template<typename _Key, typename _Value, typename _Alloc,
+         .           	   typename _ExtractKey, typename _Equal,
+         .           	   typename _Hash, typename _RangeHash, typename _Unused,
+         .           	   typename _RehashPolicy, typename _Traits>
+         .               void
+         .               _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
+-- line 2332 ----------------------------------------
+-- line 2347 ----------------------------------------
+         .           	_M_rehash_policy._M_reset(__saved_state);
+         .               }
+         .           
+         .             template<typename _Key, typename _Value, typename _Alloc,
+         .           	   typename _ExtractKey, typename _Equal,
+         .           	   typename _Hash, typename _RangeHash, typename _Unused,
+         .           	   typename _RehashPolicy, typename _Traits>
+         .               void
+    90,928 ( 0.00%)      _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
+         .           	       _Hash, _RangeHash, _Unused, _RehashPolicy, _Traits>::
+         .               _M_rehash(size_type __bkt_count, const __rehash_state& __state)
+         .               {
+         .                 __try
+         .           	{
+         .           	  _M_rehash_aux(__bkt_count, __unique_keys{});
+         .           	}
+         .                 __catch(...)
+         .           	{
+         .           	  // A failure here means that buckets allocation failed.  We only
+         .           	  // have to restore hash policy previous state.
+         .           	  _M_rehash_policy._M_reset(__state);
+         .           	  __throw_exception_again;
+         .           	}
+    68,196 ( 0.00%)      }
+         .           
+         .             // Rehash when there is no equivalent elements.
+         .             template<typename _Key, typename _Value, typename _Alloc,
+         .           	   typename _ExtractKey, typename _Equal,
+         .           	   typename _Hash, typename _RangeHash, typename _Unused,
+         .           	   typename _RehashPolicy, typename _Traits>
+         .               void
+         .               _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
+         .           	       _Hash, _RangeHash, _Unused, _RehashPolicy, _Traits>::
+         .               _M_rehash_aux(size_type __bkt_count, true_type /* __uks */)
+         .               {
+         .                 __buckets_ptr __new_buckets = _M_allocate_buckets(__bkt_count);
+         .                 __node_ptr __p = _M_begin();
+    11,366 ( 0.00%)        _M_before_begin._M_nxt = nullptr;
+    11,366 ( 0.00%)        std::size_t __bbegin_bkt = 0;
+ 1,459,587 ( 0.00%)        while (__p)
+         .           	{
+         .           	  __node_ptr __next = __p->_M_next();
+         .           	  std::size_t __bkt
+         .           	    = __hash_code_base::_M_bucket_index(*__p, __bkt_count);
+ 2,871,540 ( 0.00%)  	  if (!__new_buckets[__bkt])
+         .           	    {
+ 1,133,686 ( 0.00%)  	      __p->_M_nxt = _M_before_begin._M_nxt;
+   566,843 ( 0.00%)  	      _M_before_begin._M_nxt = __p;
+   578,209 ( 0.00%)  	      __new_buckets[__bkt] = &_M_before_begin;
+ 1,133,686 ( 0.00%)  	      if (__p->_M_nxt)
+   565,758 ( 0.00%)  		__new_buckets[__bbegin_bkt] = __p;
+ 1,132,601 ( 0.00%)  	      __bbegin_bkt = __bkt;
+         .           	    }
+         .           	  else
+         .           	    {
+   302,084 ( 0.00%)  	      __p->_M_nxt = __new_buckets[__bkt]->_M_nxt;
+   302,084 ( 0.00%)  	      __new_buckets[__bkt]->_M_nxt = __p;
+         .           	    }
+         .           
+         .           	  __p = __next;
+         .           	}
+         .           
+         .                 _M_deallocate_buckets();
+    11,366 ( 0.00%)        _M_bucket_count = __bkt_count;
+    11,366 ( 0.00%)        _M_buckets = __new_buckets;
+         .               }
+         .           
+         .             // Rehash when there can be equivalent elements, preserve their relative
+         .             // order.
+         .             template<typename _Key, typename _Value, typename _Alloc,
+         .           	   typename _ExtractKey, typename _Equal,
+         .           	   typename _Hash, typename _RangeHash, typename _Unused,
+         .           	   typename _RehashPolicy, typename _Traits>
+-- line 2419 ----------------------------------------
+
+--------------------------------------------------------------------------------
+The following files chosen for auto-annotation could not be found:
+--------------------------------------------------------------------------------
+  ./malloc/./malloc/malloc.c
+  ./stdlib/../stdlib/strtol_l.c
+  ./string/../sysdeps/x86_64/multiarch/memcmp-avx2-movbe.S
+  ./string/../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S
+  ./string/../sysdeps/x86_64/multiarch/memset-vec-unaligned-erms.S
+
+--------------------------------------------------------------------------------
+Ir                       
+--------------------------------------------------------------------------------
+116,949,950,819 (82.37%)  events annotated
+

@@ -1,0 +1,124 @@
+cd /home/fzurbonsen/projectA/algorithms/gssw && cp -r src/*.h /home/fzurbonsen/projectA/include/gssw && cp -r src/simde /home/fzurbonsen/projectA/include/gssw
+cd /home/fzurbonsen/projectA/algorithms/gwfa && cp -r *.h /home/fzurbonsen/projectA/include/gwfa
+cd /home/fzurbonsen/projectA/algorithms/ksw2 && cp -r *.h /home/fzurbonsen/projectA/include/ksw2
+cd /home/fzurbonsen/projectA/algorithms/csswl/src && cp -r *.h /home/fzurbonsen/projectA/include/csswl
+cd /home/fzurbonsen/projectA/algorithms/edlib && cp -r ./edlib/include/edlib.h /home/fzurbonsen/projectA/include/edlib
+cd /home/fzurbonsen/projectA/algorithms/abPOA && cp -r ./src/*.h /home/fzurbonsen/projectA/include/abPOA
+cd /home/fzurbonsen/projectA/algorithms/vargas && cp -r ./include/* /home/fzurbonsen/projectA/include/vargas && cp -r ./cxxopts/src/*.hpp /home/fzurbonsen/projectA/include/vargas
+cd /home/fzurbonsen/projectA/algorithms/vargas/htslib && cp -r ./*.h /home/fzurbonsen/projectA/include/vargas && cp -r ./htslib/*.h /home/fzurbonsen/projectA/include/vargas/htslib
+cd /home/fzurbonsen/projectA/algorithms/vargas/doctest && cp -r ./doctest/*.h /home/fzurbonsen/projectA/include/vargas
+cd /home/fzurbonsen/projectA/algorithms/GNWA && cp -r src/*.h /home/fzurbonsen/projectA/include/GNWA
+cp /home/fzurbonsen/projectA/src/algorithm.hpp /home/fzurbonsen/projectA/src/alignment.hpp /home/fzurbonsen/projectA/src/extract_graph.hpp /home/fzurbonsen/projectA/src/file_io.hpp /home/fzurbonsen/projectA/src/graph.hpp /home/fzurbonsen/projectA/include
+cp /home/fzurbonsen/projectA/tests/test.hpp /home/fzurbonsen/projectA/include
+cp -r /home/fzurbonsen/projectA/algorithms/abPOA.hpp /home/fzurbonsen/projectA/algorithms/csswl.hpp /home/fzurbonsen/projectA/algorithms/edlib.hpp /home/fzurbonsen/projectA/algorithms/gnwa.hpp /home/fzurbonsen/projectA/algorithms/gssw.hpp /home/fzurbonsen/projectA/algorithms/gwfa.hpp /home/fzurbonsen/projectA/algorithms/ksw2.hpp /home/fzurbonsen/projectA/algorithms/vargas.hpp /home/fzurbonsen/projectA/include/algorithms
+cd /home/fzurbonsen/projectA/algorithms/gssw && make && cp -r lib/* /home/fzurbonsen/projectA/lib
+make[1]: Entering directory '/home/fzurbonsen/projectA/algorithms/gssw'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/home/fzurbonsen/projectA/algorithms/gssw'
+cd /home/fzurbonsen/projectA/algorithms/gwfa && make && ar rcs libgwfa.a gfa-base.o gfa-io.o gfa-sub.o gwf-ed.o kalloc.o && cp libgwfa.a /home/fzurbonsen/projectA/lib
+make[1]: Entering directory '/home/fzurbonsen/projectA/algorithms/gwfa'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/home/fzurbonsen/projectA/algorithms/gwfa'
+cd /home/fzurbonsen/projectA/algorithms/ksw2 && make && ar rcs libksw2.a *.o && cp libksw2.a /home/fzurbonsen/projectA/lib
+make[1]: Entering directory '/home/fzurbonsen/projectA/algorithms/ksw2'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/home/fzurbonsen/projectA/algorithms/ksw2'
+cd /home/fzurbonsen/projectA/algorithms/csswl/src && make && ar rcs libcsswl.a *.o && cp libcsswl.a /home/fzurbonsen/projectA/lib
+make[1]: Entering directory '/home/fzurbonsen/projectA/algorithms/csswl/src'
+make[1]: Nothing to be done for 'default'.
+make[1]: Leaving directory '/home/fzurbonsen/projectA/algorithms/csswl/src'
+cd /home/fzurbonsen/projectA/algorithms/edlib && cd build && cmake -D CMAKE_BUILD_TYPE=Release .. && make && cp lib/libedlib.a /home/fzurbonsen/projectA/lib
+cd /home/fzurbonsen/projectA/algorithms/GNWA && make lib && cp -r lib/libgnwa.a /home/fzurbonsen/projectA/lib
+Setting warning flags
+make[1]: Entering directory '/home/fzurbonsen/projectA/algorithms/GNWA'
+g++ -std=c++11 -Wall -Wextra -O2 -g -fsanitize=address -c -o /home/fzurbonsen/projectA/obj/test.o /home/fzurbonsen/projectA/tests/test.cpp -I/home/fzurbonsen/projectA/include
+make[1]: Nothing to be done for 'lib'.
+make[1]: Leaving directory '/home/fzurbonsen/projectA/algorithms/GNWA'
+-- Configuring done
+CMake Warning (dev) at CMakeLists.txt:54 (add_library):
+  Policy CMP0063 is not set: Honor visibility properties for all target
+  types.  Run "cmake --help-policy CMP0063" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  Target "edlib" of type "STATIC_LIBRARY" has the following visibility
+  properties set for CXX:
+
+    CXX_VISIBILITY_PRESET
+    VISIBILITY_INLINES_HIDDEN
+
+  For compatibility CMake is not honoring them for this target.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+In file included from /home/fzurbonsen/projectA/include/algorithms/ksw2.hpp:12,
+                 from /home/fzurbonsen/projectA/tests/test.cpp:29:
+/home/fzurbonsen/projectA/include/ksw2/ksw2.h: In function ‘uint32_t* ksw_push_cigar(void*, int*, int*, uint32_t*, uint32_t, int)’:
+/home/fzurbonsen/projectA/include/ksw2/ksw2.h:113:46: warning: unused parameter ‘km’ [-Wunused-parameter]
+  113 | static inline uint32_t *ksw_push_cigar(void *km, int *n_cigar, int *m_cigar, uint32_t *cigar, uint32_t op, int len)
+      |                                        ~~~~~~^~
+/home/fzurbonsen/projectA/tests/test.cpp: In function ‘void projectA_get_gssw_reference(projectA_alignment_t*, std::string&)’:
+/home/fzurbonsen/projectA/tests/test.cpp:111:27: warning: comparison of integer expressions of different signedness: ‘int32_t’ {aka ‘int’} and ‘uint32_t’ {aka ‘unsigned int’} [-Wsign-compare]
+  111 |     for (int32_t i = 0; i < cigar.len; i++) {
+      |                         ~~^~~~~~~~~~~
+/home/fzurbonsen/projectA/tests/test.cpp: In function ‘void projectA_get_gssw_read(projectA_alignment_t*, std::string&)’:
+/home/fzurbonsen/projectA/tests/test.cpp:149:27: warning: comparison of integer expressions of different signedness: ‘int32_t’ {aka ‘int’} and ‘uint32_t’ {aka ‘unsigned int’} [-Wsign-compare]
+  149 |     for (int32_t i = 0; i < cigar.len; i++) {
+      |                         ~~^~~~~~~~~~~
+/home/fzurbonsen/projectA/tests/test.cpp: In function ‘void projectA_get_csswl_read(projectA_alignment_t*, std::string&)’:
+/home/fzurbonsen/projectA/tests/test.cpp:184:27: warning: comparison of integer expressions of different signedness: ‘int32_t’ {aka ‘int’} and ‘uint32_t’ {aka ‘unsigned int’} [-Wsign-compare]
+  184 |     for (int32_t i = 0; i < cigar.len; i++) {
+      |                         ~~^~~~~~~~~~~
+/home/fzurbonsen/projectA/tests/test.cpp: In function ‘void run_standard_tests()’:
+/home/fzurbonsen/projectA/tests/test.cpp:520:27: warning: comparison of integer expressions of different signedness: ‘int32_t’ {aka ‘int’} and ‘std::vector<projectA_algorithm_input_t>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  520 |     for (int32_t i = 0; i < graphs.size(); ++i) {
+      |                         ~~^~~~~~~~~~~~~~~
+/home/fzurbonsen/projectA/tests/test.cpp:529:27: warning: comparison of integer expressions of different signedness: ‘int32_t’ {aka ‘int’} and ‘std::vector<projectA_algorithm_input_t>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  529 |     for (int32_t i = 0; i < graphs.size(); ++i) {
+      |                         ~~^~~~~~~~~~~~~~~
+/home/fzurbonsen/projectA/tests/test.cpp:538:27: warning: comparison of integer expressions of different signedness: ‘int32_t’ {aka ‘int’} and ‘std::vector<projectA_algorithm_input_t>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  538 |     for (int32_t i = 0; i < graphs.size(); ++i) {
+      |                         ~~^~~~~~~~~~~~~~~
+/home/fzurbonsen/projectA/tests/test.cpp:561:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<projectA_alignment_t*>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  561 |     for (int i = 0; i < alignments1.size(); ++i) {
+      |                     ~~^~~~~~~~~~~~~~~~~~~~
+/home/fzurbonsen/projectA/tests/test.cpp:574:27: warning: comparison of integer expressions of different signedness: ‘int32_t’ {aka ‘int’} and ‘std::vector<projectA_alignment_t*>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  574 |     for (int32_t i = 0; i < alignments2.size(); ++i) {
+      |                         ~~^~~~~~~~~~~~~~~~~~~~
+/home/fzurbonsen/projectA/tests/test.cpp:576:15: warning: unused variable ‘alignment2’ [-Wunused-variable]
+  576 |         auto& alignment2 = alignments2[i];
+      |               ^~~~~~~~~~
+/home/fzurbonsen/projectA/tests/test.cpp:622:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<projectA_alignment_t*>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  622 |     for (int i = 0; i < alignments1.size(); ++i) {
+      |                     ~~^~~~~~~~~~~~~~~~~~~~
+/home/fzurbonsen/projectA/tests/test.cpp:624:16: warning: unused variable ‘match_per_length’ [-Wunused-variable]
+  624 |         double match_per_length = (float)(alignments1[i]->n_matches)/(float)(alignments1[i]->cigar_string.operations_length);
+      |                ^~~~~~~~~~~~~~~~
+/home/fzurbonsen/projectA/tests/test.cpp:620:9: warning: unused variable ‘count’ [-Wunused-variable]
+  620 |     int count = 0;
+      |         ^~~~~
+/home/fzurbonsen/projectA/tests/test.cpp: In function ‘void run_tests_gnwa()’:
+/home/fzurbonsen/projectA/tests/test.cpp:766:27: warning: comparison of integer expressions of different signedness: ‘int32_t’ {aka ‘int’} and ‘std::vector<projectA_algorithm_input_t>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  766 |     for (int32_t i = 0; i < graphs.size(); ++i) {
+      |                         ~~^~~~~~~~~~~~~~~
+-- Generating done
+-- Build files have been written to: /home/fzurbonsen/projectA/algorithms/edlib/build
+make[1]: Entering directory '/home/fzurbonsen/projectA/algorithms/edlib/build'
+make[2]: Entering directory '/home/fzurbonsen/projectA/algorithms/edlib/build'
+make[3]: Entering directory '/home/fzurbonsen/projectA/algorithms/edlib/build'
+Consolidate compiler generated dependencies of target edlib
+make[3]: Leaving directory '/home/fzurbonsen/projectA/algorithms/edlib/build'
+[ 25%] Built target edlib
+make[3]: Entering directory '/home/fzurbonsen/projectA/algorithms/edlib/build'
+make[3]: Entering directory '/home/fzurbonsen/projectA/algorithms/edlib/build'
+make[3]: Entering directory '/home/fzurbonsen/projectA/algorithms/edlib/build'
+Consolidate compiler generated dependencies of target helloWorld
+make[3]: Leaving directory '/home/fzurbonsen/projectA/algorithms/edlib/build'
+Consolidate compiler generated dependencies of target runTests
+Consolidate compiler generated dependencies of target edlib-aligner
+make[3]: Leaving directory '/home/fzurbonsen/projectA/algorithms/edlib/build'
+make[3]: Leaving directory '/home/fzurbonsen/projectA/algorithms/edlib/build'
+[ 50%] Built target helloWorld
+[100%] Built target edlib-aligner
+[100%] Built target runTests
+make[2]: Leaving directory '/home/fzurbonsen/projectA/algorithms/edlib/build'
+make[1]: Leaving directory '/home/fzurbonsen/projectA/algorithms/edlib/build'
+g++ -L/home/fzurbonsen/projectA/lib -o /home/fzurbonsen/projectA/bin/test /home/fzurbonsen/projectA/obj/alignment.o /home/fzurbonsen/projectA/obj/extract_graph.o /home/fzurbonsen/projectA/obj/file_io.o /home/fzurbonsen/projectA/obj/graph.o /home/fzurbonsen/projectA/obj/abPOA.o /home/fzurbonsen/projectA/obj/csswl.o /home/fzurbonsen/projectA/obj/edlib.o /home/fzurbonsen/projectA/obj/gnwa.o /home/fzurbonsen/projectA/obj/gssw.o /home/fzurbonsen/projectA/obj/gwfa.o /home/fzurbonsen/projectA/obj/ksw2.o /home/fzurbonsen/projectA/obj/vargas.o /home/fzurbonsen/projectA/obj/test.o -I/home/fzurbonsen/projectA/include -lz -lgssw -lm -lstdc++ -lgwfa -ledlib -lksw2 -lcsswl -lgnwa -fsanitize=address 
