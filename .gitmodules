@@ -19,3 +19,6 @@
 [submodule "algorithms/s_gwfa"]
 	path = algorithms/s_gwfa
 	url = https://github.com/Fzurbonsen/s_gwfa.git
+[submodule "algorithms/gwfa"]
+	path = algorithms/gwfa
+	url = https://github.com/Fzurbonsen/gwfa.git

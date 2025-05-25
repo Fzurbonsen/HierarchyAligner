@@ -322,6 +322,7 @@ int projectA_get_timed_alignment_gwfa(vector<projectA_alignment_t*>& alignments,
     return duration;
 }
 
+
 // Function to run gwfa algorithm
 void projectA_get_alignment_s_gwfa(vector<projectA_alignment_t*>& alignments, int32_t numThreads) {
     void* ptr;
@@ -689,12 +690,15 @@ void run_standard_tests(string graphFile, string positionFile, string simPositio
     // cerr << "gssw time: " << projectA_get_timed_alignment_gssw(alignments2, 1) << endl;
     // cerr << "gssw time: " << projectA_get_timed_alignment_gssw(alignments1, 32) << endl;
     // cerr << "s_gwfa time: " << projectA_get_timed_alignment_s_gwfa(alignments1, 1) << endl;
+    for (int i = 1; i <= 30; ++i) {
+        cerr << "gwfa time: " << projectA_get_timed_alignment_gwfa(alignments1, i) << endl;
+    }
     // cerr << "gwfa time: " << projectA_get_timed_alignment_gwfa(alignments1, i) << endl;
 
     auto t2 = Clock::now();
     // projectA_get_alignment_gwfa(alignments3, 16);
-    projectA_get_alignment_gwfa(alignments1, 32);
-    projectA_get_alignment_gssw(alignments3, 32);
+    // projectA_get_alignment_gwfa(alignments1, 32);
+    // projectA_get_alignment_gssw(alignments3, 32);
     // projectA_get_alignment_s_gwfa(alignments1, 48);
     // projectA_get_alignment_s_gwfa(alignments1, 32);
 
@@ -1508,15 +1512,17 @@ void test_gwf_ed_infix() {
     // projectA_read_node_list(clusters, "./test_cases/tests.txt");
     // projectA_read_node_list(clusters, "./test_cases/linear_node_list.txt");
     vector<projectA_algorithm_input_t> graphs;
-    projectA_build_graph_from_cluster(graphs, ref_graph, clusters);
+    // projectA_build_graph_from_cluster(graphs, ref_graph, clusters);
 
-    projectA_hash_graph_t* test_graph = projectA_hash_read_gfa("./test_cases/test_graph_2.gfa");
+    // projectA_hash_graph_t* test_graph = projectA_hash_read_gfa("./test_cases/test_graph_2.gfa");
+    projectA_hash_graph_t* test_graph = projectA_hash_read_gfa("./test_cases/test_graph.gfa");
     projectA_index_hash_graph(test_graph);
     projectA_hash_graph_in_order_nodes(test_graph);
     projectA_algorithm_input_t inp;
     inp.graph = test_graph;
-    inp.read = "AGCAATTCTGTAGCCGTACA";
-    // graphs.push_back(inp);
+    inp.read = "TTAAATT";
+    // inp.read = "AAGGTCGCTAGGATCGATGAGCTAG";
+    graphs.push_back(inp);
 
     vector<projectA_alignment_t*> alignments1;
     for (int32_t i = 0; i < graphs.size(); ++i) {
@@ -1600,9 +1606,9 @@ int main() {
 
     // sim_reads_and_path("./test_cases/reference_graph.gfa", "./files/sim_paths.txt", "./files/sim_reads.txt", 100, 1000);
 
-    // test_s_gwfa_edlib();
+    test_s_gwfa_edlib();
     // s_gwfa_test_gwfa();
-    test_gwf_ed_infix();
+    // test_gwf_ed_infix();
 
     // string seq = "AAGTAAAACCCTTTACCATTAAGCAGCATTTCCCCTCCCCTAAGCCCTTCCCCTCAGCCCCACCAACCTGCATCTGACTCCATGGGCTTATCTACTCTGGATATCTCATAAATATGGAACCATACAATATGTGACCTTTTGTGTCTGGTTTCTTTCATTTAGCATGATGTTTTCAAGGATATCAGGATTTTTAAAACTTTCCAAGTGATTCTGATATGGAATCAAGATATCCACAAAGCAGGTGTGAGGCAGGGTAGACAATCAGATTCCATTTTAACTAAGCACTTGTGTGCAAGGAAACCACAAATATCTCATTTAATCCTTACAACAACTTGTGTGTATATCATTCCCATTTTACAGGCCGGGAAACTGAAGCTCAGAGAGGTGAAATCACCCACCTGACATCACATAGGTATTTAAAAGCAAATTGGTCTGACTCTCCAGCACCATGTCTCCTCTGCAACCCAGGCCCCTCTCCCAAATTAGCACTTGGTAACCATCAGAAAGGAAGAGTGGGCTGTGCCTACTGGCTGGCAAGCCTGGAATCTATAGGCAGAGTTGATCTACTGGCTAGAGAACATAGGACTTAAGGGTATTTGAGCTCCTTAACTTTTAAAATACCCTGCAACTAGAAAGAAAGTCAACAAACATGAAAGCTGGAGAGAACTTAGACCAATTTGTAAAAGCACTCATTTTTAAAACCAAAAACCCAAGGCCCAAAGACAGCAGACTGGCAAAACATGGTCAGATGCCTTCTGAATTTCAAAAAAGCTATCAGTCATTTTTACTTTTCATTGATCCTGAGAACAGGGTCTTCCCCAAACATAAAAACAAAACTCATTTTTACACAGTTTGACTACCACCGTATTATTAGCCATGGTTTCAATTCATTTAGGCAACAGATACCATGCATATACTATGTTCCAGGCACATTCTAGGGAGGAGGGATATTGCAATGAACAAAGACAGATAACACCCCCTGTCCCTCACAGAGCTACAT";
     // string ref = "TTGTCACCTTGTCTACTCCTGTTCCTCAGGGACTCACCTGCCTTAGCTCAGTCCTTGCTGGGCAATTCTCTGTGTCTTTTCTAGGGCCTGCAAGTTCTGCCACTGGAGTTTACAAATGACCACTATCTTTAGCCAGATAACCAGGTATGCCCTAGCATTGGGCAGTTTTCCTCTACATCTTGCCCTCTCTGTCTCAAGGATTTAGGACCTAGATTATGTTGCTGCTTCAGGCAGTTCTGCTGCTGACAAGATAAATTCTGTTAGCATTTCACTAAGCTGATGGGTATAATTACTTTAGTTGGAGGTCACTAAAACCTGAATTTACAAATAAAAACTGGATCAGGGAGCAGTCTGTGTGTGTGTTGTGGAGGAGTGTGGGTGAAGGTACAACAGATAATATCCCTCCTTTGCTGAGATCCTTCCAGTGGCTCCCTAAATCACTCATAGTAAAAGCCAACTTCCTCACAGGGCCCTTCATCATGTTCTGCTGCTAGCCTCCATCTGCTTCTTTCCCTTACTCAACCTAATTCTAATTTCAGTTCCATTGGAGCCATACAGATCTCCTTGCTATTTCTTTATTTCAAATTCCAGTTATTCATTGCTGGCATATAGAAAAGCAATAGATTGTTGTATATTAACTTTGTGTCTTGTAACCTTGCTGTAAGTGCTGTTCTGGCAGTCTTTGTTTTGATCAATTCTTTGGGATATTCTACATAGACAGATCATCTGCAAACAAAGATAGTGTTATTTCTTCCATTTCAATCTGTAGAGCTTTTATTTCCTTTTCTGGCTTATTCCACTCGCTAAGATTTCCAGTAAAATGTTGAATAGGAGTAGAGAGAGAGGCACCTTGCTTTGTTCCTGATCTTAAGGGGAAAGCATCCAATTTCTTACCATTAAGTATGAAGTTGGCTGCAAAGAAGTTCTTTATCCAGTTGAGGAAATTCCCTCCTATTCATAGTTTGCTGCCCCATCAGCTTTTTAGGTTGGTGCAAAAGTAATTGTGGTTTTTGCTGTGACTTT";
