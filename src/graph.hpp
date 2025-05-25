@@ -12,6 +12,7 @@
 #include <utility>
 #include <unordered_map>
 #include <set>
+#include <cstdint>
 
 using namespace std;
 

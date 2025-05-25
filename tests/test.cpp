@@ -32,7 +32,7 @@
 #include "algorithms/csswl.hpp"
 // #include "algorithms/abPOA.hpp"
 // #include "algorithms/vargas.hpp"
-#include "algorithms/gnwa.hpp"
+// #include "algorithms/gnwa.hpp"
 
 // #include "gt_gwfa/edlib.h"
 #include "algorithms/edlib.hpp"
@@ -382,26 +382,26 @@ int projectA_get_timed_alignment_s_gwfa(vector<projectA_alignment_t*>& alignment
 }
 
 
-// Function to run the GNWA algorithm
-void projectA_get_alignment_gnwa(vector<projectA_alignment_t*>& alignments, int32_t numThreads) {
-    void* ptr;
-    vector<thread> threads;
+// // Function to run the GNWA algorithm
+// void projectA_get_alignment_gnwa(vector<projectA_alignment_t*>& alignments, int32_t numThreads) {
+//     void* ptr;
+//     vector<thread> threads;
 
-    projectA_algorithm_t* gnwa = projectA_get_gnwa();
-    ptr = gnwa->init(alignments, numThreads);
-    for (int i = 0; i < numThreads; ++i) {
-        threads.push_back(thread(gnwa->calculate_batch, ptr, i));
-    }
-    for (auto& th : threads) {
-        if (th.joinable()) {
-            th.join();
-        }
-    }
-    threads.clear();
-    gnwa->post(ptr, alignments, numThreads);
+//     projectA_algorithm_t* gnwa = projectA_get_gnwa();
+//     ptr = gnwa->init(alignments, numThreads);
+//     for (int i = 0; i < numThreads; ++i) {
+//         threads.push_back(thread(gnwa->calculate_batch, ptr, i));
+//     }
+//     for (auto& th : threads) {
+//         if (th.joinable()) {
+//             th.join();
+//         }
+//     }
+//     threads.clear();
+//     gnwa->post(ptr, alignments, numThreads);
 
-    projectA_gnwa_destroy(gnwa);
-}
+//     projectA_gnwa_destroy(gnwa);
+// }
 
 
 // Function to write the alignment information to a test file
@@ -992,45 +992,45 @@ void run_standard_tests(string graphFile, string positionFile, string simPositio
     projectA_delete_hash_graph(ref_graph);
 }
 
-void run_tests_gnwa() {
-    vector<projectA_node_list_t> clusters;
-    projectA_hash_graph_t* ref_graph = projectA_hash_read_gfa("./test_cases/reference_graph.gfa");
-    // projectA_hash_graph_t* ref_graph = projectA_hash_read_gfa("./test_cases/linear_graph.gfa");
-    projectA_index_hash_graph(ref_graph);
+// void run_tests_gnwa() {
+//     vector<projectA_node_list_t> clusters;
+//     projectA_hash_graph_t* ref_graph = projectA_hash_read_gfa("./test_cases/reference_graph.gfa");
+//     // projectA_hash_graph_t* ref_graph = projectA_hash_read_gfa("./test_cases/linear_graph.gfa");
+//     projectA_index_hash_graph(ref_graph);
 
 
-    // projectA_read_node_list(clusters, "./test_cases/node_list.txt");
-    projectA_read_node_list(clusters, "./test_cases/node_list_small.txt");
-    // projectA_read_node_list(clusters, "./test_cases/tests.txt");
-    // projectA_read_node_list(clusters, "./test_cases/linear_node_list.txt");
-    vector<projectA_algorithm_input_t> graphs;
-    projectA_build_graph_from_cluster(graphs, ref_graph, clusters);
-
-
-
-    vector<projectA_alignment_t*> alignments1;
-    for (int32_t i = 0; i < graphs.size(); ++i) {
-        projectA_alignment_t* alignment = new projectA_alignment_t;
-        alignment->id = i;
-        alignment->graph = graphs[i].graph;
-        alignment->read = graphs[i].read;
-        alignments1.push_back(alignment);
-    }
-
-    projectA_get_alignment_gnwa(alignments1, 46);
+//     // projectA_read_node_list(clusters, "./test_cases/node_list.txt");
+//     projectA_read_node_list(clusters, "./test_cases/node_list_small.txt");
+//     // projectA_read_node_list(clusters, "./test_cases/tests.txt");
+//     // projectA_read_node_list(clusters, "./test_cases/linear_node_list.txt");
+//     vector<projectA_algorithm_input_t> graphs;
+//     projectA_build_graph_from_cluster(graphs, ref_graph, clusters);
 
 
 
-    for (auto& alignment : alignments1) {
-        delete alignment;
-    }
+//     vector<projectA_alignment_t*> alignments1;
+//     for (int32_t i = 0; i < graphs.size(); ++i) {
+//         projectA_alignment_t* alignment = new projectA_alignment_t;
+//         alignment->id = i;
+//         alignment->graph = graphs[i].graph;
+//         alignment->read = graphs[i].read;
+//         alignments1.push_back(alignment);
+//     }
+
+//     projectA_get_alignment_gnwa(alignments1, 46);
 
 
-    for (auto& graph : graphs) {
-        projectA_delete_hash_graph(graph.graph);
-    }
-    projectA_delete_hash_graph(ref_graph);
-}
+
+//     for (auto& alignment : alignments1) {
+//         delete alignment;
+//     }
+
+
+//     for (auto& graph : graphs) {
+//         projectA_delete_hash_graph(graph.graph);
+//     }
+//     projectA_delete_hash_graph(ref_graph);
+// }
 
 
 
@@ -1511,8 +1511,9 @@ void test_gwf_ed_infix() {
     // projectA_read_node_list(clusters, "./test_cases/node_list_single_node.txt");
     // projectA_read_node_list(clusters, "./test_cases/tests.txt");
     // projectA_read_node_list(clusters, "./test_cases/linear_node_list.txt");
+
     vector<projectA_algorithm_input_t> graphs;
-    // projectA_build_graph_from_cluster(graphs, ref_graph, clusters);
+    projectA_build_graph_from_cluster(graphs, ref_graph, clusters);
 
     // projectA_hash_graph_t* test_graph = projectA_hash_read_gfa("./test_cases/test_graph_2.gfa");
     projectA_hash_graph_t* test_graph = projectA_hash_read_gfa("./test_cases/test_graph.gfa");
@@ -1522,7 +1523,8 @@ void test_gwf_ed_infix() {
     inp.graph = test_graph;
     inp.read = "TTAAATT";
     // inp.read = "AAGGTCGCTAGGATCGATGAGCTAG";
-    graphs.push_back(inp);
+
+    // graphs.push_back(inp);
 
     vector<projectA_alignment_t*> alignments1;
     for (int32_t i = 0; i < graphs.size(); ++i) {

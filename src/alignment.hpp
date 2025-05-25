@@ -19,6 +19,7 @@
 #include <cctype>
 #include <sstream>
 #include <unordered_set>
+#include <cstdint>
 
 #include "graph.hpp"
 

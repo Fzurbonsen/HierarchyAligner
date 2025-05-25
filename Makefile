@@ -19,7 +19,7 @@ EXE = $(BIN_DIR)/$(TARGET)
 TEST_EXE = $(BIN_DIR)/$(TEST_TARGET)
 
 # Library flags
-LIB_FLAGS = -lz -lgssw -lm -lstdc++ -ledlib -lcsswl -lgwfa -lgnwa -ls_gwfa #-fsanitize=address -lksw2
+LIB_FLAGS = -lz -lgssw -lm -lstdc++ -ledlib -lcsswl -lgwfa -ls_gwfa #-fsanitize=address -lksw2 -lgnwa
 LDFLAGS = -L$(LIB_DIR)
 
 # Libraries
@@ -28,7 +28,7 @@ LIBS += $(LIB_DIR)/libgwfa.a
 # LIBS += $(LIB_DIR)/libksw2.a
 LIBS += $(LIB_DIR)/libcsswl.a
 LIBS += $(LIB_DIR)/libedlib.a
-LIBS += $(LIB_DIR)/libgnwa.a
+# LIBS += $(LIB_DIR)/libgnwa.a
 LIBS += $(LIB_DIR)/libs_gwfa.a
 
 # Source files
@@ -64,19 +64,19 @@ prepare_headers:
 	@mkdir -p $(INC_DIR)/gwfa
 	@mkdir -p $(INC_DIR)/csswl
 	@mkdir -p $(INC_DIR)/edlib
-	@mkdir -p $(INC_DIR)/GNWA
 	@mkdir -p $(INC_DIR)/s_gwfa
 	+ cd $(ALGO_DIR)/gssw && cp -r src/*.h $(INC_DIR)/gssw && cp -r src/simde $(INC_DIR)/gssw
 	+ cd $(ALGO_DIR)/gwfa && cp -r *.h $(INC_DIR)/gwfa
 	+ cd $(ALGO_DIR)/csswl/src && cp -r *.h $(INC_DIR)/csswl
 	+ cd $(ALGO_DIR)/edlib && cp -r ./edlib/include/edlib.h $(INC_DIR)/edlib
-	+ cd $(ALGO_DIR)/GNWA && cp -r src/*.h $(INC_DIR)/GNWA
 	+ cd $(ALGO_DIR)/s_gwfa && cp -r src/*.h $(INC_DIR)/s_gwfa
 	cp $(HEADERS) $(INC_DIR)
 	cp $(TEST_HEADERS) $(INC_DIR)
 	cp -r $(ALGO_HEADERS) $(INC_DIR)/algorithms
 # @mkdir -p $(INC_DIR)/ksw2
 # + cd $(ALGO_DIR)/ksw2 && cp -r *.h $(INC_DIR)/ksw2
+# @mkdir -p $(INC_DIR)/GNWA
+# + cd $(ALGO_DIR)/GNWA && cp -r src/*.h $(INC_DIR)/GNWA
 
 # Linking step for the executable
 $(EXE): $(LIBS) $(OBJS) $(MAIN_OBJ) | prepare_headers
