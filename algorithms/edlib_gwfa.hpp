@@ -33,13 +33,13 @@ struct projectA_edlib_gwfa_parameters_t {
     int32_t v1;
     uint32_t max_lag;
     int32_t traceback;
-    string cigar;
+    EdlibAlignResult edlib_result;
 
     projectA_hash_graph_t* projectA_hash_graph;
 
     // Constructor for projectA_edlib_gwfa_parameters_t
     projectA_edlib_gwfa_parameters_t(void* km, gwf_graph_t* graph, int32_t ql, const char* q, int32_t v0, int32_t v1,
-                                uint32_t max_lag, int32_t traceback, string cigar, projectA_hash_graph_t* projectA_hash_graph);
+                                uint32_t max_lag, int32_t traceback, projectA_hash_graph_t* projectA_hash_graph);
 };
 
 

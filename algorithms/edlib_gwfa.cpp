@@ -31,10 +31,10 @@ using namespace std;
 
 // Constructor for parameter struct
 projectA_edlib_gwfa_parameters_t::projectA_edlib_gwfa_parameters_t(void* km, gwf_graph_t* graph, int32_t ql, const char* q, int32_t v0,
-                                                        int32_t v1, uint32_t max_lag, int32_t traceback, string cigar,
+                                                        int32_t v1, uint32_t max_lag, int32_t traceback, 
                                                         projectA_hash_graph_t* projectA_hash_graph) :
                                                         km(km), graph(graph), ql(ql), q(q), v0(v0), v1(v1), 
-                                                        max_lag(max_lag), traceback(traceback), cigar(cigar),
+                                                        max_lag(max_lag), traceback(traceback),
                                                         projectA_hash_graph(projectA_hash_graph) {}
 
 
@@ -176,7 +176,7 @@ void* projectA_edlib_gwfa_init(vector<projectA_alignment_t*>& alignments, int32_
         gwf_graph_t* new_gwf_graph = projectA_hash_graph_to_ed_gwf_graph(itr->graph);
 
         // Construct parameter entry
-        projectA_edlib_gwfa_parameters_t entry(km_init(), new_gwf_graph, itr->read.size(), itr->read.c_str(), v0, v1, max_lag, traceback, "", itr->graph);
+        projectA_edlib_gwfa_parameters_t entry(km_init(), new_gwf_graph, itr->read.size(), itr->read.c_str(), v0, v1, max_lag, traceback, itr->graph);
 
         // Append entry to parameter vector
         out->parameters[thread_index].push_back(entry);
@@ -221,14 +221,9 @@ void* projectA_edlib_gwfa_calculate_batch(void* ptr, int32_t thread_index) {
                                 parameter.max_lag, parameter.traceback, &gwf_path);
 
         string reference = projectA_edlib_gwfa_path_to_ref(&gwf_path, parameter.projectA_hash_graph);
-
-        EdlibAlignResult result = edlibAlign(parameter.q, parameter.ql, 
+        parameter.edlib_result = edlibAlign(parameter.q, parameter.ql, 
                                             reference.c_str(), strlen(reference.c_str()), 
                                             edlibNewAlignConfig(-1, EDLIB_MODE_HW, EDLIB_TASK_PATH, NULL, 0));
-        char* edlib_cigar = edlibAlignmentToCigar(result.alignment, result.alignmentLength, EDLIB_CIGAR_STANDARD);
-        parameter.cigar = edlib_cigar;
-        free(edlib_cigar);
-        edlibFreeAlignResult(result);
 
         path.score = score;
         path.path = gwf_path;
@@ -272,7 +267,10 @@ void projectA_edlib_gwfa_post(void* ptr, vector<projectA_alignment_t*>& alignmen
 
         // Push alignment to alignments vector
         projectA_edlib_gwfa_path_to_alignment(parameters[j].projectA_hash_graph, &(paths[j].path), alignments[i], paths[j].score);
-        alignments[i]->cigar_string = projectA_parse_cigar_string(parameters[j].cigar);
+        char* edlib_cigar = edlibAlignmentToCigar(parameters[j].edlib_result.alignment, parameters[j].edlib_result.alignmentLength, EDLIB_CIGAR_STANDARD);
+        alignments[i]->cigar_string = projectA_parse_cigar_string(edlib_cigar);
+
+        free(edlib_cigar);
 
         // Update thread index
         if (thread_index == numThreads - 1) {
@@ -290,6 +288,7 @@ void projectA_edlib_gwfa_post(void* ptr, vector<projectA_alignment_t*>& alignmen
             gwf_cleanup(parameter.km, parameter.graph);
             ed_gwf_free(parameter.graph);
             km_destroy(parameter.km);
+            edlibFreeAlignResult(parameter.edlib_result);
         }
     }
 

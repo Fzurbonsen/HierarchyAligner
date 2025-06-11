@@ -2,6 +2,8 @@
     "cmake.sourceDirectory": "/home/fzurbonsen/projectA/algorithms/edlib",
     "files.associations": {
         "string": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "chrono": "cpp",
+        "ostream": "cpp"
     }
 }

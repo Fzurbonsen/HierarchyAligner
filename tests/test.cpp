@@ -1603,6 +1603,9 @@ void test_gwf_ed_infix() {
     int n = 0;
 
     for (auto alignment : alignments1) {
+        for (auto& cig : alignment->cigar) {
+            projectA_print_cigar(stderr, &cig);
+        }
         EdlibAlignResult result2 = edlibAlign(alignment->read.c_str(), strlen(alignment->read.c_str()), 
                                             alignment->reference.c_str(), strlen(alignment->reference.c_str()), 
                                             edlibNewAlignConfig(-1, EDLIB_MODE_HW, EDLIB_TASK_PATH, NULL, 0));
