@@ -352,6 +352,39 @@ int projectA_get_timed_alignment_gwfa(vector<projectA_alignment_t*>& alignments,
 }
 
 
+// Function to run and time the edlib_gwfa algorithm
+int projectA_get_timed_alignment_edlib_gwfa(vector<projectA_alignment_t*>& alignments, int32_t numThreads) {
+    void* ptr;
+    vector<thread> threads;
+    typedef std::chrono::high_resolution_clock Clock;
+    
+    // Get algorithm struct
+    projectA_algorithm_t* edlib_gwfa = projectA_get_edlib_gwfa();
+    
+    // Initialize data
+    ptr = edlib_gwfa->init(alignments, numThreads);
+
+    auto t0 = Clock::now();
+    for (int i = 0; i < numThreads; ++i) {
+        threads.push_back(thread(edlib_gwfa->calculate_batch, ptr, i));
+    }
+    for (auto& th : threads) {
+        if (th.joinable()) {
+            th.join();
+        }
+    }
+    auto t1 = Clock::now();
+
+    // edlib_gwfa post
+    edlib_gwfa->post(ptr, alignments, numThreads);
+
+    // Destroy algorithm struct
+    projectA_edlib_gwfa_destroy(edlib_gwfa);
+    int duration = std::chrono::duration_cast<std::chrono::milliseconds>(t1 - t0).count();
+    return duration;
+}
+
+
 // Function to run gwfa algorithm
 void projectA_get_alignment_s_gwfa(vector<projectA_alignment_t*>& alignments, int32_t numThreads) {
     void* ptr;
@@ -720,7 +753,7 @@ void run_standard_tests(string graphFile, string positionFile, string simPositio
     // cerr << "gssw time: " << projectA_get_timed_alignment_gssw(alignments1, 32) << endl;
     // cerr << "s_gwfa time: " << projectA_get_timed_alignment_s_gwfa(alignments1, 1) << endl;
     for (int i = 1; i <= 30; ++i) {
-        cerr << "edlib_gwfa time: " << projectA_get_timed_alignment_gwfa(alignments1, i) << "\tthreads: " << i << endl;
+        cerr << "edlib_gwfa time: " << projectA_get_timed_alignment_edlib_gwfa(alignments1, i) << "\tthreads: " << i << endl;
     }
     // cerr << "gwfa time: " << projectA_get_timed_alignment_gwfa(alignments1, i) << endl;
 
