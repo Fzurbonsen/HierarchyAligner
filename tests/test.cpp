@@ -1569,7 +1569,7 @@ void test_gwf_ed_infix() {
 
 
     // projectA_read_node_list(clusters, "./test_cases/node_list_2.txt");
-    projectA_read_node_list(clusters, "./test_cases/node_list_2_small.txt");
+    // projectA_read_node_list(clusters, "./test_cases/node_list_2_small.txt");
     // projectA_read_node_list(clusters, "./test_cases/node_list_single_node.txt");
     // projectA_read_node_list(clusters, "./test_cases/tests.txt");
     // projectA_read_node_list(clusters, "./test_cases/linear_node_list.txt");
@@ -1583,10 +1583,10 @@ void test_gwf_ed_infix() {
     projectA_hash_graph_in_order_nodes(test_graph);
     projectA_algorithm_input_t inp;
     inp.graph = test_graph;
-    inp.read = "TTAAATT";
+    inp.read = "GGAAAGG";
     // inp.read = "AAGGTCGCTAGGATCGATGAGCTAG";
 
-    // graphs.push_back(inp);
+    graphs.push_back(inp);
 
     vector<projectA_alignment_t*> alignments1;
     for (int32_t i = 0; i < graphs.size(); ++i) {
@@ -1597,9 +1597,9 @@ void test_gwf_ed_infix() {
         alignments1.push_back(alignment);
     }
 
-    // projectA_get_alignment_gwfa(alignments1, 1);
+    projectA_get_alignment_gwfa(alignments1, 1);
     // projectA_get_alignment_edlib_gwfa(alignments1, 1);
-    projectA_get_timed_alignment_edlib_gwfa(alignments1, 1);
+    // projectA_get_timed_alignment_edlib_gwfa(alignments1, 1);
 
     int n = 0;
 
