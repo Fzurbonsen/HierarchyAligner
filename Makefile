@@ -138,10 +138,10 @@ $(LIB_DIR)/libedlib.a: prepare_headers
 	+ cd $(ALGO_DIR)/edlib && cd build && cmake -D CMAKE_BUILD_TYPE=Release .. && make && cp lib/libedlib.a $(LIB_DIR)
 
 # Create GNWA library
-$(LIB_DIR)/libgnwa.a: prepare_headers
-	@mkdir -p $(LIB_DIR)
-	@mkdir -p $(ALGO_DIR)/GNWA
-	+ cd $(ALGO_DIR)/GNWA && $(MAKE) lib && cp -r lib/libgnwa.a $(LIB_DIR)
+# $(LIB_DIR)/libgnwa.a: prepare_headers
+# 	@mkdir -p $(LIB_DIR)
+# 	@mkdir -p $(ALGO_DIR)/GNWA
+# 	+ cd $(ALGO_DIR)/GNWA && $(MAKE) lib && cp -r lib/libgnwa.a $(LIB_DIR)
 
 # Create s_gwfa library
 $(LIB_DIR)/libs_gwfa.a: prepare_headers
@@ -161,7 +161,7 @@ clean:
 # cd $(ALGO_DIR)/ksw2 && $(MAKE) clean && rm -f libksw2.a
 	cd $(ALGO_DIR)/csswl/src && $(MAKE) clean && rm -f libcsswl.a
 	cd $(ALGO_DIR)/edlib && $(MAKE) clean
-	cd $(ALGO_DIR)/GNWA && $(MAKE) clean
+# cd $(ALGO_DIR)/GNWA && $(MAKE) clean
 	cd $(ALGO_DIR)/s_gwfa && $(MAKE) clean
 
 .PHONY: all clean prepare_headers
