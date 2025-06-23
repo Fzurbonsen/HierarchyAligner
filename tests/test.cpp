@@ -444,26 +444,37 @@ int projectA_get_timed_alignment_s_gwfa(vector<projectA_alignment_t*>& alignment
 }
 
 
-// // Function to run the GNWA algorithm
-// void projectA_get_alignment_gnwa(vector<projectA_alignment_t*>& alignments, int32_t numThreads) {
-//     void* ptr;
-//     vector<thread> threads;
+// Function to run and time the edlib algorithm
+int projectA_get_timed_alignment_edlib(vector<projectA_alignment_t*>& alignments, int32_t numThreads) {
+    void* ptr;
+    vector<thread> threads;
+    typedef std::chrono::high_resolution_clock Clock;
+    
+    // Get algorithm struct
+    projectA_algorithm_t* edlib = projectA_get_edlib();
+    
+    // Initialize data
+    ptr = edlib->init(alignments, numThreads);
 
-//     projectA_algorithm_t* gnwa = projectA_get_gnwa();
-//     ptr = gnwa->init(alignments, numThreads);
-//     for (int i = 0; i < numThreads; ++i) {
-//         threads.push_back(thread(gnwa->calculate_batch, ptr, i));
-//     }
-//     for (auto& th : threads) {
-//         if (th.joinable()) {
-//             th.join();
-//         }
-//     }
-//     threads.clear();
-//     gnwa->post(ptr, alignments, numThreads);
+    auto t0 = Clock::now();
+    for (int i = 0; i < numThreads; ++i) {
+        threads.push_back(thread(edlib->calculate_batch, ptr, i));
+    }
+    for (auto& th : threads) {
+        if (th.joinable()) {
+            th.join();
+        }
+    }
+    auto t1 = Clock::now();
 
-//     projectA_gnwa_destroy(gnwa);
-// }
+    // edlib_gwfa post
+    edlib->post(ptr, alignments, numThreads);
+
+    // Destroy algorithm struct
+    projectA_edlib_gwfa_destroy(edlib);
+    int duration = std::chrono::duration_cast<std::chrono::milliseconds>(t1 - t0).count();
+    return duration;
+}
 
 
 // Function to write the alignment information to a test file
@@ -754,8 +765,10 @@ void run_standard_tests(string graphFile, string positionFile, string simPositio
     // cerr << "s_gwfa time: " << projectA_get_timed_alignment_s_gwfa(alignments1, 1) << endl;
     for (int i = 1; i <= 30; ++i) {
         cerr << "edlib_gwfa time: " << projectA_get_timed_alignment_edlib_gwfa(alignments1, i) << "\tthreads: " << i << endl;
+        cerr << "edlib time: " << projectA_get_timed_alignment_edlib_gwfa(alignments1, i) << endl;
     }
-    // cerr << "gwfa time: " << projectA_get_timed_alignment_gwfa(alignments1, i) << endl;
+    // cerr << "gwfa time: " << projectA_get_timed_alignment_gwfa(alignments1, 4) << endl;
+    // cerr << "edlib time: " << projectA_get_timed_alignment_edlib_gwfa(alignments1, 4) << endl;
 
     auto t2 = Clock::now();
     // projectA_get_alignment_gwfa(alignments3, 16);
@@ -1631,7 +1644,7 @@ int main() {
     uint gap_open = 1;
     uint gap_extend = 1;
 
-    // run_standard_tests("./test_cases/reference_graph.gfa", "./test_cases/node_list_2.txt", "./test_cases/1000.new.sim.txt", match, mismatch, gap_open, gap_extend, stderr);
+    run_standard_tests("./test_cases/reference_graph.gfa", "./test_cases/node_list_2.txt", "./test_cases/1000.new.sim.txt", match, mismatch, gap_open, gap_extend, stderr);
     // run_standard_tests("./test_cases/reference_graph.gfa", "./test_cases/node_list_2_small.txt", "./test_cases/1000.new.sim.txt", match, mismatch, gap_open, gap_extend, stderr);
     // run_standard_tests("./test_cases/reference_graph.gfa", "./test_cases/node_list_2_medium.txt", "./test_cases/1000.new.sim.txt", match, mismatch, gap_open, gap_extend, stderr);
     // run_standard_tests("./test_cases/reference_graph.gfa", "./test_cases/tests.txt", "./test_cases/1000.new.sim.txt", match, mismatch, gap_open, gap_extend);
