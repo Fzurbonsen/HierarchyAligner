@@ -635,8 +635,8 @@ void run_standard_tests(string graphFile, string positionFile, string simPositio
 
 
     // projectA_read_node_list(clusters, "./test_cases/node_list_2.txt");
-    // projectA_read_node_list(clusters, "./test_cases/node_list_2_small.txt");
-    projectA_read_node_list(clusters, positionFile);
+    projectA_read_node_list(clusters, "./test_cases/node_list_2_small.txt");
+    // projectA_read_node_list(clusters, positionFile);
     // projectA_read_node_list(clusters, "./test_cases/tests.txt");
     // projectA_read_node_list(clusters, "./test_cases/linear_node_list.txt");
     vector<projectA_algorithm_input_t> graphs;
@@ -765,10 +765,10 @@ void run_standard_tests(string graphFile, string positionFile, string simPositio
     // cerr << "s_gwfa time: " << projectA_get_timed_alignment_s_gwfa(alignments1, 1) << endl;
     for (int i = 1; i <= 30; ++i) {
         cerr << "edlib_gwfa time: " << projectA_get_timed_alignment_edlib_gwfa(alignments1, i) << "\tthreads: " << i << endl;
-        cerr << "edlib time: " << projectA_get_timed_alignment_edlib_gwfa(alignments1, i) << endl;
+        cerr << "edlib time: " << projectA_get_timed_alignment_edlib(alignments1, i) << endl;
     }
     // cerr << "gwfa time: " << projectA_get_timed_alignment_gwfa(alignments1, 4) << endl;
-    // cerr << "edlib time: " << projectA_get_timed_alignment_edlib_gwfa(alignments1, 4) << endl;
+    // cerr << "edlib time: " << projectA_get_timed_alignment_edlib(alignments1, 4) << endl;
 
     auto t2 = Clock::now();
     // projectA_get_alignment_gwfa(alignments3, 16);
