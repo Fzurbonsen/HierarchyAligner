@@ -635,8 +635,8 @@ void run_standard_tests(string graphFile, string positionFile, string simPositio
 
 
     // projectA_read_node_list(clusters, "./test_cases/node_list_2.txt");
-    projectA_read_node_list(clusters, "./test_cases/node_list_2_small.txt");
-    // projectA_read_node_list(clusters, positionFile);
+    // projectA_read_node_list(clusters, "./test_cases/node_list_2_small.txt");
+    projectA_read_node_list(clusters, positionFile);
     // projectA_read_node_list(clusters, "./test_cases/tests.txt");
     // projectA_read_node_list(clusters, "./test_cases/linear_node_list.txt");
     vector<projectA_algorithm_input_t> graphs;
