@@ -635,8 +635,8 @@ void run_standard_tests(string graphFile, string positionFile, string simPositio
 
 
     // projectA_read_node_list(clusters, "./test_cases/node_list_2.txt");
-    // projectA_read_node_list(clusters, "./test_cases/node_list_2_small.txt");
-    projectA_read_node_list(clusters, positionFile);
+    projectA_read_node_list(clusters, "./test_cases/node_list_2_small.txt");
+    // projectA_read_node_list(clusters, positionFile);
     // projectA_read_node_list(clusters, "./test_cases/tests.txt");
     // projectA_read_node_list(clusters, "./test_cases/linear_node_list.txt");
     vector<projectA_algorithm_input_t> graphs;
@@ -764,8 +764,13 @@ void run_standard_tests(string graphFile, string positionFile, string simPositio
     // cerr << "gssw time: " << projectA_get_timed_alignment_gssw(alignments1, 32) << endl;
     // cerr << "s_gwfa time: " << projectA_get_timed_alignment_s_gwfa(alignments1, 1) << endl;
     for (int i = 1; i <= 30; ++i) {
-        cerr << "edlib_gwfa time: " << projectA_get_timed_alignment_edlib_gwfa(alignments1, i) << "\tthreads: " << i << endl;
+        // cerr << "edlib_gwfa time: " << projectA_get_timed_alignment_edlib_gwfa(alignments1, i) << "\tthreads: " << i << endl;
+        cerr << "gwfa time: " << projectA_get_timed_alignment_gwfa(alignments1, i) << "\tthreads: " << i << endl;
         cerr << "edlib time: " << projectA_get_timed_alignment_edlib(alignments1, i) << endl;
+        for (auto align : alignments1) {
+            align->reference.clear();
+            align->nodes.clear();
+        }
     }
     // cerr << "gwfa time: " << projectA_get_timed_alignment_gwfa(alignments1, 4) << endl;
     // cerr << "edlib time: " << projectA_get_timed_alignment_edlib(alignments1, 4) << endl;
@@ -898,7 +903,7 @@ void run_standard_tests(string graphFile, string positionFile, string simPositio
             double acc = 0;
             acc = projectA_cigar_accuracy(&alignments1[i]->cigar_string, &alignments3[i]->cigar_string);
             cigar_accuracy += acc;
-            projectA_write_to_test_file(file, alignments1, alignments2, i);
+            // projectA_write_to_test_file(file, alignments1, alignments2, i);
             fprintf(file, "#accuracy:\t%f\n", acc);
             // fprintf(file, "\n\n");
             // projectA_print_cigar(stderr, &alignments1[i]->cigar);
@@ -1690,7 +1695,7 @@ int main() {
 
     // test_s_gwfa_edlib();
     // s_gwfa_test_gwfa();
-    test_gwf_ed_infix();
+    // test_gwf_ed_infix();
 
     // string seq = "AAGTAAAACCCTTTACCATTAAGCAGCATTTCCCCTCCCCTAAGCCCTTCCCCTCAGCCCCACCAACCTGCATCTGACTCCATGGGCTTATCTACTCTGGATATCTCATAAATATGGAACCATACAATATGTGACCTTTTGTGTCTGGTTTCTTTCATTTAGCATGATGTTTTCAAGGATATCAGGATTTTTAAAACTTTCCAAGTGATTCTGATATGGAATCAAGATATCCACAAAGCAGGTGTGAGGCAGGGTAGACAATCAGATTCCATTTTAACTAAGCACTTGTGTGCAAGGAAACCACAAATATCTCATTTAATCCTTACAACAACTTGTGTGTATATCATTCCCATTTTACAGGCCGGGAAACTGAAGCTCAGAGAGGTGAAATCACCCACCTGACATCACATAGGTATTTAAAAGCAAATTGGTCTGACTCTCCAGCACCATGTCTCCTCTGCAACCCAGGCCCCTCTCCCAAATTAGCACTTGGTAACCATCAGAAAGGAAGAGTGGGCTGTGCCTACTGGCTGGCAAGCCTGGAATCTATAGGCAGAGTTGATCTACTGGCTAGAGAACATAGGACTTAAGGGTATTTGAGCTCCTTAACTTTTAAAATACCCTGCAACTAGAAAGAAAGTCAACAAACATGAAAGCTGGAGAGAACTTAGACCAATTTGTAAAAGCACTCATTTTTAAAACCAAAAACCCAAGGCCCAAAGACAGCAGACTGGCAAAACATGGTCAGATGCCTTCTGAATTTCAAAAAAGCTATCAGTCATTTTTACTTTTCATTGATCCTGAGAACAGGGTCTTCCCCAAACATAAAAACAAAACTCATTTTTACACAGTTTGACTACCACCGTATTATTAGCCATGGTTTCAATTCATTTAGGCAACAGATACCATGCATATACTATGTTCCAGGCACATTCTAGGGAGGAGGGATATTGCAATGAACAAAGACAGATAACACCCCCTGTCCCTCACAGAGCTACAT";
     // string ref = "TTGTCACCTTGTCTACTCCTGTTCCTCAGGGACTCACCTGCCTTAGCTCAGTCCTTGCTGGGCAATTCTCTGTGTCTTTTCTAGGGCCTGCAAGTTCTGCCACTGGAGTTTACAAATGACCACTATCTTTAGCCAGATAACCAGGTATGCCCTAGCATTGGGCAGTTTTCCTCTACATCTTGCCCTCTCTGTCTCAAGGATTTAGGACCTAGATTATGTTGCTGCTTCAGGCAGTTCTGCTGCTGACAAGATAAATTCTGTTAGCATTTCACTAAGCTGATGGGTATAATTACTTTAGTTGGAGGTCACTAAAACCTGAATTTACAAATAAAAACTGGATCAGGGAGCAGTCTGTGTGTGTGTTGTGGAGGAGTGTGGGTGAAGGTACAACAGATAATATCCCTCCTTTGCTGAGATCCTTCCAGTGGCTCCCTAAATCACTCATAGTAAAAGCCAACTTCCTCACAGGGCCCTTCATCATGTTCTGCTGCTAGCCTCCATCTGCTTCTTTCCCTTACTCAACCTAATTCTAATTTCAGTTCCATTGGAGCCATACAGATCTCCTTGCTATTTCTTTATTTCAAATTCCAGTTATTCATTGCTGGCATATAGAAAAGCAATAGATTGTTGTATATTAACTTTGTGTCTTGTAACCTTGCTGTAAGTGCTGTTCTGGCAGTCTTTGTTTTGATCAATTCTTTGGGATATTCTACATAGACAGATCATCTGCAAACAAAGATAGTGTTATTTCTTCCATTTCAATCTGTAGAGCTTTTATTTCCTTTTCTGGCTTATTCCACTCGCTAAGATTTCCAGTAAAATGTTGAATAGGAGTAGAGAGAGAGGCACCTTGCTTTGTTCCTGATCTTAAGGGGAAAGCATCCAATTTCTTACCATTAAGTATGAAGTTGGCTGCAAAGAAGTTCTTTATCCAGTTGAGGAAATTCCCTCCTATTCATAGTTTGCTGCCCCATCAGCTTTTTAGGTTGGTGCAAAAGTAATTGTGGTTTTTGCTGTGACTTT";
