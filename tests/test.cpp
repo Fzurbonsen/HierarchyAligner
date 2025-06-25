@@ -1115,7 +1115,7 @@ void run_standard_tests(string graphFile, string positionFile, string simPositio
 
 
 
-void run_benchmark(string graphFile, string positionFile, string simPositionFile, int match, int mismatch, uint gap_open, uint gap_extend, FILE* outputFile) {
+void run_benchmark(string graphFile, string positionFile, string simPositionFile, int match, int mismatch, uint gap_open, uint gap_extend, FILE* outputFile, int (*funcPtr)(vector<projectA_alignment_t*>&, int)) {
     
     int32_t runtime = 0;
     int32_t setup_runtime = 0;
@@ -1150,9 +1150,10 @@ void run_benchmark(string graphFile, string positionFile, string simPositionFile
     // Maps to hold the top 5 max scoring alignments for each read
     unordered_map<string, vector<projectA_alignment_t*>> five_max_scoring_alignments;
 
-    fprintf(outputFile, "n_threads,runtime,setup_runtime\n");
+    // fprintf(outputFile, "n_threads,runtime,setup_runtime\n");
+    fprintf(outputFile, "n_threads,runtime\n");
 
-    for (int i = 0; i <= 1; ++i) {
+    for (int i = 1; i <= 16; ++i) {
         vector<projectA_alignment_t*> alignments;
         for (int32_t i = 0; i < graphs.size(); ++i) {
             projectA_alignment_t* alignment = new projectA_alignment_t;
@@ -1167,13 +1168,14 @@ void run_benchmark(string graphFile, string positionFile, string simPositionFile
             projectA_create_read_sets(read_set_map, alignment);
         }
 
-        runtime = projectA_get_timed_alignment_s_gwfa(alignments, 2^i);
+        runtime = funcPtr(alignments, i);
+        fprintf(stderr, "runtime: %i\n", runtime);
         auto t0 = Clock::now();
         // for (auto alignment : alignments) {
         //     projectA_edlib(alignment);
         // }
         auto t1 = Clock::now();
-        projectA_get_alignment_s_gwfa(alignments, 2^i);
+        // projectA_get_alignment_s_gwfa(alignments, 2^i);
         // for (auto alignment : alignments) {
         //     projectA_edlib(alignment);
         // }
@@ -1181,7 +1183,8 @@ void run_benchmark(string graphFile, string positionFile, string simPositionFile
         runtime += std::chrono::duration_cast<std::chrono::milliseconds>(t1 - t0).count();
         setup_runtime = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count();
 
-        fprintf(outputFile, "%i,%i,%i\n", 2^i, runtime, setup_runtime);
+        // fprintf(outputFile, "%i,%i,%i\n", 2^i, runtime, setup_runtime);
+        fprintf(outputFile, "%i,%i\n", i, runtime);
 
         for (auto& alignment : alignments) {
             delete alignment;
@@ -1653,7 +1656,7 @@ int main() {
     
     // run_standard_tests("./test_cases/reference_graph.gfa", "./test_cases/node_list_2.txt", "./test_cases/1000.new.sim.txt", match, mismatch, gap_open, gap_extend, stderr);
 
-    run_standard_tests("./test_cases/ecoli_graph.gfa", "./test_cases/ecoli_part_node_list.txt", "./test_cases/1000.new.sim.txt", match, mismatch, gap_open, gap_extend, stderr);
+    // run_standard_tests("./test_cases/ecoli_graph.gfa", "./test_cases/ecoli_part_node_list.txt", "./test_cases/1000.new.sim.txt", match, mismatch, gap_open, gap_extend, stderr);
 
 
     // run_standard_tests("./test_cases/reference_graph.gfa", "./test_cases/node_list_2_small.txt", "./test_cases/1000.new.sim.txt", match, mismatch, gap_open, gap_extend, stderr);
@@ -1664,9 +1667,16 @@ int main() {
     // run_standard_tests("./test_cases/reference_graph.gfa", "./test_cases/node_list_3.txt", "", match, mismatch, gap_open, gap_extend, stderr);
     // run_standard_tests("./test_cases/reference_graph.gfa", "./test_cases/node_list_4.txt", "", match, mismatch, gap_open, gap_extend, stderr);
 
-    // FILE* outputFile = fopen("./files/gssw_benchmark.csv", "w");
-    // run_benchmark("./test_cases/reference_graph.gfa", "./test_cases/node_list_2.txt", "./test_cases/1000.new.sim.txt", match, mismatch, gap_open, gap_extend, stderr);
-    // fclose(outputFile);
+    FILE* outputFile = fopen("./files/benchmarks_ecoli_1/gwfa.csv", "w");
+    run_benchmark("./test_cases/ecoli_graph.gfa", "./test_cases/ecoli_node_list.txt", "./test_cases/1000.new.sim.txt", match, mismatch, gap_open, gap_extend, outputFile, projectA_get_timed_alignment_gwfa);
+    fclose(outputFile);
+    outputFile = fopen("./files/benchmarks_ecoli_1/gssw.csv", "w");
+    run_benchmark("./test_cases/ecoli_graph.gfa", "./test_cases/ecoli_node_list.txt", "./test_cases/1000.new.sim.txt", match, mismatch, gap_open, gap_extend, outputFile, projectA_get_timed_alignment_gssw);
+    fclose(outputFile);
+    outputFile = fopen("./files/benchmarks_ecoli_1/gwfa_edlib.csv", "w");
+    run_benchmark("./test_cases/ecoli_graph.gfa", "./test_cases/ecoli_node_list.txt", "./test_cases/1000.new.sim.txt", match, mismatch, gap_open, gap_extend, outputFile, projectA_get_timed_alignment_edlib_gwfa);
+    fclose(outputFile);
+
 
 
     // projectA_get_alignment_abpoa(alignments2, 1);
