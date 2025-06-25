@@ -635,7 +635,8 @@ void run_standard_tests(string graphFile, string positionFile, string simPositio
 
 
     // projectA_read_node_list(clusters, "./test_cases/node_list_2.txt");
-    projectA_read_node_list(clusters, "./test_cases/node_list_2_small.txt");
+    // projectA_read_node_list(clusters, "./test_cases/node_list_2_small.txt");
+    projectA_read_node_list(clusters, "./test_cases/ecoli_node_list.txt");
     // projectA_read_node_list(clusters, positionFile);
     // projectA_read_node_list(clusters, "./test_cases/tests.txt");
     // projectA_read_node_list(clusters, "./test_cases/linear_node_list.txt");
@@ -763,7 +764,7 @@ void run_standard_tests(string graphFile, string positionFile, string simPositio
     // cerr << "gssw time: " << projectA_get_timed_alignment_gssw(alignments2, 1) << endl;
     // cerr << "gssw time: " << projectA_get_timed_alignment_gssw(alignments1, 32) << endl;
     // cerr << "s_gwfa time: " << projectA_get_timed_alignment_s_gwfa(alignments1, 1) << endl;
-    for (int i = 1; i <= 30; ++i) {
+    for (int i = 1; i <= 1; ++i) {
         // cerr << "edlib_gwfa time: " << projectA_get_timed_alignment_edlib_gwfa(alignments1, i) << "\tthreads: " << i << endl;
         cerr << "gwfa time: " << projectA_get_timed_alignment_gwfa(alignments1, i) << "\tthreads: " << i << endl;
         cerr << "edlib time: " << projectA_get_timed_alignment_edlib(alignments1, i) << endl;
@@ -1649,7 +1650,12 @@ int main() {
     uint gap_open = 1;
     uint gap_extend = 1;
 
-    run_standard_tests("./test_cases/reference_graph.gfa", "./test_cases/node_list_2.txt", "./test_cases/1000.new.sim.txt", match, mismatch, gap_open, gap_extend, stderr);
+    
+    // run_standard_tests("./test_cases/reference_graph.gfa", "./test_cases/node_list_2.txt", "./test_cases/1000.new.sim.txt", match, mismatch, gap_open, gap_extend, stderr);
+
+    run_standard_tests("./test_cases/ecoli_graph.gfa", "./test_cases/ecoli_part_node_list.txt", "./test_cases/1000.new.sim.txt", match, mismatch, gap_open, gap_extend, stderr);
+
+
     // run_standard_tests("./test_cases/reference_graph.gfa", "./test_cases/node_list_2_small.txt", "./test_cases/1000.new.sim.txt", match, mismatch, gap_open, gap_extend, stderr);
     // run_standard_tests("./test_cases/reference_graph.gfa", "./test_cases/node_list_2_medium.txt", "./test_cases/1000.new.sim.txt", match, mismatch, gap_open, gap_extend, stderr);
     // run_standard_tests("./test_cases/reference_graph.gfa", "./test_cases/tests.txt", "./test_cases/1000.new.sim.txt", match, mismatch, gap_open, gap_extend);
