@@ -1670,9 +1670,9 @@ int main() {
     FILE* outputFile = fopen("./files/benchmarks_ecoli_1/gwfa.csv", "w");
     run_benchmark("./test_cases/ecoli_graph.gfa", "./test_cases/ecoli_node_list.txt", "./test_cases/1000.new.sim.txt", match, mismatch, gap_open, gap_extend, outputFile, projectA_get_timed_alignment_gwfa);
     fclose(outputFile);
-    outputFile = fopen("./files/benchmarks_ecoli_1/gssw.csv", "w");
-    run_benchmark("./test_cases/ecoli_graph.gfa", "./test_cases/ecoli_node_list.txt", "./test_cases/1000.new.sim.txt", match, mismatch, gap_open, gap_extend, outputFile, projectA_get_timed_alignment_gssw);
-    fclose(outputFile);
+    // outputFile = fopen("./files/benchmarks_ecoli_1/gssw.csv", "w");
+    // run_benchmark("./test_cases/ecoli_graph.gfa", "./test_cases/ecoli_node_list.txt", "./test_cases/1000.new.sim.txt", match, mismatch, gap_open, gap_extend, outputFile, projectA_get_timed_alignment_gssw);
+    // fclose(outputFile);
     outputFile = fopen("./files/benchmarks_ecoli_1/gwfa_edlib.csv", "w");
     run_benchmark("./test_cases/ecoli_graph.gfa", "./test_cases/ecoli_node_list.txt", "./test_cases/1000.new.sim.txt", match, mismatch, gap_open, gap_extend, outputFile, projectA_get_timed_alignment_edlib_gwfa);
     fclose(outputFile);
