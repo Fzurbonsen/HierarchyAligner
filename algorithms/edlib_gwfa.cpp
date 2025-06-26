@@ -214,11 +214,11 @@ void* projectA_edlib_gwfa_calculate_batch(void* ptr, int32_t thread_index) {
 
         // Run edlib_gwfa
         gwf_ed_index(parameter.km, parameter.graph);
-        score = gwf_ed(parameter.km, parameter.graph, parameter.ql, parameter.q, parameter.v0, parameter.v1,
-                        parameter.max_lag, parameter.traceback, &gwf_path);
+        // score = gwf_ed(parameter.km, parameter.graph, parameter.ql, parameter.q, parameter.v0, parameter.v1,
+        //                 parameter.max_lag, parameter.traceback, &gwf_path);
 
-        // score = gwf_ed_infix(parameter.km, parameter.graph, parameter.ql, parameter.q, parameter.v0, parameter.v1,
-        //                         parameter.max_lag, parameter.traceback, &gwf_path);
+        score = gwf_ed_infix(parameter.km, parameter.graph, parameter.ql, parameter.q, parameter.v0, parameter.v1,
+                                parameter.max_lag, parameter.traceback, &gwf_path);
 
         string reference = projectA_edlib_gwfa_path_to_ref(&gwf_path, parameter.projectA_hash_graph);
         parameter.edlib_result = edlibAlign(parameter.q, parameter.ql, 
