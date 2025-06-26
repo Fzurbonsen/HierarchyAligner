@@ -1200,11 +1200,15 @@ void run_benchmark(string graphFile, string positionFile, string simPositionFile
         // fprintf(outputFile, "%i,%i,%i\n", 2^i, runtime, setup_runtime);
         fprintf(outputFile, "%i;%i\n", i, runtime);
 
+        for (auto& alignment : alignments) {
+            delete alignment;
+        }
+
     }
 
-    for (auto& alignment : alignments) {
-            delete alignment;
-    }
+    // for (auto& alignment : alignments) {
+    //         delete alignment;
+    // }
     
 
     for (auto& graph : graphs) {
