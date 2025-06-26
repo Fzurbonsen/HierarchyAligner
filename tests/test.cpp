@@ -1153,23 +1153,38 @@ void run_benchmark(string graphFile, string positionFile, string simPositionFile
     // fprintf(outputFile, "n_threads,runtime,setup_runtime\n");
     fprintf(outputFile, "n_threads,runtime\n");
 
-    for (int i = 1; i <= 16; ++i) {
-        vector<projectA_alignment_t*> alignments;
-        for (int32_t i = 0; i < graphs.size(); ++i) {
-            projectA_alignment_t* alignment = new projectA_alignment_t;
-            alignment->id = i;
-            alignment->graph = graphs[i].graph;
-            alignment->read = graphs[i].read;
-            alignment->match = match;
-            alignment->mismatch = mismatch;
-            alignment->gap_open = gap_open;
-            alignment->gap_extend = gap_extend;
-            alignments.push_back(alignment);
-            projectA_create_read_sets(read_set_map, alignment);
-        }
+    vector<projectA_alignment_t*> alignments;
+    for (int32_t j = 0; j < graphs.size(); ++j) {
+        projectA_alignment_t* alignment = new projectA_alignment_t;
+        alignment->id = j;
+        alignment->graph = graphs[i].graph;
+        alignment->read = graphs[i].read;
+        alignment->match = match;
+        alignment->mismatch = mismatch;
+        alignment->gap_open = gap_open;
+        alignment->gap_extend = gap_extend;
+        alignments.push_back(alignment);
+        projectA_create_read_sets(read_set_map, alignment);
+    }
+    int base = projectA_get_timed_alignment_gwfa(alignments, 1);
 
-        runtime = projectA_get_timed_alignment_gwfa(alignments, i);
-        runtime += funcPtr(alignments, i);
+    for (int i = 1; i <= 16; ++i) {
+        // vector<projectA_alignment_t*> alignments;
+        // for (int32_t j = 0; j < graphs.size(); ++j) {
+        //     projectA_alignment_t* alignment = new projectA_alignment_t;
+        //     alignment->id = j;
+        //     alignment->graph = graphs[i].graph;
+        //     alignment->read = graphs[i].read;
+        //     alignment->match = match;
+        //     alignment->mismatch = mismatch;
+        //     alignment->gap_open = gap_open;
+        //     alignment->gap_extend = gap_extend;
+        //     alignments.push_back(alignment);
+        //     projectA_create_read_sets(read_set_map, alignment);
+        // }
+
+        // runtime = projectA_get_timed_alignment_gwfa(alignments, i);
+        runtime = funcPtr(alignments, i) + base;
         fprintf(stderr, "runtime: %i\n", runtime);
         auto t0 = Clock::now();
         // for (auto alignment : alignments) {
