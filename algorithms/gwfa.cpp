@@ -206,7 +206,7 @@ void* projectA_gwfa_calculate_batch(void* ptr, int32_t thread_index) {
         //                 parameter.max_lag, 2, &gwf_path);
 
         score = gwf_ed_infix(parameter.km, parameter.graph, parameter.ql, parameter.q, parameter.v0, parameter.v1,
-                                parameter.max_lag, parameter.traceback, &gwf_path);
+                                parameter.max_lag, 2, &gwf_path);
 
         path.score = score;
         path.path = gwf_path;

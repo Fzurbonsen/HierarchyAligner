@@ -1151,39 +1151,37 @@ void run_benchmark(string graphFile, string positionFile, string simPositionFile
     unordered_map<string, vector<projectA_alignment_t*>> five_max_scoring_alignments;
 
     // fprintf(outputFile, "n_threads,runtime,setup_runtime\n");
-    fprintf(outputFile, "n_threads,runtime\n");
+    fprintf(outputFile, "n_threads;runtime\n");
 
-    vector<projectA_alignment_t*> alignments;
-    for (int32_t j = 0; j < graphs.size(); ++j) {
-        projectA_alignment_t* alignment = new projectA_alignment_t;
-        alignment->id = j;
-        alignment->graph = graphs[j].graph;
-        alignment->read = graphs[j].read;
-        alignment->match = match;
-        alignment->mismatch = mismatch;
-        alignment->gap_open = gap_open;
-        alignment->gap_extend = gap_extend;
-        alignments.push_back(alignment);
-        projectA_create_read_sets(read_set_map, alignment);
-    }
-    int base = projectA_get_timed_alignment_gwfa(alignments, 1);
+    // vector<projectA_alignment_t*> alignments;
+    // for (int32_t j = 0; j < graphs.size(); ++j) {
+    //     projectA_alignment_t* alignment = new projectA_alignment_t;
+    //     alignment->id = j;
+    //     alignment->graph = graphs[j].graph;
+    //     alignment->read = graphs[j].read;
+    //     alignment->match = match;
+    //     alignment->mismatch = mismatch;
+    //     alignment->gap_open = gap_open;
+    //     alignment->gap_extend = gap_extend;
+    //     alignments.push_back(alignment);
+    //     projectA_create_read_sets(read_set_map, alignment);
+    // }
 
     for (int i = 1; i <= 16; ++i) {
-        // vector<projectA_alignment_t*> alignments;
-        // for (int32_t j = 0; j < graphs.size(); ++j) {
-        //     projectA_alignment_t* alignment = new projectA_alignment_t;
-        //     alignment->id = j;
-        //     alignment->graph = graphs[i].graph;
-        //     alignment->read = graphs[i].read;
-        //     alignment->match = match;
-        //     alignment->mismatch = mismatch;
-        //     alignment->gap_open = gap_open;
-        //     alignment->gap_extend = gap_extend;
-        //     alignments.push_back(alignment);
-        //     projectA_create_read_sets(read_set_map, alignment);
-        // }
-
-        // runtime = projectA_get_timed_alignment_gwfa(alignments, i);
+        vector<projectA_alignment_t*> alignments;
+        for (int32_t j = 0; j < graphs.size(); ++j) {
+            projectA_alignment_t* alignment = new projectA_alignment_t;
+            alignment->id = j;
+            alignment->graph = graphs[j].graph;
+            alignment->read = graphs[j].read;
+            alignment->match = match;
+            alignment->mismatch = mismatch;
+            alignment->gap_open = gap_open;
+            alignment->gap_extend = gap_extend;
+            alignments.push_back(alignment);
+            projectA_create_read_sets(read_set_map, alignment);
+        }
+        
         runtime = funcPtr(alignments, i);
         fprintf(stderr, "runtime: %i\n", runtime);
         auto t0 = Clock::now();
@@ -1200,7 +1198,7 @@ void run_benchmark(string graphFile, string positionFile, string simPositionFile
         setup_runtime = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count();
 
         // fprintf(outputFile, "%i,%i,%i\n", 2^i, runtime, setup_runtime);
-        fprintf(outputFile, "%i,%i\n", i, runtime);
+        fprintf(outputFile, "%i;%i\n", i, runtime);
 
     }
 
