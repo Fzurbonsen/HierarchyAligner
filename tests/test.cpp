@@ -1168,7 +1168,7 @@ void run_benchmark(string graphFile, string positionFile, string simPositionFile
             projectA_create_read_sets(read_set_map, alignment);
         }
 
-        runtime = projcetA_get_timed_alignment_gwfa(alignments, i);
+        runtime = projectA_get_timed_alignment_gwfa(alignments, i);
         runtime += funcPtr(alignments, i);
         fprintf(stderr, "runtime: %i\n", runtime);
         auto t0 = Clock::now();
