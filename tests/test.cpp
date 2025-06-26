@@ -1157,8 +1157,8 @@ void run_benchmark(string graphFile, string positionFile, string simPositionFile
     for (int32_t j = 0; j < graphs.size(); ++j) {
         projectA_alignment_t* alignment = new projectA_alignment_t;
         alignment->id = j;
-        alignment->graph = graphs[i].graph;
-        alignment->read = graphs[i].read;
+        alignment->graph = graphs[j].graph;
+        alignment->read = graphs[j].read;
         alignment->match = match;
         alignment->mismatch = mismatch;
         alignment->gap_open = gap_open;
